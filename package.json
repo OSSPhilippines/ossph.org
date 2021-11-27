@@ -11,7 +11,7 @@
     "url": "git+ssh://git@github.com/oss-ph/ossph.org.git"
   },
   "author": "Joff Tiquez",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/oss-ph/ossph.org/issues"
   },

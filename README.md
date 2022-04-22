@@ -1,8 +1,8 @@
-<center>
+<p align="center">
   <a href="https://ossph.org" target="_blank">
     <img src="assets/img/ossph-icon-transparent-white-cropped.png">
   </a>
-</center>
+</p>
 
 # OSSPH
 

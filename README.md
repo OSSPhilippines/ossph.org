@@ -10,10 +10,6 @@ Open Source Software PH (OSSPH) is a developer-led initiative to grow the commun
 
 # Partners
 
-## Edukasyon.ph
-
-> https://edukasyon.ph
-
-<a href="https://edukasyon.ph" target="_blank">
-  <img width="200px" src="assets/img/partners/edukasyon.jpg">
-</a>
+| Edukasyon | AWS Siklab | Web3 Philippines |
+|---|---|---|
+| <a href="https://edukasyon.ph" target="_blank"><img width="200px" src="assets/img/partners/edukasyon.jpg"></a> | <a href="https://www.facebook.com/AWS.SiklabPH/" target="_blank"><img style="width: 200px;" src="./assets/img/partners/aws-siklab-logo.png" alt="AWS Siklab PH Logo"></a> | <a href="https://web3philippines.org" target="_blank"><img width="200px" src="assets/img/partners/web3phl-logo.png"></a> |

@@ -1,19 +1,33 @@
-<p align="center">
-  <a href="https://ossph.org" target="_blank">
-    <img src="assets/img/ossph-icon-transparent-white-cropped.png">
-  </a>
-</p>
+# ossph.org (ossph.org)
 
-# OSSPH
+Open Source Software PH
 
-Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Our goal is to help open source maintainers to get proper support for their projects. Our future plans include virtual meetups, training for new OSS maintainers, connecting them with mentors and companies that can potentially support them.
+## Install the dependencies
+```bash
+yarn
+# or
+npm install
+```
 
-# Partners
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev
+```
 
-## Edukasyon.ph
 
-> https://edukasyon.ph
+### Lint the files
+```bash
+yarn lint
+# or
+npm run lint
+```
 
-<a href="https://edukasyon.ph" target="_blank">
-  <img width="200px" src="assets/img/partners/edukasyon.jpg">
-</a>
+
+
+### Build the app for production
+```bash
+quasar build
+```
+
+### Customize the configuration
+See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).

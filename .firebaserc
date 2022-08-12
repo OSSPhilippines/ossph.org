@@ -1,5 +1,17 @@
 {
   "projects": {
-    "default": "ossph-org"
+    "default": "hippocrades-blockchain"
+  },
+  "targets": {
+    "hippocrades-blockchain": {
+      "hosting": {
+        "prod": [
+          "hippocrades-web-main-org"
+        ],
+        "staging": [
+          "hippocrades-dot-org"
+        ]
+      }
+    }
   }
 }

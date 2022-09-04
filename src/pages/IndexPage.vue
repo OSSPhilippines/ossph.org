@@ -1,20 +1,28 @@
 <template lang="pug">
-generic-panel(:panel-classes="['items-center', 'grey-panel', 'bg-transparent']")
+generic-panel(
+  :panel-classes="['items-center']"
+  hide-hr
+)
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8.text-center
-      //- h1.text-h1 O  SSPH
+      q-img(
+        src="../assets/images/ossph-logo-text-blue.png"
+        style="width: 200px"
+      )
       h2.text-h4.text-primary Open Source Software PH
       p.text-justify.text-body1 Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Our goal is to help open source maintainers to get proper support for their projects. Our future plans include virtual meetups, training for new OSS maintainers, connecting them with mentors and companies that can potentially support them.
     div.col-xs-12.text-center.q-py-lg
       q-btn(
-        label="Join Us!"
+        label="Join The Movement!"
         size="lg"
         color="primary"
+        icon="discord"
         no-caps
         unelevated
         href="https://discord.com/invite/4ujGbRJyDN"
         target="_blank"
       )
+
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8
       q-card(flat).bg-transparent
@@ -26,26 +34,29 @@ generic-panel(:panel-classes="['items-center', 'grey-panel', 'bg-transparent']")
                 div.col-xs-12.text-center
                   div.row.justify-center.items-center
                     div.col-xs-12.col-md-4.q-pa-sm
-                      q-img(
-                        src="../assets/images/edukasyon.jpg"
-                        spinner-color="primary"
-                        width="170px"
-                        alt="Edukasyon.ph Logo"
-                      )
+                      a(href="https://www.edukasyon.ph/" target="_blank")
+                        q-img(
+                          src="../assets/images/edukasyon.jpg"
+                          spinner-color="primary"
+                          width="170px"
+                          alt="Edukasyon.ph Logo"
+                        )
                     div.col-xs-12.col-md-4.q-pa-sm
-                      q-img(
-                        src="../assets/images/aws-siklab-logo.png"
-                        spinner-color="primary"
-                        width="180px"
-                        alt="AWS Siklab Logo"
-                      )
+                      a(href="https://www.facebook.com/AWS.SiklabPH/" target="_blank")
+                        q-img(
+                          src="../assets/images/aws-siklab-logo.png"
+                          spinner-color="primary"
+                          width="180px"
+                          alt="AWS Siklab Logo"
+                        )
                     div.col-xs-12.col-md-4.q-pa-sm
-                      q-img(
-                        src="../assets/images/web3phl-logo.png"
-                        spinner-color="primary"
-                        width="170px"
-                        alt="Web3 Philippines Logo"
-                      )
+                      a(href="https://web3philippines.org/" target="_blank")
+                        q-img(
+                          src="../assets/images/web3phl-logo.png"
+                          spinner-color="primary"
+                          width="170px"
+                          alt="Web3 Philippines Logo"
+                        )
 </template>
 
 <script>

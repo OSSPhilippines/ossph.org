@@ -1,5 +1,5 @@
-firebase use hippocrades-blockchain && \
+firebase use ossph-org && \
 firebase deploy --only functions:ossphSSRHandler && \
 firebase target:clear hosting staging && \
-firebase target:apply hosting staging hippocrades-dot-org && \
+firebase target:apply hosting staging ossph-org && \
 firebase deploy --only hosting:staging

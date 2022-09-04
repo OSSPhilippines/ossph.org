@@ -5,8 +5,8 @@ const routes = [
     redirect: '/home',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: 'home', component: () => import('pages/IndexPage.vue') },
-      { path: 'team', component: () => import('pages/TeamPage.vue') },
+      { path: 'home', name: 'home', component: () => import('pages/IndexPage.vue') },
+      { path: 'team', name: 'team', component: () => import('pages/TeamPage.vue') },
     ],
   },
 

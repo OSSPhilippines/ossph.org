@@ -2,18 +2,11 @@
 const routes = [
   {
     path: '/',
-    name: 'home',
+    redirect: '/home',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
-    ],
-  },
-  {
-    path: '/team',
-    name: 'team',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/TeamPage.vue') },
+      { path: 'home', component: () => import('pages/IndexPage.vue') },
+      { path: 'team', component: () => import('pages/TeamPage.vue') },
     ],
   },
 

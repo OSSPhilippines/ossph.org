@@ -5,7 +5,7 @@ div
     :style="{ height: fullHeight ? '100vh' : null, 'padding-top': isMobile ? paddingTopMobile : paddingTop, 'padding-bottom': isMobile ? paddingBottomMobile : paddingBottom }"
     :class="containerClasses"
   ).custom-panel.justify-center
-    div.col-xs-12.col-md-10
+    div.col-xs-12.col-md-10.q-pa-md
       slot(name="default")
   hr(v-if="!hideHr").custom-hr
 </template>

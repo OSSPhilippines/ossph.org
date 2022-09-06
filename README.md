@@ -1,4 +1,6 @@
-# ossph.org (ossph.org)
+<img src="./screenshot.png" width="100%">
+
+# Open Source Software PH
 
 Open Source Software PH
 

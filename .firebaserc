@@ -6,6 +6,9 @@
     "ossph-org": {
       "hosting": {
         "staging": [
+          "staging-ossph-org"
+        ],
+        "prod": [
           "ossph-org"
         ]
       }

@@ -1,6 +1,6 @@
 <template lang="pug">
 q-layout(
-  view="hHh lpR fFr"
+  view="hHh lpR ffr"
   @scroll="onScroll"
 ).whole-bg
   q-header(
@@ -27,28 +27,29 @@ q-layout(
           style="width: 100px"
         )
       q-space
-      template(v-for="(item, index) in menu")
-        template(v-if="item.link")
-          q-btn(
-            size="lg"
-            target="_blank"
-            style="min-width: 100px;"
-            unelevated
-            no-caps
-            :icon="item.icon"
-            :label="item.name"
-            :href="item.link"
-          ).q-mr-sm
-        template(v-if="item.route")
-          q-btn(
-            size="lg"
-            style="min-width: 100px;"
-            unelevated
-            no-caps
-            :icon="item.icon"
-            :label="item.name"
-            :to="item.route"
-          ).q-mr-sm
+      template(v-if="!isMobile")
+        template(v-for="(item, index) in menu")
+          template(v-if="item.link")
+            q-btn(
+              size="lg"
+              target="_blank"
+              style="min-width: 100px;"
+              unelevated
+              no-caps
+              :icon="item.icon"
+              :label="item.name"
+              :href="item.link"
+            ).q-mr-sm
+          template(v-if="item.route")
+            q-btn(
+              size="lg"
+              style="min-width: 100px;"
+              unelevated
+              no-caps
+              :icon="item.icon"
+              :label="item.name"
+              :to="item.route"
+            ).q-mr-sm
 
   q-drawer(
     v-if="isMobile"
@@ -72,21 +73,9 @@ q-layout(
               q-card-section {{item.name}}
   q-page-container#top
     router-view
+
   q-footer.text-black.q-pb-md.bg-transparent.text-center
-    p.text-body1 Join use on #[a(href="https://discord.com/invite/4ujGbRJyDN" target="_blank").text-primary Discord], and follow up on #[a(href="https://www.facebook.com/ossph.org" target="_blank").text-primary Facebook] and #[a(href="https://twitter.com/OSSPhilippines" target="_blank").text-primary Twitter]
-  //- q-footer(
-  //-   v-model="footer"
-  //-   style="height: 70px;"
-  //- ).bg-transparent.text-black
-  //-   q-toolbar
-  //-     q-space
-  //-     q-btn(
-  //-       color="primary"
-  //-       aria-label="Scroll Up"
-  //-       fab
-  //-       @click="onScrollToTop"
-  //-     )
-  //-       q-icon(name="expand_less")
+    p.text-body1 Join us on #[a(href="https://discord.com/invite/4ujGbRJyDN" target="_blank").text-primary Discord], and follow up on #[a(href="https://www.facebook.com/ossph.org" target="_blank").text-primary Facebook] and #[a(href="https://twitter.com/OSSPhilippines" target="_blank").text-primary Twitter]
 </template>
 
 <script>

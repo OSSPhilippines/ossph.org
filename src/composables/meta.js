@@ -1,21 +1,21 @@
 const DESCRIPTION_DEFAULT = 'Open Source Software PH';
-export const useBuildMeta = ({ title = 'OSSPH', page, description = DESCRIPTION_DEFAULT }) => {
+export const useBuildMeta = ({ title = `${DESCRIPTION_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
   return {
     // sets document title
     title,
     // optional; sets final title as "Index Page - My Website", useful for multiple level meta
-    titleTemplate: title => `${title} - ${page}`,
+    titleTemplate: title => `${page} - ${title}`,
 
     // meta tags
     meta: {
       description: { name: 'description', content: description },
-      keywords: { name: 'keywords', content: `${title} - ${page}` },
+      keywords: { name: 'keywords', content: `${page} - ${title}` },
       equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
       // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
       ogTitle: {
         property: 'og:title',
         template () {
-          return `${title} - ${page}`;
+          return `${page} - ${title}`;
         },
       },
       ogDecription: {

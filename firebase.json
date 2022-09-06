@@ -1,55 +1,130 @@
 {
-  "hosting": {
-    "public": ".",
-    "target": "prod",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
+  "functions": {
+    "source": "dist/ssr",
+    "predeploy": "npm run build"
+  },
+  "hosting": [
+    {
+      "target": "staging",
+      "public": "dist/ssr",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [{
         "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(js|css)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=604800"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|gif|png|mp4|webm)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=604800"
-          }
-        ]
-      },
-      {
-        "source": "404.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=300"
-          }
-        ]
-      }
-    ]
+        "function": "ossphSSRHandler"
+      }],
+      "headers": [
+        {
+          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=604800"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png|mp4|webm)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=604800"
+            }
+          ]
+        },
+        {
+          "source": "404.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=300"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "prod",
+      "public": "dist/ssr",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [{
+        "source": "**",
+        "function": "ossphSSRHandler"
+      }],
+      "headers": [
+        {
+          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=604800"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png|mp4|webm)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=604800"
+            }
+          ]
+        },
+        {
+          "source": "404.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=300"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "emulators": {
+    "functions": {
+      "port": 7500
+    },
+    "firestore": {
+      "port": 7600
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "auth": {
+      "port": 7700
+    },
+    "ui": {
+      "enabled": true
+    },
+    "database": {
+      "port": 9000
+    }
   }
 }

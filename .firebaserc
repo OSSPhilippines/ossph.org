@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "ossph-org"
+  },
+  "targets": {
+    "ossph-org": {
+      "hosting": {
+        "staging": [
+          "staging-ossph-org"
+        ],
+        "prod": [
+          "ossph-org"
+        ]
+      }
+    }
   }
 }

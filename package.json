@@ -11,6 +11,7 @@
     "serve": "firebase serve",
     "dev": "quasar dev -m ssr",
     "build": "quasar build -m ssr && cp .firebaserc dist/ssr && cp firebase.json dist/ssr",
+    "deploy": "./deploy-production.sh",
     "deploy:staging": "./deploy-staging.sh",
     "deploy:production": "./deploy-production.sh"
   },

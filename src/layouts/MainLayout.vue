@@ -81,11 +81,14 @@ q-layout(
 <script>
 import { ref, inject, computed } from 'vue';
 import { useQuasar } from 'quasar';
+import { useRouter } from 'vue-router';
+
 export default {
   setup () {
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
+    const router = useRouter();
     const header = ref(false);
     const footer = ref(false);
     const drawerRight = ref(false);
@@ -143,6 +146,7 @@ export default {
           updateHistory: false,
         });
       }
+      if (card.route) router.push(card.route);
       if (card.link) window.open(card.link, '_blank').focus();
     }
 

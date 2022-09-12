@@ -125,6 +125,42 @@ export default {
           },
         ],
       },
+      {
+        name: 'Kristian',
+        role: 'Community Leader',
+        photo: require('@/assets/images/kristian.png'),
+        socials: [
+          {
+            name: 'Twitter',
+            icon: 'twitter',
+            link: 'https://twitter.com/k_quirapas',
+          },
+        ],
+      },
+      {
+        name: 'Jet',
+        role: 'Social Media Associate',
+        photo: require('@/assets/images/jet.png'),
+        socials: [
+          {
+            name: 'Twitter',
+            icon: 'twitter',
+            link: 'https://twitter.com/metaljet1',
+          },
+        ],
+      },
+      {
+        name: 'Geo',
+        role: 'Technical Writer',
+        photo: require('@/assets/images/geo.png'),
+        socials: [
+          {
+            name: 'GitHub',
+            icon: 'github',
+            link: 'https://github.com/geodelapaz',
+          },
+        ],
+      },
     ];
 
     function onGoToPanel (card) {

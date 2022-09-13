@@ -1,5 +1,6 @@
-const DESCRIPTION_DEFAULT = 'Open Source Software PH';
-export const useBuildMeta = ({ title = `${DESCRIPTION_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
+const TITLE_DEFAULT = 'Open Source Software PH';
+const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.';
+export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
   return {
     // sets document title
     title,
@@ -39,7 +40,7 @@ export const useBuildMeta = ({ title = `${DESCRIPTION_DEFAULT} (OSSPH)`, page, d
       ogImage: {
         property: 'og:image',
         template () {
-          return require('@/assets/images/cover.png');
+          return require('@/assets/images/og-banner.png');
         },
       },
     },

@@ -102,6 +102,10 @@ export default {
         route: '/team',
       },
       {
+        name: 'Projects',
+        route: '/projects',
+      },
+      {
         name: 'Blog',
         link: 'https://blog.ossph.org',
       },

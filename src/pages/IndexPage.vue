@@ -1,7 +1,7 @@
 <template lang="pug">
 generic-panel(
   :panel-classes="['items-center']"
-  hide-hr
+  padding-bottom="20px"
 )
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8.text-center
@@ -23,17 +23,32 @@ generic-panel(
         target="_blank"
       )
 
+generic-panel(
+  :panel-classes="['items-center']"
+  padding-top="10px"
+  hide-hr
+)
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8
       q-card(flat).bg-transparent
         q-card-section.text-center
-          h2.text-h5 Our Partners
+          h2.text-h5 Our Community Partners
           div.row.justify-center
             div.col-xs-12
               div.row.items-center.justify-center
                 div.col-xs-12.text-center
-                  div.row.justify-center.items-center
-                    div.col-xs-12.col-md-4.q-pa-sm
+                  div(
+                    :class="{ 'no-wrap': !isMobile }"
+                  ).row.justify-center.items-center
+                    div.col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://www.microsoft.com/en-us/" target="_blank")
+                        q-img(
+                          src="../assets/images/microsoft-logo.png"
+                          spinner-color="primary"
+                          width="170px"
+                          alt="Edukasyon.ph Logo"
+                        )
+                    div.col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.edukasyon.ph/" target="_blank")
                         q-img(
                           src="../assets/images/edukasyon.jpg"
@@ -41,7 +56,7 @@ generic-panel(
                           width="170px"
                           alt="Edukasyon.ph Logo"
                         )
-                    div.col-xs-12.col-md-4.q-pa-sm
+                    div.col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.facebook.com/AWS.SiklabPH/" target="_blank")
                         q-img(
                           src="../assets/images/aws-siklab-logo.png"
@@ -49,12 +64,12 @@ generic-panel(
                           width="180px"
                           alt="AWS Siklab Logo"
                         )
-                    div.col-xs-12.col-md-4.q-pa-sm
+                    div.col-xs-12.col-md-3.q-pa-sm
                       a(href="https://web3philippines.org/" target="_blank")
                         q-img(
                           src="../assets/images/web3phl-logo.png"
                           spinner-color="primary"
-                          width="170px"
+                          width="200px"
                           alt="Web3 Philippines Logo"
                         )
 </template>

@@ -9,7 +9,7 @@ generic-panel(
     div.col-xs-12.col-md-8.text-center
       h1.text-weight-medium.text-h2.text-primary The OSSPH Team
       p.text-body1.q-mb-xl Here are the amazing people behind OSSPH's initiatives
-      div.row.wrap.justify-center
+      div.row.wrap
         template(v-for="team in theTeam")
           div.col-xs-12.col-md-3.q-pa-md.text-center
             q-img(

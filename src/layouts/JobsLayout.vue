@@ -57,7 +57,6 @@ q-layout(
           unelevated
           no-caps
           label="Post a Job"
-          to="/jobs"
         ).q-mr-sm
 
   q-drawer(

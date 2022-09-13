@@ -7,7 +7,7 @@ q-layout(
     elevated
     :dense="isMobile"
   ).bg-primary.text-white
-    q-toolbar(color="primary")
+    q-toolbar(color="primary" style="height: 70px")
       q-btn(
         v-if="isMobile"
         icon="menu"
@@ -50,6 +50,15 @@ q-layout(
               :label="item.name"
               :to="item.route"
             ).q-mr-sm
+        q-btn(
+          size="lg"
+          style="min-width: 100px;"
+          unelevated
+          outline
+          no-caps
+          label="Jobs"
+          to="/jobs"
+        ).q-mr-sm
 
   q-drawer(
     v-if="isMobile"
@@ -93,10 +102,6 @@ export default {
     const footer = ref(false);
     const drawerRight = ref(false);
     const menu = ref([
-      {
-        name: 'Home',
-        route: '/',
-      },
       {
         name: 'The Team',
         route: '/team',

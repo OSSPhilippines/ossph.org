@@ -7,7 +7,7 @@ q-layout(
     elevated
     :dense="isMobile"
   ).bg-primary.text-white
-    q-toolbar(color="primary")
+    q-toolbar(color="primary" style="height: 70px")
       q-btn(
         v-if="isMobile"
         icon="menu"
@@ -94,10 +94,6 @@ export default {
     const drawerRight = ref(false);
     const menu = ref([
       {
-        name: 'Home',
-        route: '/',
-      },
-      {
         name: 'The Team',
         route: '/team',
       },
@@ -111,6 +107,7 @@ export default {
       },
       {
         name: 'GitHub',
+        icon: 'fa-brands fa-github',
         link: 'https://github.com/OSSPhilippines',
       },
     ]);

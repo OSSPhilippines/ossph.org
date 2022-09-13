@@ -62,7 +62,7 @@ export default {
     GenericPanel,
   },
   setup () {
-    useMeta(useBuildMeta({ page: 'The Team' }));
+    useMeta(useBuildMeta({ page: 'The Team', description: 'Here are the amazing people behind OSSPH\'s initiatives' }));
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);

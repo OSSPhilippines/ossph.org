@@ -23,6 +23,17 @@ generic-panel(
                     div.col-xs-12.col-md-3.q-pa-sm.text-center
                       q-card
                         q-card-section.q-pt-lg
+                          a(href="https://github.com/vue-stripe" target="_blank")
+                            q-img(
+                              src="../assets/images/vue-stripe-logo-variant-1-small.png"
+                              spinner-color="primary"
+                              width="120px"
+                              alt="Edukasyon.ph Logo"
+                            )
+                            h2.text-h6 Vue Stripe
+                    div.col-xs-12.col-md-3.q-pa-sm.text-center
+                      q-card
+                        q-card-section.q-pt-lg
                           a(href="https://github.com/OSSPhilippines/ossph.org" target="_blank")
                             q-img(
                               src="../assets/images/github-logo.png"
@@ -58,102 +69,6 @@ export default {
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
-    const theTeam = [
-      {
-        name: 'Joff',
-        role: 'Founder',
-        photo: require('@/assets/images/joff.png'),
-        socials: [
-          {
-            name: 'GitHub',
-            icon: 'github',
-            link: 'https://github.com/jofftiquez',
-          },
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/jrtiquez',
-          },
-          {
-            name: 'LinkedIn',
-            icon: 'linkedin',
-            link: 'https://linkedin.com/in/jofftiquez',
-          },
-        ],
-      },
-      {
-        name: 'Waren',
-        role: 'Community Leader',
-        photo: require('@/assets/images/waren.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/warengonzaga',
-          },
-        ],
-      },
-      {
-        name: 'Avie',
-        role: 'Community Leader',
-        photo: require('@/assets/images/avie.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/AvieDev',
-          },
-        ],
-      },
-      {
-        name: 'Benj',
-        role: 'Head Artist',
-        photo: require('@/assets/images/benj.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/annabenjamine',
-          },
-        ],
-      },
-      {
-        name: 'Kristian',
-        role: 'Community Leader',
-        photo: require('@/assets/images/kristian.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/k_quirapas',
-          },
-        ],
-      },
-      {
-        name: 'Jet',
-        role: 'Social Media Associate',
-        photo: require('@/assets/images/jet.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/metaljet1',
-          },
-        ],
-      },
-      {
-        name: 'Geo',
-        role: 'Technical Writer',
-        photo: require('@/assets/images/geo.png'),
-        socials: [
-          {
-            name: 'GitHub',
-            icon: 'github',
-            link: 'https://github.com/geodelapaz',
-          },
-        ],
-      },
-    ];
 
     function onGoToPanel (card) {
       const panelId = card.panelId;
@@ -171,7 +86,6 @@ export default {
 
     return {
       isMobile,
-      theTeam,
       onGoToPanel,
     };
   },

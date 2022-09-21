@@ -41,12 +41,20 @@ generic-panel(
                     :class="{ 'no-wrap': !isMobile }"
                   ).row.justify-center.items-center
                     div.col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://stripe.com" target="_blank")
+                        q-img(
+                          src="../assets/images/stripe-logo.png"
+                          spinner-color="primary"
+                          width="170px"
+                          alt="Stripe Logo"
+                        )
+                    div.col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.microsoft.com/en-us/" target="_blank")
                         q-img(
                           src="../assets/images/microsoft-logo.png"
                           spinner-color="primary"
                           width="170px"
-                          alt="Edukasyon.ph Logo"
+                          alt="Microsoft Logo"
                         )
                     div.col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.edukasyon.ph/" target="_blank")

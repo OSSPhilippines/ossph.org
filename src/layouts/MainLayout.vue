@@ -76,6 +76,7 @@ q-layout(
 
   q-footer.text-black.q-pb-md.bg-transparent.text-center
     p.text-body1 Join us on #[a(href="https://discord.com/invite/4ujGbRJyDN" target="_blank").text-primary Discord], and follow up on #[a(href="https://www.facebook.com/ossph.org" target="_blank").text-primary Facebook] and #[a(href="https://twitter.com/OSSPhilippines" target="_blank").text-primary Twitter]
+    p.text-body1 #[a(href="https://bit.ly/3xjDvN2" target="_blank").text-primary Press Kit]
 </template>
 
 <script>

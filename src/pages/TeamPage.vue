@@ -13,7 +13,7 @@ generic-panel(
         template(v-for="team in theTeam")
           div.col-xs-12.col-md-3.q-pa-md.text-center
             q-img(
-              :src="team.photo"
+              :src="require(`@/assets/images/${team.photo}`)"
             ).q-mb-md
             div
               span.text-h4 {{team.name}}
@@ -35,8 +35,8 @@ generic-panel(
                         clickable
                         :href="social.link"
                       )
-                        //- q-item-section(avatar)
-                        //-   q-icon(:name="social.icon")
+                        q-item-section(avatar)
+                          q-icon(:name="social.icon")
                         q-item-section {{social.name}}
 
       div.row.wrap.justify-center
@@ -57,6 +57,7 @@ import { inject, computed } from 'vue';
 import { useBuildMeta } from '@/composables/meta';
 import { useMeta, useQuasar } from 'quasar';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
+import teamData from '@/assets/fixtures/team';
 export default {
   components: {
     GenericPanel,
@@ -66,102 +67,7 @@ export default {
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
-    const theTeam = [
-      {
-        name: 'Joff',
-        role: 'Founder',
-        photo: require('@/assets/images/joff.png'),
-        socials: [
-          {
-            name: 'GitHub',
-            icon: 'github',
-            link: 'https://github.com/jofftiquez',
-          },
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/jrtiquez',
-          },
-          {
-            name: 'LinkedIn',
-            icon: 'linkedin',
-            link: 'https://linkedin.com/in/jofftiquez',
-          },
-        ],
-      },
-      {
-        name: 'Waren',
-        role: 'Community Leader',
-        photo: require('@/assets/images/waren.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/warengonzaga',
-          },
-        ],
-      },
-      {
-        name: 'Avie',
-        role: 'Community Leader',
-        photo: require('@/assets/images/avie.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/AvieDev',
-          },
-        ],
-      },
-      {
-        name: 'Benj',
-        role: 'Head Artist',
-        photo: require('@/assets/images/benj.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/annabenjamine',
-          },
-        ],
-      },
-      {
-        name: 'Kristian',
-        role: 'Community Leader',
-        photo: require('@/assets/images/kristian.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/k_quirapas',
-          },
-        ],
-      },
-      {
-        name: 'Jet',
-        role: 'Social Media Associate',
-        photo: require('@/assets/images/jet.png'),
-        socials: [
-          {
-            name: 'Twitter',
-            icon: 'twitter',
-            link: 'https://twitter.com/metaljet1',
-          },
-        ],
-      },
-      {
-        name: 'Geo',
-        role: 'Technical Writer',
-        photo: require('@/assets/images/geo.png'),
-        socials: [
-          {
-            name: 'GitHub',
-            icon: 'github',
-            link: 'https://github.com/geodelapaz',
-          },
-        ],
-      },
-    ];
+    const theTeam = teamData;
 
     function onGoToPanel (card) {
       const panelId = card.panelId;

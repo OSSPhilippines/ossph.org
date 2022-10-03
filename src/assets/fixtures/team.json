@@ -1,0 +1,147 @@
+[
+  {
+    "name": "Joff",
+    "role": "Founder",
+    "photo": "joff.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https: //github.com/jofftiquez"
+      },
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/jrtiquez"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https: //linkedin.com/in/jofftiquez"
+      }
+    ]
+  },
+  {
+    "name": "Waren",
+    "role": "Community Leader",
+    "photo": "waren.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "twitter",
+        "link": "https: //twitter.com/warengonzaga"
+      }
+    ]
+  },
+  {
+    "name": "Avie",
+    "role": "Community Leader",
+    "photo": "avie.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/AvieDev"
+      }
+    ]
+  },
+  {
+    "name": "Benj",
+    "role": "Head Artist",
+    "photo": "benj.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/annabenjamine"
+      }
+    ]
+  },
+  {
+    "name": "Kristian",
+    "role": "Community Leader",
+    "photo": "kristian.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/k_quirapas"
+      }
+    ]
+  },
+  {
+    "name": "Jet",
+    "role": "Social Media Associate",
+    "photo": "jet.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/metaljet1"
+      }
+    ]
+  },
+  {
+    "name": "Geo",
+    "role": "Technical Writer",
+    "photo": "geo.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https: //github.com/geodelapaz"
+      }
+    ]
+  },
+  {
+    "name": "Kate",
+    "role": "Technical Writer",
+    "photo": "kate.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/redkathh"
+      }
+    ]
+  },
+  {
+    "name": "Pau",
+    "role": "Technical Writer",
+    "photo": "pau.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/codewithpau"
+      },
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https: //github.com/paulaxisabel"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https: //www.linkedin.com/in/paulasigno/"
+      }
+    ]
+  },
+  {
+    "name": "Angelo",
+    "role": "Technical Writer",
+    "photo": "angelo.png",
+    "socials": [
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https: //twitter.com/angelo_fallaria"
+      },
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https: //github.com/angelofallars"
+      }
+    ]
+  }
+]

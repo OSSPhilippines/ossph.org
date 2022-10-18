@@ -28,7 +28,7 @@
     "socials": [
       {
         "name": "Twitter",
-        "icon": "twitter",
+        "icon": "fa-brands fa-twitter",
         "link": "https://twitter.com/warengonzaga"
       }
     ]

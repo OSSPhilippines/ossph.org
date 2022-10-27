@@ -16,10 +16,8 @@ generic-panel(
           div.row
             div.col-xs-12
               div.row
-                div.col-xs-12
-                  div(
-                    :class="{ 'no-wrap': !isMobile }"
-                  ).row
+                div.col-xs-12red
+                  div.row
                     div.col-xs-12.col-md-3.q-pa-sm.text-center
                       q-card
                         q-card-section.q-pt-lg
@@ -28,7 +26,7 @@ generic-panel(
                               src="../assets/images/vue-stripe-logo-variant-1-small.png"
                               spinner-color="primary"
                               width="120px"
-                              alt="Edukasyon.ph Logo"
+                              alt="Vue Stripe Logo"
                             )
                             h2.text-h6 Vue Stripe
                     div.col-xs-12.col-md-3.q-pa-sm.text-center
@@ -39,7 +37,7 @@ generic-panel(
                               src="../assets/images/github-logo.png"
                               spinner-color="primary"
                               width="120px"
-                              alt="Edukasyon.ph Logo"
+                              alt="GitHub Logo"
                             )
                             h2.text-h6 OSSPH Website
                     div.col-xs-12.col-md-3.q-pa-sm.text-center
@@ -50,9 +48,42 @@ generic-panel(
                               src="../assets/images/github-logo.png"
                               spinner-color="primary"
                               width="120px"
-                              alt="Edukasyon.ph Logo"
+                              alt="GitHub Logo"
                             )
                             h2.text-h6 Pinoy-Made 🇵🇭
+                    div.col-xs-12.col-md-3.q-pa-sm.text-center
+                      q-card
+                        q-card-section.q-pt-lg
+                          a(href="https://github.com/OSSPhilippines/freefolio" target="_blank")
+                            q-img(
+                              src="../assets/images/github-logo.png"
+                              spinner-color="primary"
+                              width="120px"
+                              alt="GitHub Logo"
+                            )
+                            h2.text-h6 Freefolio
+                    div.col-xs-12.col-md-3.q-pa-sm.text-center
+                      q-card
+                        q-card-section.q-pt-lg
+                          a(href="https://github.com/OSSPhilippines/hacktober-fest-2022-participants" target="_blank")
+                            q-img(
+                              src="../assets/images/github-logo.png"
+                              spinner-color="primary"
+                              width="120px"
+                              alt="GitHub Logo"
+                            )
+                            h2.text-h6 Hacktoberfest 2022 Participants
+                    div.col-xs-12.col-md-3.q-pa-sm.text-center
+                      q-card
+                        q-card-section.q-pt-lg
+                          a(href="https://github.com/OSSPhilippines/v-animate-css" target="_blank")
+                            q-img(
+                              src="../assets/images/github-logo.png"
+                              spinner-color="primary"
+                              width="120px"
+                              alt="GitHub Logo"
+                            )
+                            h2.text-h6 V Animate CSS
 </template>
 
 <script>

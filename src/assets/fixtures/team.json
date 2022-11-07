@@ -143,5 +143,23 @@
         "link": "https://github.com/angelofallars"
       }
     ]
+  },
+  {
+    "name": "Carl",
+    "role": "Web Developer",
+    "photo": "carl.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/carlolol"
+      }
+    ]
+  },
+  {
+    "name": "Jemson",
+    "role": "Quality Assurance",
+    "photo": "jem.png",
+    "socials": []
   }
 ]

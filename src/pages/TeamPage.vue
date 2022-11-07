@@ -19,7 +19,7 @@ generic-panel(
               span.text-h4 {{team.name}}
             div
               span.text-body1 {{team.role}}
-            div
+            div(v-if="team.socials.length")
               q-btn(
                 label="Connect"
                 color="primary"

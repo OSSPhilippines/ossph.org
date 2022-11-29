@@ -40,7 +40,7 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
       ogImage: {
         property: 'og:image',
         template () {
-          return require('@/assets/images/og-banner.png');
+          return require('../assets/images/og-banner.png');
         },
       },
     },

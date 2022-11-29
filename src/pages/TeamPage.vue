@@ -40,7 +40,7 @@ generic-panel(
                         q-item-section {{social.name}}
 
       div.row.wrap.justify-center
-        div.col-xs-12.q-mt-lg.text-center
+        div.col-xs-12.q-mt-lg.text-center.q-gutter-sm
           q-btn(
             label="Join Our Team!"
             size="lg"
@@ -49,7 +49,17 @@ generic-panel(
             unelevated
             href="https://forms.gle/MjHy9WmB7cEeXDVV9"
             target="_blank"
-          ).q-mb-xl
+          )
+          q-btn(
+            label="Help Us Grow"
+            size="lg"
+            color="primary"
+            icon="fa fa-brands fa-patreon"
+            no-caps
+            outline
+            href="https://www.patreon.com/ossph"
+            target="_blank"
+          )
 </template>
 
 <script>

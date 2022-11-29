@@ -11,7 +11,7 @@ generic-panel(
       )
       h1.text-h4.text-primary Open Source Software PH
       p.text-justify.text-body1 Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Our goal is to help open source maintainers to get proper support for their projects. Our future plans include virtual meetups, training for new OSS maintainers, connecting them with mentors and companies that can potentially support them.
-    div.col-xs-12.text-center.q-py-lg
+    div.col-xs-12.text-center.q-py-lg.q-gutter-sm
       q-btn(
         label="Join The Movement!"
         size="lg"
@@ -20,6 +20,16 @@ generic-panel(
         no-caps
         unelevated
         href="https://discord.com/invite/4ujGbRJyDN"
+        target="_blank"
+      )
+      q-btn(
+        label="Help Us Grow"
+        size="lg"
+        color="primary"
+        icon="fa fa-brands fa-patreon"
+        no-caps
+        outline
+        href="https://www.patreon.com/ossph"
         target="_blank"
       )
 

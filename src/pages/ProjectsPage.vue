@@ -43,6 +43,17 @@ generic-panel(
                     div.col-xs-12.col-md-3.q-pa-sm.text-center
                       q-card
                         q-card-section.q-pt-lg
+                          a(href="https://paymongo.ossph.org" target="_blank")
+                            q-img(
+                              src="../assets/images/github-logo.png"
+                              spinner-color="primary"
+                              width="120px"
+                              alt="GitHub Logo"
+                            )
+                            h2.text-h6 Paymongo for Node.js
+                    div.col-xs-12.col-md-3.q-pa-sm.text-center
+                      q-card
+                        q-card-section.q-pt-lg
                           a(href="https://github.com/OSSPhilippines/pinoy-made" target="_blank")
                             q-img(
                               src="../assets/images/github-logo.png"

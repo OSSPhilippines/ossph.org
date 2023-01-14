@@ -17,20 +17,20 @@ generic-panel(
         size="lg"
         color="primary"
         icon="discord"
-        no-caps
-        unelevated
         href="https://discord.com/invite/4ujGbRJyDN"
         target="_blank"
+        no-caps
+        unelevated
       )
       q-btn(
         label="Help Us Grow"
         size="lg"
-        color="primary"
-        icon="fa fa-brands fa-patreon"
+        color="red"
+        icon="fa fa-heart"
+        href="https://github.com/sponsors/OSSPhilippines"
+        target="_blank"
         no-caps
         outline
-        href="https://www.patreon.com/ossph"
-        target="_blank"
       )
 
 generic-panel(

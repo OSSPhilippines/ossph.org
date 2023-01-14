@@ -45,20 +45,20 @@ generic-panel(
             label="Join Our Team!"
             size="lg"
             color="primary"
-            no-caps
-            unelevated
             href="https://forms.gle/MjHy9WmB7cEeXDVV9"
             target="_blank"
+            no-caps
+            unelevated
           )
           q-btn(
             label="Help Us Grow"
             size="lg"
-            color="primary"
-            icon="fa fa-brands fa-patreon"
+            color="red"
+            icon="fa fa-heart"
+            href="https://github.com/sponsors/OSSPhilippines"
+            target="_blank"
             no-caps
             outline
-            href="https://www.patreon.com/ossph"
-            target="_blank"
           )
 </template>
 

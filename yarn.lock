@@ -3889,16 +3889,15 @@ firebase-admin@^9.8.0:
     "@google-cloud/firestore" "^4.5.0"
     "@google-cloud/storage" "^5.3.0"
 
-firebase-functions@^3.14.1:
-  version "3.21.2"
-  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-3.21.2.tgz#53dde54cdcb2a645b4cdc3e3cbb7480dd46c9293"
-  integrity sha512-XZOSv7mLnd8uIzNA+rc+n+oM/g2Nn4rtUkOKeTMccYiWOMdMMUwhzuqRnE28mB65bveU12aTHkaJY6p3Pk6MUw==
+firebase-functions@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-4.1.1.tgz#47c39a40d6cdaad9a46cb7ee3b9ffbb9bcaa7f2c"
+  integrity sha512-D0fhHO7m3OfZp5TpbO+ClsEo6vmr8uaR4kt7sePhQgcF1OCRI6YT5dEa9szaQekGKoao/YeZ+C5HVxEGsLxD9Q==
   dependencies:
     "@types/cors" "^2.8.5"
     "@types/express" "4.17.3"
     cors "^2.8.5"
     express "^4.17.1"
-    lodash "^4.17.14"
     node-fetch "^2.6.7"
 
 flat-cache@^3.0.4:

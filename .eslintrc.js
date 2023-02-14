@@ -80,5 +80,6 @@ module.exports = {
     'comma-dangle': [2, 'always-multiline'],
     'no-console': 'off',
     'no-multi-str': 'off',
+    'vue/multi-word-component-names': 'off'
   }
 }

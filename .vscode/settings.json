@@ -3,16 +3,13 @@
   "editor.guides.bracketPairs": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.codeActionsOnSave": [
-    "source.fixAll.eslint"
-  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
     "vue"
-  ],
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  ]
 }

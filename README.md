@@ -1,35 +1,42 @@
-<img src="./screenshot.png" width="100%">
+# Nuxt 3 Minimal Starter
 
-# Open Source Software PH
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-Open Source Software PH
+## Setup
 
-## Install the dependencies
+Make sure to install the dependencies:
+
 ```bash
-yarn
-# or
+# yarn
+yarn install
+
+# npm
 npm install
+
+# pnpm
+pnpm install --shamefully-hoist
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## Development Server
+
+Start the development server on http://localhost:3000
+
 ```bash
-quasar dev
+npm run dev
 ```
 
+## Production
 
-### Lint the files
+Build the application for production:
+
 ```bash
-yarn lint
-# or
-npm run lint
+npm run build
 ```
 
+Locally preview production build:
 
-
-### Build the app for production
 ```bash
-quasar build
+npm run preview
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

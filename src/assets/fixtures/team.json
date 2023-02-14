@@ -160,6 +160,29 @@
     "name": "Jemson",
     "role": "Quality Assurance",
     "photo": "jem.png",
-    "socials": []
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/jemstone"
+      }
+    ]
+  },
+  {
+    "name": "Paolo",
+    "role": "Developer/Maintainer",
+    "photo": "paolo.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/MahoMuri"
+      },
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https://twitter.com/mahomuri"
+      }
+    ]
   }
 ]

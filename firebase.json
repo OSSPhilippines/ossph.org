@@ -16,6 +16,11 @@
         {
           "source": "**",
           "function": "ossphSSRHandler"
+        },
+        {
+          "source": "/freefolio/**",
+          "destination": "https://freefolio.web.app",
+          "type": 302
         }
       ],
       "headers": [

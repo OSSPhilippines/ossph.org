@@ -16,7 +16,9 @@
         {
           "source": "**",
           "function": "ossphSSRHandler"
-        },
+        }
+      ],
+      "redirects": [
         {
           "source": "/freefolio",
           "destination": "https://freefolio.web.app",

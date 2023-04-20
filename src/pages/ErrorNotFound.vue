@@ -1,19 +1,14 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
-    <div>
-      <div style="font-size: 30vh">
-        404
-      </div>
-
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
-      </div>
-
+  <div class="fullscreen bg-primary text-white text-center q-pa-md flex flex-center">
+    <div class="column items-center">
+      <img width="200" src="../assets/images/ossph-logo-text-white.png" alt="OSSPH Logo" class="q-mb-xl">
+      <span class="text-h1">404</span>
+      <p class="text-h4">Nothing to see here 👀</p>
       <q-btn
         class="q-mt-xl"
         color="white"
-        text-color="blue"
         unelevated
+        outline
         to="/"
         label="Go Home"
         aria-label="Go Home"

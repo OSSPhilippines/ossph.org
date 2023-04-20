@@ -17,7 +17,7 @@ generic-panel(
         size="lg"
         color="primary"
         icon="discord"
-        href="https://discord.com/invite/4ujGbRJyDN"
+        href="https://discord.com/servers/open-source-software-ph-905496362982981723"
         target="_blank"
         no-caps
         unelevated

@@ -10,91 +10,32 @@ generic-panel(
       h1.text-weight-medium.text-h2.text-primary Our Projects
       p.text-body1.q-mb-xl OSSPH's growing list of projects powered by the community!
   div.row.items-center.justify-center
-    div.col-xs-12.col-md-8
-      q-card(flat).bg-transparent
-        q-card-section
-          div.row
-            div.col-xs-12
-              div.row
-                div.col-xs-12red
-                  div.row
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://github.com/vue-stripe" target="_blank")
-                            q-img(
-                              src="../assets/images/vue-stripe-logo-variant-1-small.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="Vue Stripe Logo"
-                            )
-                            h2.text-h6 Vue Stripe
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://github.com/OSSPhilippines/ossph.org" target="_blank")
-                            q-img(
-                              src="../assets/images/github-logo.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="GitHub Logo"
-                            )
-                            h2.text-h6 OSSPH Website
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://paymongo.ossph.org" target="_blank")
-                            q-img(
-                              src="../assets/images/github-logo.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="GitHub Logo"
-                            )
-                            h2.text-h6 Paymongo for Node.js
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://github.com/OSSPhilippines/pinoy-made" target="_blank")
-                            q-img(
-                              src="../assets/images/github-logo.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="GitHub Logo"
-                            )
-                            h2.text-h6 Pinoy-Made 🇵🇭
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://github.com/OSSPhilippines/freefolio" target="_blank")
-                            q-img(
-                              src="../assets/images/github-logo.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="GitHub Logo"
-                            )
-                            h2.text-h6 Freefolio
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://github.com/OSSPhilippines/hacktober-fest-2022-participants" target="_blank")
-                            q-img(
-                              src="../assets/images/github-logo.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="GitHub Logo"
-                            )
-                            h2.text-h6 Hacktoberfest 2022 Participants
-                    div.col-xs-12.col-md-3.q-pa-sm.text-center
-                      q-card
-                        q-card-section.q-pt-lg
-                          a(href="https://github.com/OSSPhilippines/v-animate-css" target="_blank")
-                            q-img(
-                              src="../assets/images/github-logo.png"
-                              spinner-color="primary"
-                              width="120px"
-                              alt="GitHub Logo"
-                            )
-                            h2.text-h6 V Animate CSS
+    div.col-xs-12.col-md-10
+      div.row
+        template(v-for="project in projects")
+          div.col-xs-12.col-md-6.q-pa-sm
+            q-card.shadow-1
+              q-card-section.q-pt-lg
+                div(:class="{ 'no-wrap': !isMobile }").row.items-start.q-gutter-sm
+                  div.col-xs-12.col-md-3
+                    q-img(
+                      :src="project.icon"
+                      spinner-color="primary"
+                      width="100px"
+                    )
+                  div.col-xs-12.col-md-9
+                    a(:href="project.link" target="_blank")
+                      span.text-h6 {{project.name}}
+                    p {{project.description}}
+                    q-btn(
+                      label="Visit Project"
+                      icon-right="open_in_new"
+                      color="primary"
+                      target="_blank"
+                      outline
+                      no-caps
+                      :href="project.link"
+                    )
 </template>
 
 <script>
@@ -126,7 +67,59 @@ export default {
       }
     }
 
+    const projects = [
+      {
+        name: 'Vue Stripe',
+        link: 'https://github.com/vue-stripe',
+        icon: require('../assets/images/vue-stripe-logo-variant-1-small.png'),
+        description: 'Stripe Checkout & Elements for Vue.js',
+      },
+      {
+        name: 'OSSPH Website',
+        link: 'https://github.com/OSSPhilippines/ossph.org',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'Official website of Open Source Software PH',
+      },
+      {
+        name: 'Paymongo for Node.js',
+        link: 'https://paymongo.ossph.org',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'Nodes.js wrapper for Paymongo\'s REST API',
+      },
+      {
+        name: 'Pinoy-Made 🇵🇭',
+        link: 'https://github.com/OSSPhilippines/pinoy-made',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'A collection of Filipino-made open source projects',
+      },
+      {
+        name: 'Freefolio',
+        link: 'https://github.com/OSSPhilippines/freefolio',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'A collection of fast and free static portfolio websites',
+      },
+      {
+        name: 'Hacktoberfest 2022 Participants',
+        link: 'https://github.com/OSSPhilippines/hacktober-fest-2022-participants',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'List of Hacktoberfest 2022 participants',
+      },
+      {
+        name: 'V Animate CSS',
+        link: 'https://github.com/OSSPhilippines/v-animate-css',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'A Vue.js plugin for Animate CSS',
+      },
+      {
+        name: 'My Philippines Travel Level Map',
+        link: 'https://github.com/OSSPhilippines/philippine-map-app',
+        icon: require('../assets/images/github-logo.png'),
+        description: 'A website to help you visualize your travel history across the Philippines',
+      },
+    ];
+
     return {
+      projects,
       isMobile,
       onGoToPanel,
     };

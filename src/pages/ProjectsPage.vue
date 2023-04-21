@@ -7,13 +7,13 @@ generic-panel(
 )
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8.text-center
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font Our #[span.ossph-text-gradient-main Projects] 💼
-      p.ossph-text-paragraph.q-mb-xl OSSPH's growing list of projects powered by the community!
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font Our #[span.ossph-text-gradient-main Projects] 💼
+      p(data-aos="fade-down").ossph-text-paragraph.q-mb-xl OSSPH's growing list of projects powered by the community!
   div.row.items-center.justify-center
     div.col-xs-12.col-md-10
       div.row
         template(v-for="project in projects")
-          div.col-xs-12.col-md-6.q-pa-sm
+          div(data-aos="fade-up").col-xs-12.col-md-6.q-pa-sm
             q-card.shadow-1
               q-card-section.q-pt-lg
                 div(:class="{ 'no-wrap': !isMobile }").row.items-start.q-gutter-sm

@@ -7,11 +7,11 @@ generic-panel(
 )
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8.text-center
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font The #[span.ossph-text-gradient-main OSSPH Team] ⚔️
-      p.ossph-text-paragraph.q-mb-xl Here are the amazing people behind OSSPH's initiatives
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font The #[span.ossph-text-gradient-main OSSPH Team] ⚔️
+      p(data-aos="fade-down").ossph-text-paragraph.q-mb-xl Here are the amazing people behind OSSPH's initiatives
       div.row.wrap
         template(v-for="team in theTeam")
-          div.col-xs-12.col-md-3.q-pa-md.text-center
+          div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-md.text-center
             q-img(
               :src="require(`@/assets/images/${team.photo}`)"
             ).q-mb-md

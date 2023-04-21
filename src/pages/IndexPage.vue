@@ -4,7 +4,7 @@ generic-panel(
   padding-top="0"
 ).overflow-hidden
   div.row.items-center.justify-center
-    div.col-xs-12.col-md-6.q-gutter-sm
+    div(data-aos="fade-right").col-xs-12.col-md-6.q-gutter-sm
       h1(:class="{ 'text-h1': !isMobile, 'text-h3': isMobile }").ossph-font.text-primary.text-weight-medium #[span.ossph-text-gradient-main Open Source] Software PH
       h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").text-weight-medium The leading Open Source Community in the Philippines
       q-btn(
@@ -27,7 +27,7 @@ generic-panel(
         no-caps
         outline
       )
-    div(v-if="!isMobile").col-xs-12.col-md-6.text-center
+    div(v-if="!isMobile" data-aos="fade-left").col-xs-12.col-md-6.text-center
       img(
         src="../assets/images/github-org-screenshot.png"
         height="850"
@@ -41,7 +41,7 @@ generic-panel(
     div.col-xs-12.col-md-8
       q-card(flat).bg-transparent
         q-card-section.text-center
-          h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font Our #[span.ossph-text-gradient-main Community Partners] 💪
+          h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font Our #[span.ossph-text-gradient-main Community Partners] 💪
           div.row.justify-center
             div.col-xs-12
               div.row.items-center.justify-center
@@ -49,7 +49,7 @@ generic-panel(
                   div(
                     :class="{ 'no-wrap': !isMobile }"
                   ).row.justify-center.items-center
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://stripe.com?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/stripe-logo.png"
@@ -57,7 +57,7 @@ generic-panel(
                           width="170px"
                           alt="Stripe Logo"
                         )
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.microsoft.com/en-us?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/microsoft-logo.png"
@@ -65,7 +65,7 @@ generic-panel(
                           width="170px"
                           alt="Microsoft Logo"
                         )
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.edukasyon.ph?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/edukasyon.jpg"
@@ -73,7 +73,7 @@ generic-panel(
                           width="170px"
                           alt="Edukasyon.ph Logo"
                         )
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.facebook.com/AWS.SiklabPH/" target="_blank")
                         q-img(
                           src="../assets/images/aws-siklab-logo.png"
@@ -81,7 +81,7 @@ generic-panel(
                           width="180px"
                           alt="AWS Siklab Logo"
                         )
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://web3philippines.org/" target="_blank")
                         q-img(
                           src="../assets/images/web3phl-logo.png"
@@ -98,7 +98,7 @@ generic-panel(
     div.col-xs-12.col-md-8
       q-card(flat).bg-transparent
         q-card-section.text-center
-          h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font Our #[span.ossph-text-gradient-main Sponsors] 😇
+          h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font Our #[span.ossph-text-gradient-main Sponsors] 😇
           div.row.justify-center
             div.col-xs-12
               div.row.items-center.justify-center
@@ -106,7 +106,7 @@ generic-panel(
                   div(
                     :class="{ 'no-wrap': !isMobile }"
                   ).row.justify-center.items-center
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://daily.dev?utm_source=ossph.org&utm_medium=community_sponsorship&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/daily-dev-logo.png"
@@ -114,7 +114,7 @@ generic-panel(
                           width="170px"
                           alt="Daily Dev Logo"
                         )
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://twitter.com/AvieDev" target="_blank")
                         q-img(
                           src="../assets/images/avie.png"
@@ -122,7 +122,7 @@ generic-panel(
                           width="120px"
                           alt="Avie Dev Photo"
                         )
-                    div.col-xs-12.col-md-3.q-pa-sm
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://twitter.com/jrtiquez" target="_blank")
                         q-img(
                           src="../assets/images/joff.png"
@@ -148,13 +148,13 @@ generic-panel(
 ).overflow-hidden
   div.row.items-center.justify-center.text-center
     div.col-xs-12.col-md-8
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font #[span.ossph-text-gradient-main Active] Community 🎉
-    div.col-xs-12.col-md-7
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font #[span.ossph-text-gradient-main Active] Community 🎉
+    div(data-aos="fade-right").col-xs-12.col-md-7
       img(
         src="../assets/images/discord-community-screenshot.png"
         width="100%"
       )
-    div.col-xs-12.col-md-5.q-pt-md.q-px-lg
+    div(data-aos="fade-left").col-xs-12.col-md-5.q-pt-md.q-px-lg
       p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH's active Discord community is a vibrant hub of open source enthusiasts and contributors from around the world, sharing knowledge, collaborating on projects, and supporting each other in their journeys. If you're passionate about open source and want to connect with like-minded people, come join us and be a part of the fun!
       q-btn(
         label="Join The Movement!"
@@ -173,8 +173,8 @@ generic-panel(
 ).overflow-hidden
   div.row.items-center.justify-center.text-center
     div.col-xs-12.col-md-8
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font #[span.ossph-text-gradient-main Learn] Regularly 💡
-    div.col-xs-12.col-md-5.q-pt-md
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font #[span.ossph-text-gradient-main Learn] Regularly 💡
+    div(data-aos="fade-right").col-xs-12.col-md-5.q-pt-md
       p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH's active blog provides regular updates on open source software development, cybersecurity, and other technology-related topics. By subscribing now, you can stay informed and learn about the latest trends and developments in the field.
       q-btn(
         label="Read Now!"
@@ -186,7 +186,7 @@ generic-panel(
         no-caps
         unelevated
       )
-    div.col-xs-12.col-md-7
+    div(data-aos="fade-left").col-xs-12.col-md-7
       img(
         src="../assets/images/regular-blog-screenshot.png"
         width="100%"
@@ -199,13 +199,13 @@ generic-panel(
 ).overflow-hidden
   div.row.items-center.justify-center.text-center
     div.col-xs-12.col-md-8
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font #[span.ossph-text-gradient-main Contribution] & Collaboration 🍺
-    div.col-xs-12.col-md-7
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font #[span.ossph-text-gradient-main Contribution] & Collaboration 🍺
+    div(data-aos="fade-right").col-xs-12.col-md-7
       img(
         src="../assets/images/github-org-screenshot.png"
         width="100%"
       )
-    div.col-xs-12.col-md-5.q-pt-md.q-px-lg
+    div(data-aos="fade-left").col-xs-12.col-md-5.q-pt-md.q-px-lg
       p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH has a wide range of open source projects for contributors to learn and contribute to, including software for education, healthcare, and community development. Join the OSSPH community and contribute now to make a positive impact on society!
       q-btn(
         label="Start Contributing Now!"

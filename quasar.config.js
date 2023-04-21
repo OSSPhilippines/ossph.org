@@ -29,6 +29,10 @@ module.exports = configure(function (ctx) {
       'axios',
       'directives',
       'vue-smooth-scroll',
+      {
+        server: false, // run on client-side only!
+        path: 'aos.js', // references /src/boot/<name>.js
+      },
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css

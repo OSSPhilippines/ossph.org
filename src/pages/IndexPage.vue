@@ -1,17 +1,12 @@
 <template lang="pug">
 generic-panel(
   :panel-classes="['items-center']"
-  padding-bottom="20px"
-)
+  padding-top="0"
+).overflow-hidden
   div.row.items-center.justify-center
-    div.col-xs-12.col-md-8.text-center
-      q-img(
-        src="../assets/images/ossph-logo-text-blue.png"
-        style="width: 200px"
-      )
-      h1.text-h4.text-primary Open Source Software PH
-      p.text-justify.text-body1 Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Our goal is to help open source maintainers to get proper support for their projects. Our future plans include virtual meetups, training for new OSS maintainers, connecting them with mentors and companies that can potentially support them.
-    div.col-xs-12.text-center.q-py-lg.q-gutter-sm
+    div.col-xs-12.col-md-6.q-gutter-sm
+      h1(:class="{ 'text-h1': !isMobile, 'text-h3': isMobile }").ossph-font.text-primary.text-weight-medium #[span.ossph-text-gradient-main Open Source] Software PH
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").text-weight-medium The leading Open Source Community in the Philippines
       q-btn(
         label="Join The Movement!"
         size="lg"
@@ -32,17 +27,21 @@ generic-panel(
         no-caps
         outline
       )
+    div(v-if="!isMobile").col-xs-12.col-md-6.text-center
+      img(
+        src="../assets/images/github-org-screenshot.png"
+        height="850"
+      )
 
 generic-panel(
   :panel-classes="['items-center']"
   padding-top="10px"
-  hide-hr
 )
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8
       q-card(flat).bg-transparent
         q-card-section.text-center
-          h1.text-h5 Our Community Partners
+          h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font Our #[span.ossph-text-gradient-main Community Partners] 💪
           div.row.justify-center
             div.col-xs-12
               div.row.items-center.justify-center
@@ -51,7 +50,7 @@ generic-panel(
                     :class="{ 'no-wrap': !isMobile }"
                   ).row.justify-center.items-center
                     div.col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://stripe.com" target="_blank")
+                      a(href="https://stripe.com?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/stripe-logo.png"
                           spinner-color="primary"
@@ -59,7 +58,7 @@ generic-panel(
                           alt="Stripe Logo"
                         )
                     div.col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://www.microsoft.com/en-us/" target="_blank")
+                      a(href="https://www.microsoft.com/en-us?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/microsoft-logo.png"
                           spinner-color="primary"
@@ -67,7 +66,7 @@ generic-panel(
                           alt="Microsoft Logo"
                         )
                     div.col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://www.edukasyon.ph/" target="_blank")
+                      a(href="https://www.edukasyon.ph?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
                         q-img(
                           src="../assets/images/edukasyon.jpg"
                           spinner-color="primary"
@@ -90,6 +89,127 @@ generic-panel(
                           width="200px"
                           alt="Web3 Philippines Logo"
                         )
+
+generic-panel(
+  :panel-classes="['items-center']"
+  padding-top="10px"
+)
+  div.row.items-center.justify-center
+    div.col-xs-12.col-md-8
+      q-card(flat).bg-transparent
+        q-card-section.text-center
+          h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font Our #[span.ossph-text-gradient-main Sponsors] 😇
+          div.row.justify-center
+            div.col-xs-12
+              div.row.items-center.justify-center
+                div.col-xs-12.text-center
+                  div(
+                    :class="{ 'no-wrap': !isMobile }"
+                  ).row.justify-center.items-center
+                    div.col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://daily.dev?utm_source=ossph.org&utm_medium=community_sponsorship&utm_campaign=" target="_blank")
+                        q-img(
+                          src="../assets/images/daily-dev-logo.png"
+                          spinner-color="primary"
+                          width="170px"
+                          alt="Daily Dev Logo"
+                        )
+                    div.col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://twitter.com/AvieDev" target="_blank")
+                        q-img(
+                          src="../assets/images/avie.png"
+                          spinner-color="primary"
+                          width="120px"
+                          alt="Avie Dev Photo"
+                        )
+                    div.col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://twitter.com/jrtiquez" target="_blank")
+                        q-img(
+                          src="../assets/images/joff.png"
+                          spinner-color="primary"
+                          width="120px"
+                          alt="Joff Photo"
+                        )
+
+generic-panel(
+  :panel-classes="['items-center']"
+  padding-top="0"
+).overflow-hidden
+  div.row.items-center.justify-center.text-center
+    div.col-xs-12.col-md-8
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font #[span.ossph-text-gradient-main Active] Community 🎉
+    div.col-xs-12.col-md-7
+      img(
+        src="../assets/images/discord-community-screenshot.png"
+        width="100%"
+      )
+    div.col-xs-12.col-md-5.q-pt-md.q-px-lg
+      p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH's active Discord community is a vibrant hub of open source enthusiasts and contributors from around the world, sharing knowledge, collaborating on projects, and supporting each other in their journeys. If you're passionate about open source and want to connect with like-minded people, come join us and be a part of the fun!
+      q-btn(
+        label="Join The Movement!"
+        size="lg"
+        color="primary"
+        icon="discord"
+        href="https://discord.com/servers/open-source-software-ph-905496362982981723"
+        target="_blank"
+        no-caps
+        unelevated
+      )
+
+generic-panel(
+  :panel-classes="['items-center']"
+  padding-top="0"
+).overflow-hidden
+  div.row.items-center.justify-center.text-center
+    div.col-xs-12.col-md-8
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font #[span.ossph-text-gradient-main Learn] Regularly 💡
+    div.col-xs-12.col-md-5.q-pt-md
+      p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH's active blog provides regular updates on open source software development, cybersecurity, and other technology-related topics. By subscribing now, you can stay informed and learn about the latest trends and developments in the field.
+      q-btn(
+        label="Read Now!"
+        size="lg"
+        color="primary"
+        icon="fa fa-book"
+        href="https://blog.ossph.org/"
+        target="_blank"
+        no-caps
+        unelevated
+      )
+    div.col-xs-12.col-md-7
+      img(
+        src="../assets/images/regular-blog-screenshot.png"
+        width="100%"
+      )
+
+generic-panel(
+  :panel-classes="['items-center']"
+  padding-top="0"
+  hide-hr
+).overflow-hidden
+  div.row.items-center.justify-center.text-center
+    div.col-xs-12.col-md-8
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font #[span.ossph-text-gradient-main Contribution] & Collaboration 🍺
+    div.col-xs-12.col-md-7
+      img(
+        src="../assets/images/github-org-screenshot.png"
+        width="100%"
+      )
+    div.col-xs-12.col-md-5.q-pt-md.q-px-lg
+      p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH has a wide range of open source projects for contributors to learn and contribute to, including software for education, healthcare, and community development. Join the OSSPH community and contribute now to make a positive impact on society!
+      q-btn(
+        label="Start Contributing Now!"
+        size="lg"
+        color="primary"
+        icon="fa-brands fa-github"
+        href="https://github.com/OSSPhilippines"
+        target="_blank"
+        no-caps
+        unelevated
+      )
+//- div.col-xs-12.col-md-6.text-center
+//-   //- p.text-justify.ossph-text-paragraph Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Our goal is to help open source maintainers to get proper support for their projects. Our future plans include virtual meetups, training for new OSS maintainers, connecting them with mentors and companies that can potentially support them.
+//-   //- p.text-justify.ossph-text-paragraph Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.
+//- div.col-xs-12.text-center.q-py-lg.q-gutter-sm
 </template>
 
 <script>

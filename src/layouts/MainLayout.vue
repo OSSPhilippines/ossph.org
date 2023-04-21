@@ -4,7 +4,6 @@ q-layout(
   @scroll="onScroll"
 ).whole-bg
   q-header(
-    elevated
     :dense="isMobile"
   ).bg-primary.text-white
     q-toolbar(color="primary" style="height: 70px")
@@ -56,7 +55,6 @@ q-layout(
     v-model="drawerRight"
     side="right"
     class="bg-primary"
-    show-if-above
     bordered
     :width="300"
     :breakpoint="500"
@@ -74,9 +72,47 @@ q-layout(
   q-page-container#top
     router-view
 
-  q-footer.text-black.q-pb-md.bg-transparent.text-center
-    p.text-body1 Join us on #[a(href="https://discord.com/invite/4ujGbRJyDN" target="_blank").text-primary Discord], and follow up on #[a(href="https://www.facebook.com/ossph.org" target="_blank").text-primary Facebook] and #[a(href="https://twitter.com/OSSPhilippines" target="_blank").text-primary Twitter]
-    p.text-body1 #[a(href="https://bit.ly/3xjDvN2" target="_blank").text-primary Press Kit]
+  q-footer(style="height: 200px;").ossph-gradient-bg.q-pb-md.text-center.text-white
+    q-toolbar.q-gutter-sm.q-my-lg
+      q-space
+      q-btn(
+        label="Discord"
+        href="https://discord.com/servers/open-source-software-ph-905496362982981723"
+        target="_blank"
+        icon="fa-brands fa-discord"
+        outline
+        rounded
+        no-caps
+      )
+      q-btn(
+        label="Discord"
+        href="https://www.facebook.com/ossph.org"
+        target="_blank"
+        icon="fa-brands fa-facebook"
+        outline
+        rounded
+        no-caps
+      )
+      q-btn(
+        label="Twitter"
+        href="https://twitter.com/OSSPhilippines"
+        target="_blank"
+        icon="fa-brands fa-twitter"
+        outline
+        rounded
+        no-caps
+      )
+      q-btn(
+        label="Press Kit"
+        href="https://bit.ly/3xjDvN2"
+        target="_blank"
+        icon="fa fa-newspaper"
+        outline
+        rounded
+        no-caps
+      )
+      q-space
+    p.text-body1 Copyright © {{new Date().getFullYear()}} Open Source Software PH. All Rights Reserved.
 </template>
 
 <script>
@@ -94,6 +130,10 @@ export default {
     const footer = ref(false);
     const drawerRight = ref(false);
     const menu = ref([
+      {
+        name: 'About Us',
+        link: 'https://blog.ossph.org/ossph/',
+      },
       {
         name: 'The Team',
         route: '/team',

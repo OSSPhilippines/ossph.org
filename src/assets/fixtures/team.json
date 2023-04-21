@@ -184,5 +184,32 @@
         "link": "https://twitter.com/mahomuri"
       }
     ]
+  },
+  {
+    "name": "Denz",
+    "role": "Developer/Maintainer",
+    "photo": "denz.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/denzdelvillar"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://linkedin.com/in/denzdelvillar"
+      },
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https://twitter.com/denzvryan"
+      },
+      {
+        "name": "Instagram",
+        "icon": "fa-brands fa-instagram",
+        "link": "https://instagram.com/denzdelvillar"
+      }
+    ]
   }
 ]

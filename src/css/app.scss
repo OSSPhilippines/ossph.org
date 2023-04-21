@@ -1,4 +1,31 @@
 // app global css in SCSS form
 body {
   background-color: #ffffff;
+  color: rgb(44, 44, 44) !important;
+}
+
+@font-face {
+  font-family: molot;
+  src: url(./fonts/Molot.otf);
+}
+
+// declare a class which applies it
+.ossph-font {
+  font-family: 'molot';
+}
+
+.ossph-text-gradient-main {
+  background: #0060A0;
+  background: linear-gradient(to right, #0060A0 0%, #7524B3 50%, #CF557D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ossph-gradient-bg {
+  background: #0060A0;
+  background: linear-gradient(to right, #0060A0 0%, #7524B3 50%, #FF5C7C 100%);
+}
+
+.ossph-text-paragraph {
+  font-size: 25px;
 }

@@ -6,7 +6,7 @@ generic-panel(
   div.row.items-center.justify-center
     div(data-aos="fade-right").col-xs-12.col-md-6.q-gutter-sm
       h1(:class="{ 'text-h1': !isMobile, 'text-h3': isMobile }").ossph-font.text-primary.text-weight-medium #[span.ossph-text-gradient-main Open Source] Software PH
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").text-weight-medium The leading Open Source Community in the Philippines
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").text-weight-medium The leading Open Source Software Community in the Philippines
       q-btn(
         label="Join The Movement!"
         size="lg"

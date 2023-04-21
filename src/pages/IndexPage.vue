@@ -130,6 +130,17 @@ generic-panel(
                           width="120px"
                           alt="Joff Photo"
                         )
+                div.col-xs-12.text-center.q-mt-lg
+                  q-btn(
+                    label="Help Us Grow"
+                    size="lg"
+                    color="red"
+                    icon="fa fa-heart"
+                    href="https://github.com/sponsors/OSSPhilippines"
+                    target="_blank"
+                    no-caps
+                    outline
+                  )
 
 generic-panel(
   :panel-classes="['items-center']"

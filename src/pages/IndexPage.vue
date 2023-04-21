@@ -122,6 +122,14 @@ generic-panel(
                           width="120px"
                           alt="Avie Dev Photo"
                         )
+                    div.col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://twitter.com/jrtiquez" target="_blank")
+                        q-img(
+                          src="../assets/images/joff.png"
+                          spinner-color="primary"
+                          width="120px"
+                          alt="Joff Photo"
+                        )
 
 generic-panel(
   :panel-classes="['items-center']"

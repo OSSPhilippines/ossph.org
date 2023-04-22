@@ -85,7 +85,7 @@ q-layout(
         no-caps
       )
       q-btn(
-        label="Discord"
+        label="Facebook"
         href="https://www.facebook.com/ossph.org"
         target="_blank"
         icon="fa-brands fa-facebook"

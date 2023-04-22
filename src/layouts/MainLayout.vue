@@ -73,8 +73,9 @@ q-layout(
     router-view
 
   q-footer(style="height: 200px;").ossph-gradient-bg.q-pb-md.text-center.text-white
-    q-toolbar.q-gutter-sm.q-my-lg
-      q-space
+    q-toolbar(
+      class="soc-med-toolbar"
+    ).q-gutter-sm.q-my-lg
       q-btn(
         label="Discord"
         href="https://discord.com/servers/open-source-software-ph-905496362982981723"
@@ -83,6 +84,7 @@ q-layout(
         outline
         rounded
         no-caps
+        class="btn-soc-med"
       )
       q-btn(
         label="Facebook"
@@ -92,6 +94,7 @@ q-layout(
         outline
         rounded
         no-caps
+        class="btn-soc-med"
       )
       q-btn(
         label="Twitter"
@@ -101,6 +104,7 @@ q-layout(
         outline
         rounded
         no-caps
+        class="btn-soc-med"
       )
       q-btn(
         label="Press Kit"
@@ -110,8 +114,8 @@ q-layout(
         outline
         rounded
         no-caps
+        class="btn-soc-med"
       )
-      q-space
     p.text-body1 Copyright © {{new Date().getFullYear()}} Open Source Software PH. All Rights Reserved.
 </template>
 
@@ -210,5 +214,18 @@ export default {
 .whole-bg {
   background: rgb(255,255,255);
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(227,249,255,1) 100%);
+}
+
+.soc-med-toolbar {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-soc-med >>> span.q-btn__content {
+  gap: 0.75rem;
+}
+
+.btn-soc-med >>> span.q-btn__content i.on-left {
+  margin-right: 0;
 }
 </style>

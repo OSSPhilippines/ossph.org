@@ -216,6 +216,7 @@ generic-panel(
         target="_blank"
         no-caps
         unelevated
+        class="btn-contribute"
       )
 //- div.col-xs-12.col-md-6.text-center
 //-   //- p.text-justify.ossph-text-paragraph Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Our goal is to help open source maintainers to get proper support for their projects. Our future plans include virtual meetups, training for new OSS maintainers, connecting them with mentors and companies that can potentially support them.
@@ -279,6 +280,18 @@ export default {
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
   -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
   color: #0099cc !important;
+}
+
+.btn-contribute {
+  padding: 8px 16px;
+}
+
+.btn-contribute >>> span.q-btn__content {
+  gap: 0.75rem;
+}
+
+.btn-contribute >>> span.q-btn__content i.on-left {
+  margin-right: 0;
 }
 
 a {

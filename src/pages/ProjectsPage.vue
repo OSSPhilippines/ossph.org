@@ -11,22 +11,22 @@ generic-panel(
       p(data-aos="fade-down").ossph-text-paragraph.q-mb-xl OSSPH's growing list of projects powered by the community!
   div.row.items-center.justify-center
     div.col-xs-12.col-md-10
-      div.row
+      div.proj-section
         template(v-for="project in projects")
-          div(data-aos="fade-up").col-xs-12.col-md-6.q-pa-sm
-            q-card.shadow-1
-              q-card-section.q-pt-lg
-                div(:class="{ 'no-wrap': !isMobile }").row.items-start.q-gutter-sm
-                  div.col-xs-12.col-md-3
+          div(data-aos="fade-up")
+            q-card.shadow-1.h-100
+              q-card-section.h-100
+                div.proj-content-container.h-100
+                  div
                     q-img(
                       :src="project.icon"
                       spinner-color="primary"
                       width="100px"
                     )
-                  div.col-xs-12.col-md-9
-                    a(:href="project.link" target="_blank")
-                      span.text-h6 {{project.name}}
-                    p {{project.description}}
+                  div.proj-content
+                    div
+                      a(:href="project.link" target="_blank").text-h6 {{project.name}}
+                      p {{project.description}}
                     q-btn(
                       label="Visit Project"
                       icon-right="open_in_new"
@@ -35,7 +35,7 @@ generic-panel(
                       outline
                       no-caps
                       :href="project.link"
-                    )
+                    ).w-max-content
 </template>
 
 <script>
@@ -128,27 +128,41 @@ export default {
 </script>
 
 <style scoped>
-.custom-q-card {
-  border: 2px solid black;
-}
-
-.grey-panel {
-  background-color: #fefefe;
-}
-
-.white-panel {
-  background-color: #fff;
-}
-
-.custom-q-card:hover {
-  cursor: pointer;
-  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  color: #0099cc !important;
-}
 
 a {
   text-decoration: none;
+}
+
+/* grid proj*/
+.proj-section{
+  display: grid;
+  gap: 1rem; /* 16px */
+}
+.proj-content-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* 8px */
+}
+.proj-content{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.h-100{
+  height: 100%;
+}
+.w-max-content{
+  width: max-content;
+}
+
+@media (min-width: 1024px) {
+  .proj-section{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .proj-content-container{
+    flex-direction: row;
+  }
 }
 </style>

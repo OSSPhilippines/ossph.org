@@ -13,7 +13,7 @@ generic-panel(
     div.col-xs-12.col-md-10
       div.proj-section
         template(v-for="project in projects")
-          div(data-aos="fade-up").proj-item
+          div(data-aos="fade-up")
             q-card.shadow-1.h-100
               q-card-section.h-100
                 div.proj-content-container.h-100
@@ -162,9 +162,7 @@ a {
     grid-template-rows: auto auto;
   }
   .proj-content-container{
-    display: flex;
     flex-direction: row;
-    gap: 0.5rem; /* 8px */
   }
 }
 </style>

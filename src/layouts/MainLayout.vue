@@ -73,9 +73,7 @@ q-layout(
     router-view
 
   q-footer(style="height: 200px;").ossph-gradient-bg.q-pb-md.text-center.text-white
-    q-toolbar(
-      class="soc-med-toolbar"
-    ).q-gutter-sm.q-my-lg
+    q-toolbar.q-gutter-sm.q-my-lg.soc-med-toolbar
       q-btn(
         label="Discord"
         href="https://discord.com/servers/open-source-software-ph-905496362982981723"
@@ -84,8 +82,7 @@ q-layout(
         outline
         rounded
         no-caps
-        class="btn-soc-med"
-      )
+      ).btn-soc-med
       q-btn(
         label="Facebook"
         href="https://www.facebook.com/ossph.org"
@@ -94,8 +91,7 @@ q-layout(
         outline
         rounded
         no-caps
-        class="btn-soc-med"
-      )
+      ).btn-soc-med
       q-btn(
         label="Twitter"
         href="https://twitter.com/OSSPhilippines"
@@ -104,8 +100,7 @@ q-layout(
         outline
         rounded
         no-caps
-        class="btn-soc-med"
-      )
+      ).btn-soc-med
       q-btn(
         label="Press Kit"
         href="https://bit.ly/3xjDvN2"
@@ -114,8 +109,7 @@ q-layout(
         outline
         rounded
         no-caps
-        class="btn-soc-med"
-      )
+      ).btn-soc-med
     p.text-body1 Copyright © {{new Date().getFullYear()}} Open Source Software PH. All Rights Reserved.
 </template>
 

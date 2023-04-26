@@ -224,3 +224,10 @@ export default {
   margin-right: 0;
 }
 </style>
+
+<style global>
+  aside{
+    position: fixed !important;
+    height: 100% !important;
+  }
+</style>

@@ -13,7 +13,7 @@ q-layout(
         aria-label="Drawer Menu"
         flat
         round
-        @click="drawerRight = !drawerRight"
+        @click="drawerLeft = !drawerLeft"
       )
       q-btn(
         size="lg"
@@ -21,10 +21,11 @@ q-layout(
         no-caps
         to="/"
       )
-        q-img(
-          src="../assets/images/ossph-logo-text-white.png"
-          style="width: 100px"
-        )
+        //- q-img(
+        //-   src="../assets/images/ossph-logo-text-white.png"
+        //-   style="width: 100px"
+        //- )
+        span.text-h4.ossph-font OSSPH
       q-space
       template(v-if="!isMobile")
         template(v-for="(item, index) in menu")
@@ -52,8 +53,8 @@ q-layout(
 
   q-drawer(
     v-if="isMobile"
-    v-model="drawerRight"
-    side="right"
+    v-model="drawerLeft"
+    side="left"
     class="bg-primary"
     bordered
     :width="300"
@@ -126,7 +127,7 @@ export default {
     const router = useRouter();
     const header = ref(false);
     const footer = ref(false);
-    const drawerRight = ref(false);
+    const drawerLeft = ref(false);
     const menu = ref([
       {
         name: 'About Us',
@@ -179,7 +180,7 @@ export default {
 
     function onGoToPanel (card) {
       const panelId = card.panelId;
-      drawerRight.value = false;
+      drawerLeft.value = false;
       if (card.panelId) {
         smoothScroll({
           scrollTo: document.getElementById(panelId),
@@ -191,7 +192,7 @@ export default {
     }
 
     return {
-      drawerRight,
+      drawerLeft,
       footer,
       header,
       isMobile,

@@ -172,9 +172,9 @@ generic-panel(
   padding-top="0"
 ).overflow-hidden
   div.row.items-center.justify-center.text-center
-    div.col-xs-12.col-md-8
+    div.order-1.col-xs-12.col-md-8
       h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font #[span.ossph-text-gradient-main Learn] Regularly 💡
-    div(data-aos="fade-right").col-xs-12.col-md-5.q-pt-md
+    div(data-aos="fade-right" :style="{ order: isMobile ? 3 : 2 }").col-xs-12.col-md-5.q-pt-md
       p(:class="{ 'text-justify': isMobile }").ossph-text-paragraph OSSPH's active blog provides regular updates on open source software development, cybersecurity, and other technology-related topics. By subscribing now, you can stay informed and learn about the latest trends and developments in the field.
       q-btn(
         label="Read Now!"
@@ -186,7 +186,7 @@ generic-panel(
         no-caps
         unelevated
       )
-    div(data-aos="fade-left").col-xs-12.col-md-7
+    div(data-aos="fade-left" :style="{ order: isMobile ? 2 : 3 }").col-xs-12.col-md-7
       img(
         src="../assets/images/regular-blog-screenshot.png"
         width="100%"

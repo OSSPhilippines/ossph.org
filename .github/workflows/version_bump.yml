@@ -16,9 +16,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        tag-prefix: 'v'
         minor-wording: 'add,Adds,new'
         major-wording: 'MAJOR,cut-major'
-        patch-wording: 'patch,fixes,chore' # Providing patch-wording will override commits defaulting to a patch bump.
+        patch-wording: 'patch,fixes' # Providing patch-wording will override commits defaulting to a patch bump.
         rc-wording: 'RELEASE,alpha'
-        tag-prefix: 'v'
-        version-type: 'patch' # Default: patch

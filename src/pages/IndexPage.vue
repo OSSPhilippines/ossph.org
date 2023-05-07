@@ -50,7 +50,7 @@ generic-panel(
                     :class="{ 'no-wrap': !isMobile }"
                   ).row.justify-center.items-center
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://stripe.com?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
+                      a(href="https://stripe.com?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/stripe-logo.png"
                           spinner-color="primary"
@@ -58,7 +58,7 @@ generic-panel(
                           alt="Stripe Logo"
                         )
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://www.microsoft.com/en-us?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
+                      a(href="https://www.microsoft.com/en-us?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/microsoft-logo.png"
                           spinner-color="primary"
@@ -66,7 +66,7 @@ generic-panel(
                           alt="Microsoft Logo"
                         )
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://www.edukasyon.ph?utm_source=ossph.org&utm_medium=community_partner&utm_campaign=" target="_blank")
+                      a(href="https://www.edukasyon.ph?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/edukasyon.jpg"
                           spinner-color="primary"
@@ -74,7 +74,7 @@ generic-panel(
                           alt="Edukasyon.ph Logo"
                         )
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://www.facebook.com/AWS.SiklabPH/" target="_blank")
+                      a(href="https://www.facebook.com/AWS.SiklabPH/?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/aws-siklab-logo.png"
                           spinner-color="primary"
@@ -82,7 +82,7 @@ generic-panel(
                           alt="AWS Siklab Logo"
                         )
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://web3philippines.org/" target="_blank")
+                      a(href="https://web3philippines.org/?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/web3phl-logo.png"
                           spinner-color="primary"
@@ -103,34 +103,40 @@ generic-panel(
             div.col-xs-12
               div.row.items-center.justify-center
                 div.col-xs-12.text-center
-                  div(
-                    :class="{ 'no-wrap': !isMobile }"
-                  ).row.justify-center.items-center
-                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://daily.dev?utm_source=ossph.org&utm_medium=community_sponsorship&utm_campaign=" target="_blank")
+                  div.row.justify-center.items-center
+                    div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
+                      a(href="https://daily.dev?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/daily-dev-logo.png"
                           spinner-color="primary"
                           width="170px"
                           alt="Daily Dev Logo"
                         )
-                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://twitter.com/AvieDev" target="_blank")
+                    div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
+                      a(href="https://twitter.com/AvieDev?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/avie.png"
                           spinner-color="primary"
                           width="120px"
                           alt="Avie Dev Photo"
                         )
-                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
-                      a(href="https://twitter.com/jrtiquez" target="_blank")
+                    div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
+                      a(href="https://twitter.com/jrtiquez?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/joff.png"
                           spinner-color="primary"
                           width="120px"
                           alt="Joff Photo"
                         )
-                div.col-xs-12.text-center.q-mt-lg
+                    div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
+                      a(href="https://github.com/jeydpeaschocolatebar?ref=https://ossph.org" target="_blank")
+                        q-img(
+                          src="../assets/images/jade.png"
+                          spinner-color="primary"
+                          width="120px"
+                          alt="Jade Photo"
+                        )
+                div.col-xs-12.text-center.q-mt-xl
                   q-btn(
                     label="Help Us Grow"
                     size="lg"

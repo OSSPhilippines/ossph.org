@@ -27,9 +27,19 @@
     "photo": "waren.png",
     "socials": [
       {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/warengonzaga"
+      },
+      {
         "name": "Twitter",
         "icon": "fa-brands fa-twitter",
         "link": "https://twitter.com/warengonzaga"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://linkedin.com/in/warengonzaga"
       }
     ]
   },

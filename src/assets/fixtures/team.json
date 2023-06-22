@@ -221,5 +221,95 @@
         "link": "https://instagram.com/denzdelvillar"
       }
     ]
+  },
+  {
+    "name": "Chris",
+    "role": "Code Contributor",
+    "photo": "chris.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/cblanquera"
+      }
+    ]
+  },
+  {
+    "name": "EJ",
+    "role": "Discord Admin",
+    "photo": "ejcenteno.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/ejcenteno"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://linkedin.com/in/ejcenteno"
+      },
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https://twitter.com/ejcenteno69"
+      },
+      {
+        "name": "Facebook",
+        "icon": "fa-brands fa-facebook",
+        "link": "https://facebook.com/ejcenteno69"
+      },
+      {
+        "name": "Instagram",
+        "icon": "fa-brands fa-instagram",
+        "link": "https://instagram.com/ejcenteno69"
+      },
+      {
+        "name": "Strava",
+        "icon": "fa-brands fa-strava",
+        "link": "https://www.strava.com/athletes/ejcenteno"
+      }
+    ]
+  },
+  {
+    "name": "Justin",
+    "role": "Discord Admin",
+    "photo": "no-photo.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/purefunctor"
+      }
+    ]
+  },
+  {
+    "name": "Sofia",
+    "role": "Discord Admin",
+    "photo": "sofia.png",
+    "socials": [
+      {
+        "name": "Instagram",
+        "icon": "fa-brands fa-instagram",
+        "link": "https://www.instagram.com/sofia_heavensys"
+      },
+      {
+        "name": "Facebook",
+        "icon": "fa-brands fa-facebook",
+        "link": "https://www.facebook.com/profile.php?id=100082625676953&mibextid=ZbWKwL"
+      }
+    ]
+  },
+  {
+    "name": "Uncomfy",
+    "role": "Discord Admin",
+    "photo": "uncomfy.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/uncomfyhalomacro"
+      }
+    ]
   }
 ]

@@ -1,39 +1,75 @@
-<img src="./screenshot.png" width="100%">
+<p style="text-align: center">
+  <img style="width: 900px" src="Nuxtwind Daisy Banner.jpg"/>
+</p>
 
-# Open Source Software PH
+<h1 align="center">Nuxtwind Daisy 🟢💨🌼</h1>
+<p style="text-align: center">
+Nuxtwind Daisy is a starter template for Nuxt.js 3 + Tailwind CSS + Daisy UI with additional installed setup for custom font, icons, animation, and more.
+</p>
 
-Open Source Software PH
+# Getting Started Guide
 
-## Install the dependencies
+## Installation
+
+Nope. No installation needed.
+
+## Fork
+
+Fork this repository to your own GitHub account.
+
+<img width="800" src="fork.png">
+
+Make it yours. Rename it. Change the description. Hit Create fork.
+
+<img width="800" src="make-it-yours.png">
+
+## Make changes
+
+I will assume that you already know the basic of nuxt.js. If not, you can check out their [documentation](https://nuxt.com/docs/getting-started/introduction).
+
+Now that it's yours, you can make changes to it. Be creative you can start by removing the contents in the `pages/index.vue`. Feel free to utilize the `GenericPanel.vue` component as it adds a nice balance to the layout.
+
+## Preview
+
+You can preview your build by running the `nuxt start` command.
+
 ```bash
-yarn
-# or
-npm install
+# Preview your build
+$ nuxt start
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## Build
+
+You can choose to build it using the defaul strategy which is SSR, but you also have the option to generate static files so you can just upload your work in any static hosting service. The sample site of this repo is hosted in Vercel.
+
+
 ```bash
-yarn dev
-# or
-npm run dev
+# Build for production using SSR
+$ nuxt build
 ```
 
-
-### Lint the files
 ```bash
-yarn lint
-# or
-npm run lint
+# Build for production and generate static files
+$ nuxt generate
 ```
 
+## Deploy
 
+You can deploy your work in any static hosting service.
 
-### Build the app for production
-```bash
-yarn build
-# or
-npm run build
-```
+Here's a list of static hosting services that you can use:
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
+- [Firebase](https://firebase.google.com/)
+- [Surge](https://surge.sh/)
+- [Render](https://render.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/)
+- [AWS Amplify](https://aws.amazon.com/amplify/)
+- [Cloudflare Pages](https://pages.cloudflare.com/)
+- [Begin](https://begin.com/)
+- [Fast.io](https://fast.io/)
+- [Fly](https://fly.io/)
+- [Deta](https://www.deta.sh/)
+- [Aerobatic](https://www.aerobatic.com/)

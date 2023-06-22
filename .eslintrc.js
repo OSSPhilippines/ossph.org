@@ -40,14 +40,7 @@ module.exports = {
 
   globals: {
     ga: 'readonly', // Google Analytics
-    cordova: 'readonly',
-    __statics: 'readonly',
-    __QUASAR_SSR__: 'readonly',
-    __QUASAR_SSR_SERVER__: 'readonly',
-    __QUASAR_SSR_CLIENT__: 'readonly',
-    __QUASAR_SSR_PWA__: 'readonly',
     process: 'readonly',
-    Capacitor: 'readonly',
     chrome: 'readonly'
   },
 
@@ -80,5 +73,10 @@ module.exports = {
     'comma-dangle': [2, 'always-multiline'],
     'no-console': 'off',
     'no-multi-str': 'off',
+    'curly': 1,
+    'no-undef': 'off',
+
+    // plugins
+    'vue/multi-word-component-names': 'off'
   }
 }

@@ -1,8 +1,7 @@
-/dist
-/src-bex/www
-/src-capacitor
-/src-cordova
-/.quasar
-/node_modules
 .eslintrc.js
+.nuxt
+.output
+/.quasar
+/dist
+/node_modules
 babel.config.js

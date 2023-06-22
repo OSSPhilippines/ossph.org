@@ -7,7 +7,7 @@ generic-panel(
 )
   div.row.items-center.justify-center
     div.col-xs-12.col-md-8.text-center
-      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }" data-aos="fade-down").ossph-font Our #[span.ossph-text-gradient-main Projects] 💼
+      h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font Our #[span.ossph-text-gradient-main Projects] 💼
       p(data-aos="fade-down").ossph-text-paragraph.q-mb-xl OSSPH's growing list of projects powered by the community!
   div.row.items-center.justify-center
     div.col-xs-12.col-md-10

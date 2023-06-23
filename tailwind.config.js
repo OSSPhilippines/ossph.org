@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#843bd7',
+        primary: '#0060A0',
       },
       fontFamily: {
         primary: ['Inter'],
@@ -12,39 +12,7 @@ module.exports = {
     },
   },
   daisyui: {
-    // base: false,
-    themes: [
-      'light',
-      'dark',
-      'cupcake',
-      'bumblebee',
-      'emerald',
-      'corporate',
-      'synthwave',
-      'retro',
-      'cyberpunk',
-      'valentine',
-      'halloween',
-      'garden',
-      'forest',
-      'aqua',
-      'lofi',
-      'pastel',
-      'fantasy',
-      'wireframe',
-      'black',
-      'luxury',
-      'dracula',
-      'cmyk',
-      'autumn',
-      'business',
-      'acid',
-      'lemonade',
-      'night',
-      'coffee',
-      'winter',
-    ],
-
+    base: false,
   },
   plugins: [
     '@tailwindcss/forms',

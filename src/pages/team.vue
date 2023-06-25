@@ -11,7 +11,7 @@ import { definePageMeta } from '#imports';
 export default {
   setup () {
     definePageMeta({
-      layout: 'blank',
+      layout: 'default',
     });
   },
 };

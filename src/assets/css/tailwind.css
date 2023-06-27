@@ -5,9 +5,17 @@
 @tailwind utilities;
 
 body {
-  background-color: white;
-  font-family: 'Inter', sans-serif;
-  @apply text-gray-900;
+  background-color: #fff;
+  color: #2c2c2c !important;
+}
+
+@font-face {
+  font-family: molot;
+  src: url(@/assets/fonts/Molot.otf);
+}
+
+.ossph-font {
+  font-family: molot;
 }
 
 .btn {

@@ -23,7 +23,7 @@
     </div>
 
     <nuxt-link
-      class="btn btn-ghost normal-case text-xl"
+      class="btn btn-ghost text-4xl ossph-font"
       :to="{ name: 'index' }"
     >
       OSSPH

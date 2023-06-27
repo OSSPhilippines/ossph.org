@@ -4,9 +4,6 @@
 name: Deploy to Firebase Hosting on PR
 on:
   pull_request:
-    branches:
-      - main
-      - major/nuxt-version
     types:
       - opened
       - reopened

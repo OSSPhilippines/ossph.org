@@ -3,12 +3,13 @@
   <div>
     <toolbar/>
     <slot />
-    <!-- TODO: replace with footer component -->
+    <commons-footer/>
   </div>
 </template>
 
 <script>
 import { ref, watch, onMounted } from 'vue';
+import CommonsFooter from '@/components/commons/Footer.vue';
 import Toolbar from '@/components/commons/Toolbar.vue';
 const THEMES = [
   'light',
@@ -43,6 +44,7 @@ const THEMES = [
 ];
 export default {
   components: {
+    CommonsFooter,
     Toolbar,
   },
   setup () {

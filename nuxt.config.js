@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   preset: 'node-server',
 
   modules: [
+    '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
     'nuxt-gtag',
@@ -64,7 +65,7 @@ export default defineNuxtConfig({
   },
 
   build: {
-    extend (config, ctx) {
+    extend(config, ctx) {
       config.resolve.symlinks = false;
     },
   },
@@ -80,6 +81,12 @@ export default defineNuxtConfig({
       xxl: 1536,
       '2xl': 1536,
       '3xl': 1920,
+    },
+  },
+
+  googleFonts: {
+    families: {
+      'Roboto+Condensed': [300, 400, 700],
     },
   },
 

@@ -7,6 +7,7 @@ module.exports = {
         primary: '#0060A0',
       },
       fontFamily: {
+        roboto: ["'Roboto Condensed'"],
         primary: ['Inter'],
       },
     },

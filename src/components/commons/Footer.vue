@@ -30,12 +30,16 @@
       </button>
     </a>
   </div>
-  <p class="">Copyright © 2023 Open Source Software PH. All Rights Reserved.</p>
+  <p>Copyright © 2023 Open Source Software PH. All Rights Reserved.</p>
 </footer>
 </template>
 
 <style scope>
 footer {
   height: 200px;
+}
+
+footer i {
+  font-size: 2em;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <footer class="footer footer-center p-10 text-primary-content ossph-gradient-bg">
-  <div class="grid grid-flow-col gap-4">
+  <div class="grid grid-flow-row sm:grid-flow-col gap-4">
     <a href="https://discord.com/servers/open-source-software-ph-905496362982981723"
       target="_blank">
       <button class="btn btn-ghost text-white">
@@ -36,7 +36,7 @@
 
 <style scope>
 footer {
-  height: 200px;
+  min-height: 200px;
 }
 
 footer i {

@@ -1,36 +1,32 @@
 <template>
-<footer class="footer footer-center p-10 text-primary-content ossph-gradient-bg">
-  <div class="grid grid-flow-row sm:grid-flow-col gap-4">
-    <a href="https://discord.com/servers/open-source-software-ph-905496362982981723"
+<footer class="flex flex-col p-10 px-0 text-primary-content ossph-gradient-bg">
+  <div class="grid grid-flow-row sm:justify-center sm:grid-flow-col gap-4">
+    <a class="btn btn-ghost text-white"
+      href="https://discord.com/servers/open-source-software-ph-905496362982981723"
       target="_blank">
-      <button class="btn btn-ghost text-white">
-        <i class="lab la-discord"></i>
-        Discord
-      </button>
+      <i class="lab la-discord"></i>
+      <span>Discord</span>
     </a>
-    <a href="https://www.facebook.com/ossph.org"
+    <a class="btn btn-ghost text-white"
+      href="https://www.facebook.com/ossph.org"
       target="_blank">
-      <button class="btn btn-ghost text-white">
-        <i class="lab la-facebook"></i>
-        Facebook
-      </button>
+      <i class="lab la-facebook"></i>
+      <span>Facebook</span>
     </a>
-    <a href="https://twitter.com/OSSPhilippines"
+    <a class="btn btn-ghost text-white"
+      href="https://twitter.com/OSSPhilippines"
       target="_blank">
-      <button class="btn btn-ghost text-white">
-        <i class="lab la-twitter"></i>
-        Twitter
-      </button>
+      <i class="lab la-twitter"></i>
+      <span>Twitter</span>
     </a>
-    <a href="https://bit.ly/3xjDvN2"
+    <a class="btn btn-ghost text-white"
+      href="https://bit.ly/3xjDvN2"
       target="_blank">
-      <button class="btn btn-ghost text-white">
-        <i class="la la-newspaper"></i>
-        Press Kit
-      </button>
+      <i class="la la-newspaper"></i>
+      <span>Press Kit</span>
     </a>
   </div>
-  <p>Copyright © 2023 Open Source Software PH. All Rights Reserved.</p>
+  <p class="footer-center pt-10 px-10">Copyright © 2023 Open Source Software PH. All Rights Reserved.</p>
 </footer>
 </template>
 

@@ -2,7 +2,7 @@
   <generic-panel class="bg-red-50 font-primary">
     <div class="grid grid-cols-2">
       <div>
-        <h1 class="font-roboto">Open Source Software PH</h1>
+        <h1>Open Source Software PH</h1>
         <h2>The leading Open Source Software Community in the Philippines</h2>
         <button class="btn btn-primary">Join The Movement</button>
         <button class="btn btn-primary">Help Us Grow</button>

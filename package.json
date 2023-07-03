@@ -19,6 +19,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
     "@nuxt/devtools": "^0.5.3",
+    "@nuxtjs/google-fonts": "^3.0.1",
     "@nuxtjs/tailwindcss": "^6.7.0",
     "@tailwindcss/container-queries": "^0.1.0",
     "@tailwindcss/forms": "^0.5.3",

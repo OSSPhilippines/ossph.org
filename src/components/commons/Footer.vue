@@ -26,7 +26,7 @@
       <span>Press Kit</span>
     </a>
   </div>
-  <p class="footer-center pt-10 px-10">Copyright © 2023 Open Source Software PH. All Rights Reserved.</p>
+  <p class="footer-center pt-10 px-10">Copyright © {{new Date().getFullYear()}} Open Source Software PH. All Rights Reserved.</p>
 </footer>
 </template>
 

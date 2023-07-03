@@ -18,6 +18,11 @@ body {
   font-family: molot;
 }
 
+.ossph-gradient-bg {
+  background: #0060a0;
+  background: linear-gradient(90deg,#0060a0 0,#7524b3 50%,#ff5c7c);
+}
+
 .btn {
   @apply normal-case;
 }

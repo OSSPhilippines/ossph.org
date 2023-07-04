@@ -6,10 +6,27 @@
 </template>
 
 <script>
-import { definePageMeta } from '#imports';
+import {
+  definePageMeta,
+  useSeoMeta,
+} from '#imports';
+import Constants from '~/constants';
 
 export default {
   setup () {
+    const title = `Our Projects - ${Constants.TITLE_DEFAULT}`;
+    const description = Constants.DESCRIPTION_DEFAULT;
+
+    useSeoMeta({
+      title,
+      description,
+      ogTitle: title,
+      ogDescription: description,
+      ogType: 'website',
+      ogUrl: 'https://ossph.org',
+      ogImage: '~/assets/images/og-banner.png',
+    });
+
     definePageMeta({
       layout: 'default',
     });

@@ -10,12 +10,15 @@ import {
   definePageMeta,
   useSeoMeta,
 } from '#imports';
-import Constants from '~/constants';
+import {
+  META_DESCRIPTION,
+  META_TITLE,
+} from '~/constants/meta';
 
 export default {
   setup () {
-    const title = `Team - ${Constants.TITLE_DEFAULT}`;
-    const description = Constants.DESCRIPTION_DEFAULT;
+    const title = `Team - ${META_TITLE}`;
+    const description = META_DESCRIPTION;
 
     useSeoMeta({
       title,

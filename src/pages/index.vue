@@ -75,7 +75,10 @@ import {
   useSeoMeta,
 } from '#imports';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
-import Constants from '~/constants';
+import {
+  META_DESCRIPTION,
+  META_TITLE,
+} from '~/constants/meta';
 
 export default {
   components: {
@@ -83,8 +86,8 @@ export default {
   },
 
   setup () {
-    const title = `Home - ${Constants.TITLE_DEFAULT}`;
-    const description = Constants.DESCRIPTION_DEFAULT;
+    const title = `Home - ${META_TITLE}`;
+    const description = META_DESCRIPTION;
 
     useSeoMeta({
       title,

@@ -70,14 +70,35 @@
 </template>
 
 <script>
-import { definePageMeta } from '#imports';
+import {
+  definePageMeta,
+  useSeoMeta,
+} from '#imports';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
+import {
+  META_DESCRIPTION,
+  META_TITLE,
+} from '~/constants/meta';
 
 export default {
   components: {
     GenericPanel,
   },
-  setup() {
+
+  setup () {
+    const title = `Home - ${META_TITLE}`;
+    const description = META_DESCRIPTION;
+
+    useSeoMeta({
+      title,
+      description,
+      ogTitle: title,
+      ogDescription: description,
+      ogType: 'website',
+      ogUrl: 'https://ossph.org',
+      ogImage: '~/assets/images/og-banner.png',
+    });
+
     definePageMeta({
       layout: 'default',
     });

@@ -111,8 +111,10 @@ q-layout(
         rounded
         no-caps
       ).btn-soc-med
-    p.text-body1 Copyright © {{new Date().getFullYear()}} Open Source Software PH. All Rights Reserved.
-</template>
+    p.text-body1
+      | Copyright © {{new Date().getFullYear()}}
+      br(v-if="isMobile")
+      |  Open Source Software PH. All Rights Reserved.</template>
 
 <script>
 import { ref, inject, computed } from 'vue';

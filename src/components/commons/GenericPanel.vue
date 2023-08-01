@@ -1,5 +1,5 @@
 <template>
-<div class="mx-auto md:max-w-7xl px-5 py-5">
+<div class="mx-auto px-6 md:px-48 mb-12">
   <slot/>
 </div>
 </template>

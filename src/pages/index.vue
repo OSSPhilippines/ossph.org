@@ -1,14 +1,24 @@
 <template>
-  <generic-panel class="bg-red-50 font-primary">
-    <div class="grid grid-cols-2">
-      <div>
-        <h1>Open Source Software PH</h1>
-        <h2>The leading Open Source Software Community in the Philippines</h2>
-        <button class="btn btn-primary">Join The Movement</button>
-        <button class="btn btn-primary">Help Us Grow</button>
+  <generic-panel>
+    <div class="grid grid-cols-1 md:grid-cols-2 md:h-[90vh] items-center md:relative">
+      <div class="order-2 md:order-1">
+        <div>
+          <h1 class="text-6xl md:text-8xl text-center md:text-left ossph-text-gradient mb-8 md:mb-12">Open Source Software PH</h1>
+          <h2 class="text-3xl md:text-6xl text-center md:text-left font-primary mb-8 md:mb-12">The leading Open Source Software Community in the Philippines</h2>
+        </div>
+        <div class="flex gap-2 justify-center md:justify-start">
+          <button class="btn md:btn-lg btn-primary font-normal">
+            Join The Movement
+            <i class="lab la-discord text-3xl text-white"></i>
+          </button>
+          <button class="btn md:btn-lg btn-primary btn-outline font-normal">
+            Help Us Grow
+            <i class="las la-heart text-red-500 text-3xl"></i>
+          </button>
+        </div>
       </div>
-      <div>
-        <img src="https://loremflickr.com/640/480/nightlife" alt="Night Life" />
+      <div class="order-1 md:order-2">
+        <img class="md:absolute top-0 mb-6" src="assets/images/ossph-screenshot-github.png" alt="">
       </div>
     </div>
   </generic-panel>

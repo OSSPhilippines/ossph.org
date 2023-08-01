@@ -9,13 +9,13 @@
         <template v-for="(menu, index) in menus" :key="index">
           <li>
             <nuxt-link v-if="menu.link" :href="menu.link" target="_blank">
-              <i v-if="menu.icon" :class="`${menu.icon}`"/>
               {{menu.name}}
+              <i v-if="menu.icon" :class="`${menu.icon} text-2xl`"/>
             </nuxt-link>
 
             <nuxt-link v-if="menu.route" :to="{ name: menu.route }">
-              <i v-if="menu.icon" :class="`${menu.icon}`"/>
               {{menu.name}}
+              <i v-if="menu.icon" :class="`${menu.icon} text-2xl`"/>
             </nuxt-link>
           </li>
         </template>
@@ -23,7 +23,7 @@
     </div>
 
     <nuxt-link
-      class="btn btn-ghost text-4xl ossph-font"
+      class="btn btn-ghost text-4xl font-logo font-bold"
       :to="{ name: 'index' }"
     >
       OSSPH
@@ -35,13 +35,13 @@
       <template v-for="(menu, index) in menus" :key="index">
         <li>
           <nuxt-link v-if="menu.link" :href="menu.link" target="_blank">
-            <i v-if="menu.icon" :class="`${menu.icon}`"/>
             {{menu.name}}
+            <i v-if="menu.icon" :class="`${menu.icon} text-2xl`"/>
           </nuxt-link>
 
           <nuxt-link v-if="menu.route" :to="{ name: menu.route }">
-            <i v-if="menu.icon" :class="`${menu.icon}`"/>
             {{menu.name}}
+            <i v-if="menu.icon" :class="`${menu.icon} text-2xl`"/>
           </nuxt-link>
         </li>
       </template>

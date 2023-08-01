@@ -4,8 +4,9 @@
 @tailwind utilities;
 
 body {
-  background-color: #fff;
   color: #2c2c2c !important;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(227, 249, 255, 1) 100%);
 }
 
 @font-face {
@@ -13,13 +14,23 @@ body {
   src: url(@/assets/fonts/Molot.otf);
 }
 
+h1 {
+  @apply ossph-font;
+}
+
 .ossph-font {
   font-family: molot;
 }
 
+.ossph-text-gradient {
+  background: linear-gradient(90deg, #0060a0 0, #7524b3 50%, #cf557d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .ossph-gradient-bg {
   background: #0060a0;
-  background: linear-gradient(90deg,#0060a0 0,#7524b3 50%,#ff5c7c);
+  background: linear-gradient(90deg, #0060a0 0, #7524b3 50%, #cf557d);
 }
 
 .btn {

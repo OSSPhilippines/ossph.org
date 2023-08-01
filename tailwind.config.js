@@ -1,18 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./node_modules/flowbite.{js,ts}'],
   theme: {
     extend: {
       colors: {
-        primary: '#0060A0',
+        primary: '#0060a0',
       },
       fontFamily: {
-        body: ["'Roboto Condensed'"],
+        body: ["'Inter'", "'sans-serif'"],
+        primary: ["'Roboto Condensed'", "'sans-serif'"],
+        logo: ["'molot'", "'sans-serif'"],
       },
     },
   },
   daisyui: {
-    base: false,
+    base: true,
+    themes: [
+      {
+        ossph: {
+          primary: '#0060a0',
+        },
+      },
+    ],
   },
   plugins: [
     '@tailwindcss/forms',

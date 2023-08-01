@@ -45,6 +45,14 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css',
+          media: 'none',
+          onload: "if(media!='all')media='all'",
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap',
+          media: 'none',
+          onload: "if(media!='all')media='all'",
         },
       ],
     },
@@ -65,7 +73,7 @@ export default defineNuxtConfig({
   },
 
   build: {
-    extend(config, ctx) {
+    extend (config, ctx) {
       config.resolve.symlinks = false;
     },
   },

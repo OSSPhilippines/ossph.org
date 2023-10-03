@@ -12,7 +12,7 @@ generic-panel(
         size="lg"
         color="primary"
         icon="discord"
-        href="https://discord.com/servers/open-source-software-ph-905496362982981723"
+        href="https://discord.gg/DvtqKrWb86"
         target="_blank"
         no-caps
         unelevated
@@ -167,7 +167,7 @@ generic-panel(
         size="lg"
         color="primary"
         icon="discord"
-        href="https://discord.com/servers/open-source-software-ph-905496362982981723"
+        href="https://discord.gg/DvtqKrWb86"
         target="_blank"
         no-caps
         unelevated

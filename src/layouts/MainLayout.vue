@@ -77,7 +77,7 @@ q-layout(
     q-toolbar.q-gutter-sm.q-my-lg.soc-med-toolbar
       q-btn(
         label="Discord"
-        href="https://discord.com/servers/open-source-software-ph-905496362982981723"
+        href="https://discord.gg/DvtqKrWb86"
         target="_blank"
         icon="fa-brands fa-discord"
         outline

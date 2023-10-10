@@ -14,6 +14,7 @@ generic-panel(
           div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-md.text-center
             q-img(
               :src="require(`@/assets/images/${team.photo}`)"
+              :alt="`${team.name} - ${team.role}`"
             ).q-mb-md
             div
               span.text-h4 {{team.name}}

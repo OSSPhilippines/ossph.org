@@ -6,24 +6,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // eslint-disable-next-line no-undef
 export default defineNuxtConfig({
-  preset: "node-server",
+  preset: 'node-server',
 
   modules: [
-    "@nuxtjs/google-fonts",
-    "@nuxtjs/tailwindcss",
-    "nuxt-headlessui",
-    "nuxt-gtag",
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/tailwindcss',
+    'nuxt-headlessui',
+    'nuxt-gtag',
   ],
 
   nitro: {
-    preset: "firebase",
+    preset: 'firebase',
   },
 
   gtag: {
-    id: "",
+    id: '',
   },
 
-  srcDir: "./src",
+  srcDir: './src',
 
   runtimeConfig: {
     public: {
@@ -33,28 +33,28 @@ export default defineNuxtConfig({
 
   plugins: [
     {
-      src: "@/plugins/aos",
+      src: '@/plugins/aos',
       ssr: false,
-      mode: "client",
+      mode: 'client',
     },
   ],
 
   app: {
     head: {
       htmlAttrs: {
-        lang: "en",
+        lang: 'en'
       },
       link: [
         {
-          rel: "stylesheet",
-          href: "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css",
-          media: "none",
+          rel: 'stylesheet',
+          href: 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css',
+          media: 'none',
           onload: "if(media!='all')media='all'",
         },
         {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap",
-          media: "none",
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap',
+          media: 'none',
           onload: "if(media!='all')media='all'",
         },
       ],
@@ -62,27 +62,27 @@ export default defineNuxtConfig({
   },
 
   tailwindcss: {
-    cssPath: "~/assets/css/tailwind.css",
-    configPath: "tailwind.config",
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config',
     exposeConfig: false,
     exposeLevel: 2,
     config: {},
-    injectPosition: "first",
+    injectPosition: 'first',
     viewer: true,
   },
 
   headlessui: {
-    prefix: "Headless",
+    prefix: 'Headless',
   },
 
   build: {
-    extend(config, ctx) {
+    extend (config, ctx) {
       config.resolve.symlinks = false;
     },
   },
 
   image: {
-    dir: "assets/images",
+    dir: 'assets/images',
     screens: {
       xs: 320,
       sm: 640,
@@ -90,14 +90,14 @@ export default defineNuxtConfig({
       lg: 1024,
       xl: 1280,
       xxl: 1536,
-      "2xl": 1536,
-      "3xl": 1920,
+      '2xl': 1536,
+      '3xl': 1920,
     },
   },
 
   googleFonts: {
     families: {
-      "Roboto+Condensed": [300, 400, 700],
+      'Roboto+Condensed': [300, 400, 700],
     },
   },
 

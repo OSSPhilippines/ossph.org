@@ -11,7 +11,7 @@ generic-panel(
       p(data-aos="fade-down").ossph-text-paragraph.q-mb-xl Here are the amazing people behind OSSPH's initiatives
       div.row.wrap
         template(v-for="team in theTeam")
-          div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-md.text-center
+          div(data-aos="fade-up").col-xs-12.col-md-2.q-pa-md.text-center
             q-img(
               :src="require(`@/assets/images/${team.photo}`)"
               :alt="`${team.name} - ${team.role}`"

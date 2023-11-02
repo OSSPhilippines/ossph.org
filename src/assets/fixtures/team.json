@@ -273,7 +273,7 @@
   },
   {
     "name": "Justin",
-    "role": "Discord Admin",
+    "role": "Community Leader",
     "photo": "no-photo.png",
     "socials": [
       {
@@ -317,5 +317,22 @@
     "role": "Event coordinator / Artist",
     "photo": "felise.png",
     "socials": []
+  },
+  {
+    "name": "Felix",
+    "role": "Content Creator / Code Contributor",
+    "photo": "felix.png",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "http://github.com/felixmacaspac"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "http://github.com/felixmacaspac"
+      }
+    ]
   }
 ]

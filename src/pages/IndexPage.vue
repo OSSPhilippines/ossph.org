@@ -95,9 +95,9 @@ generic-panel(
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://pycon-2024.python.ph/?ref=https://ossph.org" target="_blank")
                         q-img(
-                          src="../assets/images/python-ph-logo.jpg"
+                          src="../assets/images/python-ph-logo-black.png"
                           spinner-color="primary"
-                          width="200px"
+                          width="300px"
                           alt="Web3 Philippines Logo"
                         )
                         q-tooltip Python Philippines

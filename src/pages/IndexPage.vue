@@ -46,9 +46,7 @@ generic-panel(
             div.col-xs-12
               div.row.items-center.justify-center
                 div.col-xs-12.text-center
-                  div(
-                    :class="{ 'no-wrap': !isMobile }"
-                  ).row.justify-center.items-center
+                  div.row.justify-center.items-center
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://stripe.com?ref=https://ossph.org" target="_blank")
                         q-img(
@@ -57,6 +55,7 @@ generic-panel(
                           width="170px"
                           alt="Stripe Logo"
                         )
+                        q-tooltip Stripe
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.microsoft.com/en-us?ref=https://ossph.org" target="_blank")
                         q-img(
@@ -65,6 +64,7 @@ generic-panel(
                           width="170px"
                           alt="Microsoft Logo"
                         )
+                        q-tooltip Microsoft
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.edukasyon.ph?ref=https://ossph.org" target="_blank")
                         q-img(
@@ -73,6 +73,7 @@ generic-panel(
                           width="170px"
                           alt="Edukasyon.ph Logo"
                         )
+                        q-tooltip Edukasyon.ph
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://www.facebook.com/AWS.SiklabPH/?ref=https://ossph.org" target="_blank")
                         q-img(
@@ -81,6 +82,7 @@ generic-panel(
                           width="180px"
                           alt="AWS Siklab Logo"
                         )
+                        q-tooltip AWS Siklab
                     div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
                       a(href="https://web3philippines.org/?ref=https://ossph.org" target="_blank")
                         q-img(
@@ -89,6 +91,16 @@ generic-panel(
                           width="200px"
                           alt="Web3 Philippines Logo"
                         )
+                        q-tooltip Web3 Philippines
+                    div(data-aos="fade-up").col-xs-12.col-md-3.q-pa-sm
+                      a(href="https://pycon-2024.python.ph/?ref=https://ossph.org" target="_blank")
+                        q-img(
+                          src="../assets/images/python-ph-logo.jpg"
+                          spinner-color="primary"
+                          width="200px"
+                          alt="Web3 Philippines Logo"
+                        )
+                        q-tooltip Python Philippines
 
 generic-panel(
   :panel-classes="['items-center']"

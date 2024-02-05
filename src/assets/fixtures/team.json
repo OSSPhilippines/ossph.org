@@ -149,6 +149,7 @@
     "name": "Angelo",
     "role": "Technical Writer",
     "photo": "angelo.png",
+    "active": true,
     "socials": [
       {
         "name": "Twitter",

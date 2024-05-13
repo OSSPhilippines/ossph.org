@@ -237,6 +237,7 @@
     "name": "Chris",
     "role": "Code Contributor",
     "photo": "chris.png",
+    "active": true,
     "socials": [
       {
         "name": "GitHub",
@@ -342,12 +343,35 @@
       {
         "name": "GitHub",
         "icon": "fa-brands fa-github",
-        "link": "http://github.com/felixmacaspac"
+        "link": "https://github.com/felixmacaspac"
       },
       {
         "name": "LinkedIn",
         "icon": "fa-brands fa-linkedin",
-        "link": "http://github.com/felixmacaspac"
+        "link": "https://github.com/felixmacaspac"
+      }
+    ]
+  },
+  {
+    "name": "Phil",
+    "role": "Code Contributor",
+    "photo": "phil.png",
+    "active": true,
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/philgerardsoto"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://www.linkedin.com/in/philgerardsoto/"
+      },
+      {
+        "name": "Facebook",
+        "icon": "fa-brands fa-facebook",
+        "link": "https://www.facebook.com/philgerardsoto"
       }
     ]
   }

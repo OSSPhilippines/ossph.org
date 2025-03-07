@@ -26,7 +26,7 @@
     "name": "Waren",
     "role": "Co-Founder",
     "photo": "waren.png",
-    "active": true,
+    "active": false,
     "socials": [
       {
         "name": "GitHub",

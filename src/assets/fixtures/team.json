@@ -26,7 +26,7 @@
     "name": "Waren",
     "role": "Co-Founder",
     "photo": "waren.png",
-    "active": false,
+    "active": true,
     "socials": [
       {
         "name": "GitHub",
@@ -55,18 +55,6 @@
         "name": "Twitter",
         "icon": "fa-brands fa-twitter",
         "link": "https://twitter.com/AvieDev"
-      }
-    ]
-  },
-  {
-    "name": "Benj",
-    "role": "Lead Artist",
-    "photo": "benj.png",
-    "socials": [
-      {
-        "name": "Twitter",
-        "icon": "fa-brands fa-twitter",
-        "link": "https://twitter.com/annabenjamine"
       }
     ]
   },
@@ -367,6 +355,42 @@
         "name": "Facebook",
         "icon": "fa-brands fa-facebook",
         "link": "https://www.facebook.com/philgerardsoto"
+      }
+    ]
+  },
+  {
+    "name": "Phoebe",
+    "role": "Discord Admin",
+    "photo": "phoebe.png",
+    "active": true,
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/il-pb"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://linkedin.com/in/phoebe-mae-ilustre/"
+      }
+    ]
+  },
+  {
+    "name": "Jester",
+    "role": "Discord Admin",
+    "photo": "jester.png",
+    "active": true,
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/mrjxt"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://www.linkedin.com/in/mrjxt/"
       }
     ]
   }

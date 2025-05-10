@@ -1,6 +1,6 @@
 {
   "name": "ossph.org",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "description": "Open Source Software PH",
   "productName": "ossph.org",
   "author": "Joff Tiquez <jofftiquez@gmail.com>",
@@ -53,6 +53,6 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": "18"
+    "node": "20"
   }
 }

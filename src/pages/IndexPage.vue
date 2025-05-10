@@ -125,28 +125,12 @@ generic-panel(
                           alt="Daily Dev Logo"
                         )
                     div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
-                      a(href="https://twitter.com/AvieDev?ref=https://ossph.org" target="_blank")
-                        q-img(
-                          src="../assets/images/avie.png"
-                          spinner-color="primary"
-                          width="120px"
-                          alt="Avie Dev Photo"
-                        )
-                    div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
                       a(href="https://twitter.com/jrtiquez?ref=https://ossph.org" target="_blank")
                         q-img(
                           src="../assets/images/joff.png"
                           spinner-color="primary"
                           width="120px"
                           alt="Joff Photo"
-                        )
-                    div(data-aos="fade-up").col-xs-6.col-md-3.q-pa-sm
-                      a(href="https://github.com/jeydpeaschocolatebar?ref=https://ossph.org" target="_blank")
-                        q-img(
-                          src="../assets/images/jade.png"
-                          spinner-color="primary"
-                          width="120px"
-                          alt="Jade Photo"
                         )
                 div.col-xs-12.text-center.q-mt-xl
                   q-btn(

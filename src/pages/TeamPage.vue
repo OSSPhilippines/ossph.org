@@ -9,6 +9,18 @@ generic-panel(
     div.col-xs-12.col-md-8.text-center
       h2(:class="{ 'text-h2': !isMobile, 'text-h4': isMobile }").ossph-font The #[span.ossph-text-gradient-main OSSPH Team] ⚔️
       p(data-aos="fade-down").ossph-text-paragraph.q-mb-xl Here are the amazing people behind OSSPH's initiatives
+      div.row.justify-center.q-mb-md
+        div.col-xs-12.col-md-4
+          q-select(
+            v-model="selectedRole"
+            :options="roleOptions"
+            label="Filter by Role"
+            outlined
+            dense
+            emit-value
+            map-options
+            clearable
+          )
       h1.text-h4 Active Volunteers
       div.row.wrap
         template(v-for="team in activeTeamData")
@@ -96,7 +108,7 @@ generic-panel(
 </template>
 
 <script>
-import { inject, computed } from 'vue';
+import { inject, computed, ref } from 'vue';
 import { useBuildMeta } from '@/composables/meta';
 import { useMeta, useQuasar } from 'quasar';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
@@ -110,8 +122,33 @@ export default {
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
-    const activeTeamData = teamData.filter((team) => team.active);
-    const inactiveTeamData = teamData.filter((team) => !team.active);
+    const selectedRole = ref(null);
+
+    // Get unique roles from team data
+    const roleOptions = computed(() => {
+      const roles = [...new Set(teamData.map(member => member.role))];
+      return roles.map(role => ({
+        label: role,
+        value: role,
+      }));
+    });
+
+    // Filter team data based on selected role
+    const activeTeamData = computed(() => {
+      let filtered = teamData.filter((team) => team.active);
+      if (selectedRole.value) {
+        filtered = filtered.filter(team => team.role === selectedRole.value);
+      }
+      return filtered;
+    });
+
+    const inactiveTeamData = computed(() => {
+      let filtered = teamData.filter((team) => !team.active);
+      if (selectedRole.value) {
+        filtered = filtered.filter(team => team.role === selectedRole.value);
+      }
+      return filtered;
+    });
 
     function onGoToPanel (card) {
       const panelId = card.panelId;
@@ -132,6 +169,8 @@ export default {
       activeTeamData,
       inactiveTeamData,
       onGoToPanel,
+      selectedRole,
+      roleOptions,
     };
   },
 };

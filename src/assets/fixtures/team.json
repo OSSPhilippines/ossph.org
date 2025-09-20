@@ -1,5 +1,28 @@
 [
   {
+    "name": "Trista",
+    "role": "President",
+    "photo": "trista.png",
+    "active": true,
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "fa-brands fa-github",
+        "link": "https://github.com/tristagile"
+      },
+      {
+        "name": "Twitter",
+        "icon": "fa-brands fa-twitter",
+        "link": "https://twitter.com/tristagile"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fa-brands fa-linkedin",
+        "link": "https://linkedin.com/in/tristaiegile"
+      }
+    ]
+  },
+  {
     "name": "Joff",
     "role": "Founder",
     "photo": "joff.png",

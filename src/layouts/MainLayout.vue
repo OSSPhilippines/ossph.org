@@ -144,6 +144,10 @@ export default {
         route: '/projects',
       },
       {
+        name: 'Awesome',
+        route: '/awesome',
+      },
+      {
         name: 'Blog',
         link: 'https://blog.ossph.org',
       },

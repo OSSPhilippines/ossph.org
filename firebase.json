@@ -15,7 +15,7 @@
       "rewrites": [
         {
           "source": "/git-cheat-sheet",
-          "destination": "/git-cheat-sheet.png"
+          "destination": "/www/git-cheat-sheet.png"
         },
         {
           "source": "**",
@@ -31,7 +31,7 @@
       ],
       "headers": [
         {
-          "source": "/git-cheat-sheet.png",
+          "source": "/www/git-cheat-sheet.png",
           "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
         },
         {

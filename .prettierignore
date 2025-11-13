@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.quasar/
+*.min.js
+*.bundle.js
+
+# Generated files
+coverage/
+*.log
+
+# Config files that shouldn't be formatted
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Other
+.DS_Store
+*.swp
+*.swo
+*~
+

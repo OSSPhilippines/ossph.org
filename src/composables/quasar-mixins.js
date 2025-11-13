@@ -1,11 +1,12 @@
 import { computed } from 'vue';
 import { dom, useQuasar, copyToClipboard, openURL } from 'quasar';
+import packageJson from '../../package.json';
+
 const { height, width } = dom;
 
 export function useQuasarMixins () {
   const $q = useQuasar();
-  const appVersion = require('../../package.json').version;
-  const backButtonIcon = computed(() => isIOS.value ? 'mdi-chevron-left' : 'mdi-arrow-left');
+  const appVersion = packageJson.version;
   const isAndroid = computed(() => $q.platform.is.android);
   const isDesktop = computed(() => $q.platform.is.desktop);
   const isIOS = computed(() => $q.platform.is.ios);
@@ -13,15 +14,17 @@ export function useQuasarMixins () {
   const isNativeMobile = $q.platform.is.nativeMobile;
   const isScreenDesktop = computed(() => $q.screen.gt.sm);
   const isScreenMobile = computed(() => $q.screen.lt.md);
+  const backButtonIcon = computed(() => isIOS.value ? 'mdi-chevron-left' : 'mdi-arrow-left');
   const domHeight = computed(() => height(window));
   const domWidth = computed(() => width(window));
 
-  async function logout () {
-    // await this.$store.dispatch('auth/signout');
-    // this.$store.dispatch('personalDetails/clearPersonalDetails');
-    // this.$router.push({ name: 'landing' });
-    // this.$localStorage.clear();
-  }
+  // TODO: Removed unused logout function - implement when authentication is added
+  // async function logout () {
+  //   await this.$store.dispatch('auth/signout');
+  //   this.$store.dispatch('personalDetails/clearPersonalDetails');
+  //   this.$router.push({ name: 'landing' });
+  //   this.$localStorage.clear();
+  // }
 
   function rippleAwait (timeout = 200) {
     return new Promise((resolve) => {
@@ -36,8 +39,8 @@ export function useQuasarMixins () {
   }
 
   function getPlatform () {
-    if (isNativeMobile && isAndroid) return 'android';
-    if (isNativeMobile && isIOS) return 'ios';
+    if (isNativeMobile && isAndroid.value) return 'android';
+    if (isNativeMobile && isIOS.value) return 'ios';
     return 'web';
   }
 
@@ -59,7 +62,8 @@ export function useQuasarMixins () {
     isScreenMobile,
     openURL,
     getPlatform,
-    logout,
+    // TODO: Add logout function when authentication is added
+    // logout,
     rippleAwait,
     showSnack,
     setToDark,

@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-213692438-1"></script>
   <script>
@@ -36,26 +36,48 @@
   </div>
 
   <script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "104869658634181");
-    chatbox.setAttribute("attribution", "biz_inbox");
+    // Safely initialize Facebook Customer Chat
+    try {
+      var chatbox = document.getElementById('fb-customer-chat');
+      if (chatbox) {
+        chatbox.setAttribute("page_id", "104869658634181");
+        chatbox.setAttribute("attribution", "biz_inbox");
+      }
+    } catch (e) {
+      // Silently handle initialization errors
+    }
   </script>
 
   <!-- Your SDK code -->
   <script>
     window.fbAsyncInit = function () {
-      FB.init({
-        xfbml: true,
-        version: 'v16.0'
-      });
+      try {
+        if (typeof FB !== 'undefined') {
+          FB.init({
+            xfbml: true,
+            version: 'v16.0'
+          });
+        }
+      } catch (e) {
+        // Silently handle Facebook SDK initialization errors
+      }
     };
 
     (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
+      try {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        js.onerror = function() {
+          // Silently handle script loading errors
+        };
+        if (fjs && fjs.parentNode) {
+          fjs.parentNode.insertBefore(js, fjs);
+        }
+      } catch (e) {
+        // Silently handle script injection errors
+      }
     }(document, 'script', 'facebook-jssdk'));
   </script>
 

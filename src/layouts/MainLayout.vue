@@ -114,7 +114,19 @@ q-layout(
     p.text-body1
       | Copyright © {{new Date().getFullYear()}}
       br(v-if="isMobile")
-      |  Open Source Software PH. All Rights Reserved.</template>
+      |  Open Source Software PH. All Rights Reserved.
+
+  //- Scroll to top button - fixed position to float above footer
+  q-btn(
+    v-if="showScrollToTop"
+    fab
+    icon="keyboard_arrow_up"
+    color="primary"
+    @click="onScrollToTop"
+    aria-label="Scroll to top"
+    class="scroll-to-top-btn"
+  )
+</template>
 
 <script>
 import { ref, inject, computed } from 'vue';
@@ -160,11 +172,15 @@ export default {
 
     if (isMobile.value) header.value = false;
 
+    const showScrollToTop = ref(false);
+
     function onScroll (info) {
       if (info.position >= 150) {
         footer.value = true;
+        showScrollToTop.value = true;
       } else {
         footer.value = false;
+        showScrollToTop.value = false;
       }
       if (isMobile.value) {
         header.value = true;
@@ -178,23 +194,65 @@ export default {
     }
 
     function onScrollToTop () {
-      smoothScroll({
-        scrollTo: document.getElementById('top'),
-        updateHistory: false,
-      });
+      if (smoothScroll) {
+        const topElement = document.getElementById('top');
+        if (topElement) {
+          smoothScroll({
+            scrollTo: topElement,
+            updateHistory: false,
+          });
+        } else {
+          // Fallback to native smooth scroll
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else {
+        // Fallback to native smooth scroll
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
     function onGoToPanel (card) {
-      const panelId = card.panelId;
       drawerLeft.value = false;
-      if (card.panelId) {
-        smoothScroll({
-          scrollTo: document.getElementById(panelId),
-          updateHistory: false,
+
+      // Handle route navigation with smooth scroll to top
+      if (card.route) {
+        router.push(card.route).then(() => {
+          // Scroll to top after route navigation
+          setTimeout(() => {
+            onScrollToTop();
+          }, 100);
         });
+        return;
       }
-      if (card.route) router.push(card.route);
-      if (card.link) window.open(card.link, '_blank').focus();
+
+      // Handle panel ID scrolling (if panelId exists)
+      if (card.panelId) {
+        const panelElement = document.getElementById(card.panelId);
+        if (panelElement && smoothScroll) {
+          smoothScroll({
+            scrollTo: panelElement,
+            updateHistory: false,
+          });
+        } else if (panelElement) {
+          // Fallback to native smooth scroll
+          panelElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+      }
+
+      // Handle external links
+      if (card.link) {
+        try {
+          const newWindow = window.open(card.link, '_blank');
+          // Don't call `focus()` as it can trigger extension message channel errors
+          if (newWindow) {
+            newWindow.opener = null; // Security best practice
+          }
+        } catch (err) {
+          // Silently handle errors from browser extensions blocking `window.open`
+          console.warn('Could not open link:', err);
+        }
+      }
     }
 
     return {
@@ -206,6 +264,7 @@ export default {
       onScroll,
       onGoToPanel,
       onScrollToTop,
+      showScrollToTop,
     };
   },
 };
@@ -228,5 +287,19 @@ export default {
 
 .btn-soc-med >>> span.q-btn__content i.on-left {
   margin-right: 0;
+}
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.scroll-to-top-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 </style>

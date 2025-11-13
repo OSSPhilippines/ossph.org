@@ -7,6 +7,7 @@ import axios from 'axios';
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
+// TODO: Update baseURL with your actual API endpoint
 const api = axios.create({ baseURL: 'https://api.example.com' });
 
 export default boot(({ app }) => {

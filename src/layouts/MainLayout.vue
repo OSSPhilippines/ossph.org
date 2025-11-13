@@ -195,16 +195,11 @@ export default {
 
     function onScrollToTop () {
       if (smoothScroll) {
-        const topElement = document.getElementById('top');
-        if (topElement) {
-          smoothScroll({
-            scrollTo: topElement,
-            updateHistory: false,
-          });
-        } else {
-          // Fallback to native smooth scroll
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        // Use smoothScroll to scroll to top (position 0)
+        smoothScroll({
+          scrollTo: 0,
+          updateHistory: false,
+        });
       } else {
         // Fallback to native smooth scroll
         window.scrollTo({ top: 0, behavior: 'smooth' });

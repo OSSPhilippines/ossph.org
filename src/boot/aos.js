@@ -1,6 +1,6 @@
-import { boot } from 'quasar/wrappers';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { boot } from 'quasar/wrappers'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 export default boot(() => {
   // Only initialize AOS on client-side
@@ -14,6 +14,6 @@ export default boot(() => {
       offset: 100, // Offset (in px) from the original trigger point
       delay: 0, // Delay (in ms) before animation starts
       anchorPlacement: 'top-bottom', // Defines which position of the element should trigger animation
-    });
+    })
   }
-});
+})

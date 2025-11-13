@@ -20,7 +20,6 @@ export default {
     padding: Boolean,
     loading: Boolean,
   },
-  setup () {
-  },
-};
+  setup() {},
+}
 </script>

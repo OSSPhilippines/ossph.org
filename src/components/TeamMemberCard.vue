@@ -38,5 +38,5 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>

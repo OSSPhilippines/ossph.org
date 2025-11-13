@@ -58,7 +58,7 @@ import { computed, ref } from 'vue';
 import { useBuildMeta } from '@/composables/meta';
 import { useMeta, useQuasar } from 'quasar';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
-import TeamMemberCard from '@/components/commons/TeamMemberCard.vue';
+import TeamMemberCard from '@/components/TeamMemberCard.vue';
 import teamData from '@/assets/fixtures/team';
 export default {
   components: {

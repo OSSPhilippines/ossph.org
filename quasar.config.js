@@ -8,13 +8,19 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
-const path = require('path');
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { createRequire } from 'module'
 
-const ESLintPlugin = require('eslint-webpack-plugin');
+import ESLintPlugin from 'eslint-webpack-plugin'
 
-const { configure } = require('quasar/wrappers');
+import { configure } from 'quasar/wrappers'
 
-module.exports = configure(function (ctx) {
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const require = createRequire(import.meta.url)
+
+export default configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
     supportTS: false,
@@ -36,9 +42,7 @@ module.exports = configure(function (ctx) {
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
-    css: [
-      'app.scss',
-    ],
+    css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -79,12 +83,11 @@ module.exports = configure(function (ctx) {
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
 
-      chainWebpack (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }]);
+      chainWebpack(chain) {
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
       },
 
-      extendWebpack (cfg) {
+      extendWebpack(cfg) {
         cfg.module.rules.push(
           // {
           //   enforce: 'pre',
@@ -95,8 +98,8 @@ module.exports = configure(function (ctx) {
           {
             test: /\.pug$/,
             loader: 'pug-plain-loader',
-          },
-        );
+          }
+        )
         cfg.resolve.alias = {
           ...cfg.resolve.alias,
           '@/': path.resolve(__dirname, './src'),
@@ -111,9 +114,8 @@ module.exports = configure(function (ctx) {
           '@/services': path.resolve(__dirname, './src/services'),
           '@/stores': path.resolve(__dirname, './src/stores'),
           '@/utils': path.resolve(__dirname, './src/utils'),
-        };
+        }
       },
-
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
@@ -140,12 +142,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [
-        'BottomSheet',
-        'Meta',
-        'Notify',
-        'Ripple',
-      ],
+      plugins: ['BottomSheet', 'Meta', 'Notify', 'Ripple'],
     },
 
     // animations: 'all', // --- includes all animations
@@ -157,29 +154,29 @@ module.exports = configure(function (ctx) {
       pwa: false,
 
       /**
-     * Manually serialize the store state and provide it yourself
-     * as window.__INITIAL_STATE__ to the client-side (through a <script> tag)
-     * (Requires @quasar/app-webpack v3.5+)
-     */
+       * Manually serialize the store state and provide it yourself
+       * as window.__INITIAL_STATE__ to the client-side (through a <script> tag)
+       * (Requires @quasar/app-webpack v3.5+)
+       */
       manualStoreSerialization: false,
 
       /**
-     * Manually inject the store state into ssrContext.state
-     * (Requires @quasar/app-webpack v3.5+)
-     */
+       * Manually inject the store state into ssrContext.state
+       * (Requires @quasar/app-webpack v3.5+)
+       */
       manualStoreSsrContextInjection: false,
 
       /**
-     * Manually handle the store hydration instead of letting Quasar CLI do it.
-     * For Pinia: store.state.value = window.__INITIAL_STATE__
-     * For Vuex: store.replaceState(window.__INITIAL_STATE__)
-     */
+       * Manually handle the store hydration instead of letting Quasar CLI do it.
+       * For Pinia: store.state.value = window.__INITIAL_STATE__
+       * For Vuex: store.replaceState(window.__INITIAL_STATE__)
+       */
       manualStoreHydration: false,
 
       /**
-     * Manually call $q.onSSRHydrated() instead of letting Quasar CLI do it.
-     * This announces that client-side code should takeover.
-     */
+       * Manually call $q.onSSRHydrated() instead of letting Quasar CLI do it.
+       * This announces that client-side code should takeover.
+       */
       manualPostHydrationTrigger: false,
 
       prodPort: 3000, // The default port that the production server should use
@@ -192,31 +189,31 @@ module.exports = configure(function (ctx) {
 
       // List of SSR middleware files (src-ssr/middlewares/*). Order is important.
       middlewares: [
-      // ...
+        // ...
         'render', // Should not be missing, and should be last in the list.
       ],
 
       // optional; add/remove/change properties
       // of production generated package.json
-      extendPackageJson (pkg) {
-      // directly change props of pkg;
-      // no need to return anything
+      extendPackageJson(pkg) {
+        // directly change props of pkg;
+        // no need to return anything
       },
 
       // optional;
       // handles the Webserver webpack config ONLY
       // which includes the SSR middleware
-      extendWebpackWebserver (cfg) {
-      // directly change props of cfg;
-      // no need to return anything
+      extendWebpackWebserver(cfg) {
+        // directly change props of cfg;
+        // no need to return anything
       },
 
       // optional; EQUIVALENT to extendWebpack() but uses webpack-chain;
       // handles the Webserver webpack config ONLY
       // which includes the SSR middleware
-      chainWebpackWebserver (chain) {
-      // chain is a webpack-chain instance
-      // of the Webpack configuration
+      chainWebpackWebserver(chain) {
+        // chain is a webpack-chain instance
+        // of the Webpack configuration
       },
     },
 
@@ -228,9 +225,8 @@ module.exports = configure(function (ctx) {
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
 
-      chainWebpackCustomSW (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }]);
+      chainWebpackCustomSW(chain) {
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
       manifest: {
@@ -287,13 +283,11 @@ module.exports = configure(function (ctx) {
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -306,16 +300,13 @@ module.exports = configure(function (ctx) {
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
 
-      chainWebpackMain (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }]);
+      chainWebpackMain(chain) {
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
-      chainWebpackPreload (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }]);
+      chainWebpackPreload(chain) {
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
-
     },
-  };
-});
+  }
+})

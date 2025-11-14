@@ -1,9 +1,14 @@
-import ogBannerImage from '../assets/images/og-banner.png';
+import ogBannerImage from '../assets/images/og-banner.png'
 
-const TITLE_DEFAULT = 'Open Source Software PH';
-const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.';
+const TITLE_DEFAULT = 'Open Source Software PH'
+const DESCRIPTION_DEFAULT =
+  'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.'
 
-export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
+export const useBuildMeta = ({
+  title = `${TITLE_DEFAULT} (OSSPH)`,
+  page,
+  description = DESCRIPTION_DEFAULT,
+}) => {
   return {
     // sets document title
     title,
@@ -18,39 +23,42 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
       // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
       ogTitle: {
         property: 'og:title',
-        template () {
-          return `${page} - ${title}`;
+        template() {
+          return `${page} - ${title}`
         },
       },
       ogDescription: {
         property: 'og:description',
-        template () {
-          return `${description}`;
+        template() {
+          return `${description}`
         },
       },
       ogType: {
         property: 'og:type',
-        template () {
-          return 'website';
+        template() {
+          return 'website'
         },
       },
       ogUrl: {
         property: 'og:url',
-        template () {
-          return 'https://ossph.org';
+        template() {
+          return 'https://ossph.org'
         },
       },
       ogImage: {
         property: 'og:image',
-        template () {
-          return ogBannerImage;
+        template() {
+          return ogBannerImage
         },
       },
     },
 
     // CSS tags
     link: {
-      material: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+      material: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
+      },
     },
 
     // JS tags
@@ -77,5 +85,5 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
     noscript: {
       default: 'This is content for browsers with no JS (or disabled JS)',
     },
-  };
-};
+  }
+}

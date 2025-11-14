@@ -1,22 +1,22 @@
-import { computed } from 'vue';
-import { dom, useQuasar, copyToClipboard, openURL } from 'quasar';
-import packageJson from '../../package.json';
+import { computed } from 'vue'
+import { dom, useQuasar, copyToClipboard, openURL } from 'quasar'
+import packageJson from '../../package.json'
 
-const { height, width } = dom;
+const { height, width } = dom
 
-export function useQuasarMixins () {
-  const $q = useQuasar();
-  const appVersion = packageJson.version;
-  const isAndroid = computed(() => $q.platform.is.android);
-  const isDesktop = computed(() => $q.platform.is.desktop);
-  const isIOS = computed(() => $q.platform.is.ios);
-  const isMobile = computed(() => $q.platform.is.mobile || $q.platform.is.nativeMobile);
-  const isNativeMobile = $q.platform.is.nativeMobile;
-  const isScreenDesktop = computed(() => $q.screen.gt.sm);
-  const isScreenMobile = computed(() => $q.screen.lt.md);
-  const backButtonIcon = computed(() => isIOS.value ? 'mdi-chevron-left' : 'mdi-arrow-left');
-  const domHeight = computed(() => height(window));
-  const domWidth = computed(() => width(window));
+export function useQuasarMixins() {
+  const $q = useQuasar()
+  const appVersion = packageJson.version
+  const isAndroid = computed(() => $q.platform.is.android)
+  const isDesktop = computed(() => $q.platform.is.desktop)
+  const isIOS = computed(() => $q.platform.is.ios)
+  const isMobile = computed(() => $q.platform.is.mobile || $q.platform.is.nativeMobile)
+  const isNativeMobile = $q.platform.is.nativeMobile
+  const isScreenDesktop = computed(() => $q.screen.gt.sm)
+  const isScreenMobile = computed(() => $q.screen.lt.md)
+  const backButtonIcon = computed(() => (isIOS.value ? 'mdi-chevron-left' : 'mdi-arrow-left'))
+  const domHeight = computed(() => height(window))
+  const domWidth = computed(() => width(window))
 
   // TODO: Removed unused logout function - implement when authentication is added
   // async function logout () {
@@ -26,26 +26,26 @@ export function useQuasarMixins () {
   //   this.$localStorage.clear();
   // }
 
-  function rippleAwait (timeout = 200) {
-    return new Promise((resolve) => {
+  function rippleAwait(timeout = 200) {
+    return new Promise(resolve => {
       setTimeout(() => {
-        resolve();
-      }, timeout);
-    });
+        resolve()
+      }, timeout)
+    })
   }
 
-  async function showSnack (opts) {
-    $q.notify(opts);
+  async function showSnack(opts) {
+    $q.notify(opts)
   }
 
-  function getPlatform () {
-    if (isNativeMobile && isAndroid.value) return 'android';
-    if (isNativeMobile && isIOS.value) return 'ios';
-    return 'web';
+  function getPlatform() {
+    if (isNativeMobile && isAndroid.value) return 'android'
+    if (isNativeMobile && isIOS.value) return 'ios'
+    return 'web'
   }
 
-  function setToDark () {
-    $q.dark.set(true);
+  function setToDark() {
+    $q.dark.set(true)
   }
 
   return {
@@ -68,5 +68,5 @@ export function useQuasarMixins () {
     showSnack,
     setToDark,
     copyToClipboard,
-  };
+  }
 }

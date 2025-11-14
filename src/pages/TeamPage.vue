@@ -54,48 +54,53 @@ generic-panel(
 </template>
 
 <script>
-import { computed, ref } from 'vue';
-import { useBuildMeta } from '@/composables/meta';
-import { useMeta, useQuasar } from 'quasar';
-import GenericPanel from '@/components/commons/GenericPanel.vue';
-import TeamMemberCard from '@/components/TeamMemberCard.vue';
-import teamData from '@/assets/fixtures/team';
+import { computed, ref } from 'vue'
+import { useBuildMeta } from '@/composables/meta'
+import { useMeta, useQuasar } from 'quasar'
+import GenericPanel from '@/components/commons/GenericPanel.vue'
+import TeamMemberCard from '@/components/TeamMemberCard.vue'
+import teamData from '@/assets/fixtures/team'
 export default {
   components: {
     GenericPanel,
     TeamMemberCard,
   },
-  setup () {
-    useMeta(useBuildMeta({ page: 'The Team', description: 'Here are the amazing people behind OSSPH\'s initiatives' }));
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
-    const selectedRole = ref(null);
+  setup() {
+    useMeta(
+      useBuildMeta({
+        page: 'The Team',
+        description: "Here are the amazing people behind OSSPH's initiatives",
+      })
+    )
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
+    const selectedRole = ref(null)
 
     // Get unique roles from team data
     const roleOptions = computed(() => {
-      const roles = [...new Set(teamData.map(member => member.role))];
+      const roles = [...new Set(teamData.map(member => member.role))]
       return roles.map(role => ({
         label: role,
         value: role,
-      }));
-    });
+      }))
+    })
 
     // Filter team data based on selected role
     const activeTeamData = computed(() => {
-      let filtered = teamData.filter((team) => team.active);
+      let filtered = teamData.filter(team => team.active)
       if (selectedRole.value) {
-        filtered = filtered.filter(team => team.role === selectedRole.value);
+        filtered = filtered.filter(team => team.role === selectedRole.value)
       }
-      return filtered;
-    });
+      return filtered
+    })
 
     const inactiveTeamData = computed(() => {
-      let filtered = teamData.filter((team) => !team.active);
+      let filtered = teamData.filter(team => !team.active)
       if (selectedRole.value) {
-        filtered = filtered.filter(team => team.role === selectedRole.value);
+        filtered = filtered.filter(team => team.role === selectedRole.value)
       }
-      return filtered;
-    });
+      return filtered
+    })
 
     return {
       isMobile,
@@ -103,9 +108,9 @@ export default {
       inactiveTeamData,
       selectedRole,
       roleOptions,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
@@ -123,9 +128,9 @@ export default {
 
 .custom-q-card:hover {
   cursor: pointer;
-  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3) !important;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3) !important;
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3) !important;
   color: #0099cc !important;
 }
 

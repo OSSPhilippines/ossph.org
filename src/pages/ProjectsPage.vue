@@ -39,18 +39,23 @@ generic-panel(
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useBuildMeta } from '@/composables/meta';
-import { useMeta, useQuasar } from 'quasar';
-import GenericPanel from '@/components/commons/GenericPanel.vue';
+import { computed } from 'vue'
+import { useBuildMeta } from '@/composables/meta'
+import { useMeta, useQuasar } from 'quasar'
+import GenericPanel from '@/components/commons/GenericPanel.vue'
 export default {
   components: {
     GenericPanel,
   },
-  setup () {
-    useMeta(useBuildMeta({ page: 'Our Projects', description: 'OSSPH\'s growing list of projects powered by the community!' }));
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
+  setup() {
+    useMeta(
+      useBuildMeta({
+        page: 'Our Projects',
+        description: "OSSPH's growing list of projects powered by the community!",
+      })
+    )
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
 
     const projects = [
       {
@@ -69,7 +74,7 @@ export default {
         name: 'Paymongo for Node.js',
         link: 'https://paymongo.ossph.org',
         icon: require('../assets/images/github-logo.png'),
-        description: 'Nodes.js wrapper for Paymongo\'s REST API',
+        description: "Nodes.js wrapper for Paymongo's REST API",
       },
       {
         name: 'Pinoy-Made 🇵🇭',
@@ -101,51 +106,50 @@ export default {
         icon: require('../assets/images/github-logo.png'),
         description: 'A website to help you visualize your travel history across the Philippines',
       },
-    ];
+    ]
 
     return {
       projects,
       isMobile,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
-
 a {
   text-decoration: none;
 }
 
 /* grid proj*/
-.proj-section{
+.proj-section {
   display: grid;
   gap: 1rem; /* 16px */
 }
-.proj-content-container{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem; /* 8px */
+.proj-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 8px */
 }
-.proj-content{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-direction: column;
+.proj-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;
 }
-.h-100{
+.h-100 {
   height: 100%;
 }
-.w-max-content{
+.w-max-content {
   width: max-content;
 }
 
 @media (min-width: 1024px) {
-  .proj-section{
+  .proj-section {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto;
   }
-  .proj-content-container{
+  .proj-content-container {
     flex-direction: row;
   }
 }

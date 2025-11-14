@@ -226,20 +226,20 @@ generic-panel(
 </template>
 
 <script>
-import { computed, onMounted, nextTick } from 'vue';
-import { useBuildMeta } from '@/composables/meta';
-import { useMeta, useQuasar } from 'quasar';
-import GenericPanel from '@/components/commons/GenericPanel.vue';
-import AOS from 'aos';
+import { computed, onMounted, nextTick } from 'vue'
+import { useBuildMeta } from '@/composables/meta'
+import { useMeta, useQuasar } from 'quasar'
+import GenericPanel from '@/components/commons/GenericPanel.vue'
+import AOS from 'aos'
 
 export default {
   components: {
     GenericPanel,
   },
-  setup () {
-    useMeta(useBuildMeta({ page: 'Home' }));
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
+  setup() {
+    useMeta(useBuildMeta({ page: 'Home' }))
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
 
     // Refresh AOS animations when component is mounted
     // This ensures animations work properly after SSR hydration and when images load
@@ -248,21 +248,21 @@ export default {
         // Use nextTick to ensure all DOM elements are rendered
         nextTick(() => {
           // Refresh immediately
-          AOS.refresh();
+          AOS.refresh()
 
           // Also refresh after a short delay to account for image loading
           setTimeout(() => {
-            AOS.refresh();
-          }, 300);
-        });
+            AOS.refresh()
+          }, 300)
+        })
       }
-    });
+    })
 
     return {
       isMobile,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
@@ -280,9 +280,9 @@ export default {
 
 .custom-q-card:hover {
   cursor: pointer;
-  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
-  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3) !important;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3) !important;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3) !important;
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3) !important;
   color: #0099cc !important;
 }
 
@@ -290,11 +290,11 @@ export default {
   padding: 8px 16px;
 }
 
-.btn-contribute >>> span.q-btn__content {
+.btn-contribute :deep(span.q-btn__content) {
   gap: 0.75rem;
 }
 
-.btn-contribute >>> span.q-btn__content i.on-left {
+.btn-contribute :deep(span.q-btn__content i.on-left) {
   margin-right: 0;
 }
 

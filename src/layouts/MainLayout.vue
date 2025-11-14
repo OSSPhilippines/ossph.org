@@ -129,19 +129,19 @@ q-layout(
 </template>
 
 <script>
-import { ref, inject, computed } from 'vue';
-import { useQuasar } from 'quasar';
-import { useRouter } from 'vue-router';
+import { ref, inject, computed } from 'vue'
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 
 export default {
-  setup () {
-    const smoothScroll = inject('smoothScroll');
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
-    const router = useRouter();
-    const header = ref(false);
-    const footer = ref(false);
-    const drawerLeft = ref(false);
+  setup() {
+    const smoothScroll = inject('smoothScroll')
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
+    const router = useRouter()
+    const header = ref(false)
+    const footer = ref(false)
+    const drawerLeft = ref(false)
     const menu = ref([
       {
         name: 'About Us',
@@ -168,84 +168,84 @@ export default {
         icon: 'fa-brands fa-github',
         link: 'https://github.com/OSSPhilippines',
       },
-    ]);
+    ])
 
-    if (isMobile.value) header.value = false;
+    if (isMobile.value) header.value = false
 
-    const showScrollToTop = ref(false);
+    const showScrollToTop = ref(false)
 
-    function onScroll (info) {
+    function onScroll(info) {
       if (info.position >= 150) {
-        footer.value = true;
-        showScrollToTop.value = true;
+        footer.value = true
+        showScrollToTop.value = true
       } else {
-        footer.value = false;
-        showScrollToTop.value = false;
+        footer.value = false
+        showScrollToTop.value = false
       }
       if (isMobile.value) {
-        header.value = true;
-        return;
+        header.value = true
+        return
       }
       if (info.position >= 150) {
-        header.value = true;
+        header.value = true
       } else {
-        header.value = false;
+        header.value = false
       }
     }
 
-    function onScrollToTop () {
+    function onScrollToTop() {
       if (smoothScroll) {
         // Use smoothScroll to scroll to top (position 0)
         smoothScroll({
           scrollTo: 0,
           updateHistory: false,
-        });
+        })
       } else {
         // Fallback to native smooth scroll
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     }
 
-    function onGoToPanel (card) {
-      drawerLeft.value = false;
+    function onGoToPanel(card) {
+      drawerLeft.value = false
 
       // Handle route navigation with smooth scroll to top
       if (card.route) {
         router.push(card.route).then(() => {
           // Scroll to top after route navigation
           setTimeout(() => {
-            onScrollToTop();
-          }, 100);
-        });
-        return;
+            onScrollToTop()
+          }, 100)
+        })
+        return
       }
 
       // Handle panel ID scrolling (if panelId exists)
       if (card.panelId) {
-        const panelElement = document.getElementById(card.panelId);
+        const panelElement = document.getElementById(card.panelId)
         if (panelElement && smoothScroll) {
           smoothScroll({
             scrollTo: panelElement,
             updateHistory: false,
-          });
+          })
         } else if (panelElement) {
           // Fallback to native smooth scroll
-          panelElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          panelElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
-        return;
+        return
       }
 
       // Handle external links
       if (card.link) {
         try {
-          const newWindow = window.open(card.link, '_blank');
+          const newWindow = window.open(card.link, '_blank')
           // Don't call `focus()` as it can trigger extension message channel errors
           if (newWindow) {
-            newWindow.opener = null; // Security best practice
+            newWindow.opener = null // Security best practice
           }
         } catch (err) {
           // Silently handle errors from browser extensions blocking `window.open`
-          console.warn('Could not open link:', err);
+          console.warn('Could not open link:', err)
         }
       }
     }
@@ -260,15 +260,15 @@ export default {
       onGoToPanel,
       onScrollToTop,
       showScrollToTop,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
 .whole-bg {
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(227,249,255,1) 100%);
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(227, 249, 255, 1) 100%);
 }
 
 .soc-med-toolbar {
@@ -276,11 +276,11 @@ export default {
   flex-wrap: wrap;
 }
 
-.btn-soc-med >>> span.q-btn__content {
+.btn-soc-med :deep(span.q-btn__content) {
   gap: 0.75rem;
 }
 
-.btn-soc-med >>> span.q-btn__content i.on-left {
+.btn-soc-med :deep(span.q-btn__content i.on-left) {
   margin-right: 0;
 }
 
@@ -290,7 +290,9 @@ export default {
   right: 24px;
   z-index: 2000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 }
 
 .scroll-to-top-btn:hover {

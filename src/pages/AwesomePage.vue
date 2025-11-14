@@ -289,132 +289,137 @@ generic-panel(
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from 'vue';
-import { useBuildMeta } from '@/composables/meta';
-import { useMeta, useQuasar } from 'quasar';
-import GenericPanel from '@/components/commons/GenericPanel.vue';
-import axios from 'axios';
+import { ref, computed, onMounted, watch } from 'vue'
+import { useBuildMeta } from '@/composables/meta'
+import { useMeta, useQuasar } from 'quasar'
+import GenericPanel from '@/components/commons/GenericPanel.vue'
+import axios from 'axios'
 
 export default {
   components: {
     GenericPanel,
   },
-  setup () {
-    useMeta(useBuildMeta({
-      page: 'Awesome Pinoy-Made Projects - Open Source Software Philippines',
-      description: 'Discover amazing open source projects created by Filipino developers. Browse libraries, tools, frameworks, and applications made by the Philippine tech community.',
-      keywords: 'Filipino developers, Philippine open source, Pinoy-made software, Filipino programmers, Philippine tech community, open source projects Philippines, Filipino GitHub projects, Philippine software developers',
-      og: {
-        title: 'Awesome Pinoy-Made Open Source Projects | OSSPH',
-        description: 'Explore a curated collection of open source projects built by talented Filipino developers. Find libraries, tools, frameworks, and applications from the Philippine tech community.',
-        image: 'https://ossph.org/ossph-preview.png',
-        url: 'https://ossph.org/awesome',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: 'Awesome Pinoy-Made Open Source Projects',
-        description: 'Discover open source projects by Filipino developers',
-        image: 'https://ossph.org/ossph-preview.png',
-      },
-    }));
+  setup() {
+    useMeta(
+      useBuildMeta({
+        page: 'Awesome Pinoy-Made Projects - Open Source Software Philippines',
+        description:
+          'Discover amazing open source projects created by Filipino developers. Browse libraries, tools, frameworks, and applications made by the Philippine tech community.',
+        keywords:
+          'Filipino developers, Philippine open source, Pinoy-made software, Filipino programmers, Philippine tech community, open source projects Philippines, Filipino GitHub projects, Philippine software developers',
+        og: {
+          title: 'Awesome Pinoy-Made Open Source Projects | OSSPH',
+          description:
+            'Explore a curated collection of open source projects built by talented Filipino developers. Find libraries, tools, frameworks, and applications from the Philippine tech community.',
+          image: 'https://ossph.org/ossph-preview.png',
+          url: 'https://ossph.org/awesome',
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: 'Awesome Pinoy-Made Open Source Projects',
+          description: 'Discover open source projects by Filipino developers',
+          image: 'https://ossph.org/ossph-preview.png',
+        },
+      })
+    )
 
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
 
     // Data and state
-    const projects = ref([]);
-    const isLoading = ref(false);
-    const error = ref(null);
-    const searchQuery = ref('');
-    const selectedCategory = ref(null);
-    const selectedAuthor = ref(null);
-    const selectedTags = ref([]);
+    const projects = ref([])
+    const isLoading = ref(false)
+    const error = ref(null)
+    const searchQuery = ref('')
+    const selectedCategory = ref(null)
+    const selectedAuthor = ref(null)
+    const selectedTags = ref([])
 
     // Filtered options for searchable selects
-    const filteredCategoryOptions = ref([]);
-    const filteredAuthorOptions = ref([]);
-    const filteredTagOptions = ref([]);
+    const filteredCategoryOptions = ref([])
+    const filteredAuthorOptions = ref([])
+    const filteredTagOptions = ref([])
 
     // Fetch projects from GitHub
     const fetchProjects = async () => {
-      isLoading.value = true;
-      error.value = null;
+      isLoading.value = true
+      error.value = null
 
       try {
         // console.log('Fetching projects from GitHub...');
-        const response = await axios.get('https://raw.githubusercontent.com/OSSPhilippines/awesome-pinoy-made/refs/heads/main/data.json');
+        const response = await axios.get(
+          'https://raw.githubusercontent.com/OSSPhilippines/awesome-pinoy-made/refs/heads/main/data.json'
+        )
         // console.log('Response data:', response.data);
         // Check if response.data is an array or has a projects property
         if (Array.isArray(response.data)) {
-          projects.value = response.data;
+          projects.value = response.data
           // console.log('Projects loaded (array):', response.data.length);
         } else if (response.data && Array.isArray(response.data.projects)) {
-          projects.value = response.data.projects;
+          projects.value = response.data.projects
           // console.log('Projects loaded (projects property):', response.data.projects.length);
         } else if (response.data && typeof response.data === 'object') {
           // If it's an object, try to extract values as array
-          projects.value = Object.values(response.data);
+          projects.value = Object.values(response.data)
           // console.log('Projects loaded (object values):', projects.value.length);
         } else {
           // console.error('Unexpected data format:', response.data);
-          projects.value = [];
+          projects.value = []
         }
       } catch (err) {
         // Handle different error types
         if (err.response) {
           // Server responded with error status
-          error.value = `Server error: ${err.response.status} - ${err.response.statusText}`;
+          error.value = `Server error: ${err.response.status} - ${err.response.statusText}`
         } else if (err.request) {
           // Request made but no response received
-          error.value = 'Network error: Unable to reach the server. Please check your connection.';
+          error.value = 'Network error: Unable to reach the server. Please check your connection.'
         } else {
           // Something else happened
-          error.value = err.message || 'Failed to load projects';
+          error.value = err.message || 'Failed to load projects'
         }
-        projects.value = [];
+        projects.value = []
       } finally {
-        isLoading.value = false;
+        isLoading.value = false
       }
-    };
+    }
 
     // Computed options for filters
     const categoryOptions = computed(() => {
-      const categories = [...new Set(projects.value
-        .filter(p => p.category)
-        .map(p => p.category))];
+      const categories = [...new Set(projects.value.filter(p => p.category).map(p => p.category))]
       return categories.map(cat => ({
         label: cat.charAt(0).toUpperCase() + cat.slice(1),
         value: cat,
-      }));
-    });
+      }))
+    })
 
     const authorOptions = computed(() => {
-      const authors = [...new Set(projects.value
-        .filter(p => p.author && p.author.name)
-        .map(p => p.author.name))];
+      const authors = [
+        ...new Set(projects.value.filter(p => p.author && p.author.name).map(p => p.author.name)),
+      ]
       return authors.sort().map(author => ({
         label: author,
         value: author,
-      }));
-    });
+      }))
+    })
 
     const tagOptions = computed(() => {
-      const tags = new Set();
+      const tags = new Set()
       projects.value.forEach(project => {
         if (project.tags && Array.isArray(project.tags)) {
-          project.tags.forEach(tag => tags.add(tag));
+          project.tags.forEach(tag => tags.add(tag))
         }
-      });
-      return Array.from(tags).sort();
-    });
+      })
+      return Array.from(tags).sort()
+    })
 
     // Filter projects based on search and selections
     const filteredProjects = computed(() => {
-      let filtered = [...projects.value];
+      let filtered = [...projects.value]
 
       // Search filter
       if (searchQuery.value) {
-        const query = searchQuery.value.toLowerCase();
+        const query = searchQuery.value.toLowerCase()
         filtered = filtered.filter(project => {
           return (
             project.name?.toLowerCase().includes(query) ||
@@ -422,114 +427,127 @@ export default {
             project.author?.name?.toLowerCase().includes(query) ||
             project.technologies?.some(tech => tech.toLowerCase().includes(query)) ||
             project.tags?.some(tag => tag.toLowerCase().includes(query))
-          );
-        });
+          )
+        })
       }
 
       // Category filter
       if (selectedCategory.value) {
-        filtered = filtered.filter(project => project.category === selectedCategory.value);
+        filtered = filtered.filter(project => project.category === selectedCategory.value)
       }
 
       // Author filter
       if (selectedAuthor.value) {
-        filtered = filtered.filter(project =>
-          project.author && project.author.name === selectedAuthor.value,
-        );
+        filtered = filtered.filter(
+          project => project.author && project.author.name === selectedAuthor.value
+        )
       }
 
       // Tags filter
       if (selectedTags.value && selectedTags.value.length > 0) {
         filtered = filtered.filter(project => {
-          if (!project.tags || !Array.isArray(project.tags)) return false;
-          return selectedTags.value.every(tag => project.tags.includes(tag));
-        });
+          if (!project.tags || !Array.isArray(project.tags)) return false
+          return selectedTags.value.every(tag => project.tags.includes(tag))
+        })
       }
 
       // Return filtered projects in their original order (no sorting)
-      return filtered;
-    });
+      return filtered
+    })
 
     // Format stars count
-    const formatStars = (stars) => {
-      if (!stars) return '0';
+    const formatStars = stars => {
+      if (!stars) return '0'
       if (stars >= 1000) {
-        return (stars / 1000).toFixed(1) + 'k';
+        return (stars / 1000).toFixed(1) + 'k'
       }
-      return stars.toString();
-    };
+      return stars.toString()
+    }
 
     // Clear all filters
     const clearFilters = () => {
-      searchQuery.value = '';
-      selectedCategory.value = null;
-      selectedAuthor.value = null;
-      selectedTags.value = [];
-    };
+      searchQuery.value = ''
+      selectedCategory.value = null
+      selectedAuthor.value = null
+      selectedTags.value = []
+    }
 
     // Filter methods for searchable selects
     const filterCategories = (val, update) => {
       update(() => {
         if (val === '') {
-          filteredCategoryOptions.value = categoryOptions.value;
+          filteredCategoryOptions.value = categoryOptions.value
         } else {
-          const needle = val.toLowerCase();
+          const needle = val.toLowerCase()
           filteredCategoryOptions.value = categoryOptions.value.filter(
-            opt => opt.label.toLowerCase().indexOf(needle) > -1,
-          );
+            opt => opt.label.toLowerCase().indexOf(needle) > -1
+          )
         }
-      });
-    };
+      })
+    }
 
     const filterAuthors = (val, update) => {
       update(() => {
         if (val === '') {
-          filteredAuthorOptions.value = authorOptions.value;
+          filteredAuthorOptions.value = authorOptions.value
         } else {
-          const needle = val.toLowerCase();
+          const needle = val.toLowerCase()
           filteredAuthorOptions.value = authorOptions.value.filter(
-            opt => opt.label.toLowerCase().indexOf(needle) > -1,
-          );
+            opt => opt.label.toLowerCase().indexOf(needle) > -1
+          )
         }
-      });
-    };
+      })
+    }
 
     const filterTags = (val, update) => {
       update(() => {
         if (val === '') {
-          filteredTagOptions.value = tagOptions.value;
+          filteredTagOptions.value = tagOptions.value
         } else {
-          const needle = val.toLowerCase();
+          const needle = val.toLowerCase()
           filteredTagOptions.value = tagOptions.value.filter(
-            tag => tag.toLowerCase().indexOf(needle) > -1,
-          );
+            tag => tag.toLowerCase().indexOf(needle) > -1
+          )
         }
-      });
-    };
+      })
+    }
 
     // Watch for changes in computed options and update filtered options
-    watch(categoryOptions, (newOptions) => {
-      filteredCategoryOptions.value = newOptions;
-    }, { immediate: true });
+    watch(
+      categoryOptions,
+      newOptions => {
+        filteredCategoryOptions.value = newOptions
+      },
+      { immediate: true }
+    )
 
-    watch(authorOptions, (newOptions) => {
-      filteredAuthorOptions.value = newOptions;
-    }, { immediate: true });
+    watch(
+      authorOptions,
+      newOptions => {
+        filteredAuthorOptions.value = newOptions
+      },
+      { immediate: true }
+    )
 
-    watch(tagOptions, (newOptions) => {
-      filteredTagOptions.value = newOptions;
-    }, { immediate: true });
+    watch(
+      tagOptions,
+      newOptions => {
+        filteredTagOptions.value = newOptions
+      },
+      { immediate: true }
+    )
 
     // Add structured data for SEO
     const addStructuredData = () => {
       if (typeof window !== 'undefined' && projects.value.length > 0) {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
+        const script = document.createElement('script')
+        script.type = 'application/ld+json'
         script.text = JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           name: 'Awesome Pinoy-Made Open Source Projects',
-          description: 'A curated collection of open source projects created by Filipino developers',
+          description:
+            'A curated collection of open source projects created by Filipino developers',
           url: 'https://ossph.org/awesome',
           publisher: {
             '@type': 'Organization',
@@ -551,17 +569,17 @@ export default {
             programmingLanguage: project.technologies?.join(', '),
             keywords: project.tags?.join(', '),
           })),
-        });
-        document.head.appendChild(script);
+        })
+        document.head.appendChild(script)
       }
-    };
+    }
 
     // Load projects on mount (client side only to avoid SSR issues)
     onMounted(() => {
       fetchProjects().then(() => {
-        addStructuredData();
-      });
-    });
+        addStructuredData()
+      })
+    })
 
     return {
       isMobile,
@@ -585,9 +603,9 @@ export default {
       filterCategories,
       filterAuthors,
       filterTags,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
@@ -617,7 +635,9 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   overflow: hidden;
   border-radius: 12px;
 }

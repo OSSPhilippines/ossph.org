@@ -16,6 +16,10 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
+# Style files (excluded from formatting)
+*.css
+*.scss
+
 # Other
 .DS_Store
 *.swp

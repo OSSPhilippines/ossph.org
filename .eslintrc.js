@@ -4,15 +4,16 @@ module.exports = {
   // Remove this if you have an higher level ESLint config file (it usually happens into a monorepos)
   root: true,
 
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@babel/eslint-parser',
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module' // Allows for the use of imports
+    sourceType: 'module', // Allows for the use of imports
+    requireConfigFile: true, // Use babel.config.js for Babel configuration
   },
 
   env: {
     browser: true,
-    'vue/setup-compiler-macros': true
   },
 
   // Rules order is important, please avoid shuffling them
@@ -23,19 +24,20 @@ module.exports = {
     // Uncomment any of the lines below to choose desired strictness,
     // but leave only one uncommented!
     // See https://eslint.vuejs.org/rules/#available-rules
-    'plugin:vue/vue3-essential', // Priority A: Essential (Error Prevention)
-    // 'plugin:vue/vue3-strongly-recommended', // Priority B: Strongly Recommended (Improving Readability)
-    // 'plugin:vue/vue3-recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+    'plugin:vue/essential', // Priority A: Essential (Error Prevention) - Vue 3
+    // 'plugin:vue/strongly-recommended', // Priority B: Strongly Recommended (Improving Readability) - Vue 3
+    // 'plugin:vue/recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead) - Vue 3
 
-    'standard'
-    
+    'standard',
+    // Prettier must be last to override other configs
+    'plugin:prettier/recommended',
   ],
 
   plugins: [
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-files
     // required to lint *.vue files
     'vue',
-    
+    'prettier',
   ],
 
   globals: {
@@ -48,7 +50,7 @@ module.exports = {
     __QUASAR_SSR_PWA__: 'readonly',
     process: 'readonly',
     Capacitor: 'readonly',
-    chrome: 'readonly'
+    chrome: 'readonly',
   },
 
   // add your custom rules here
@@ -73,12 +75,11 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 
     // custom
-    'semi': [2, 'always'],
-    'space-before-function-paren': [2, 'always'],
-    'keyword-spacing': [2, { before: true, after: true }],
-    'space-before-blocks': [2, 'always'],
-    'comma-dangle': [2, 'always-multiline'],
     'no-console': 'off',
     'no-multi-str': 'off',
-  }
+
+    // Prettier integration - Prettier handles formatting, so we disable conflicting rules
+    // eslint-config-prettier disables formatting rules, but we keep some custom ones
+    'prettier/prettier': 'error',
+  },
 }

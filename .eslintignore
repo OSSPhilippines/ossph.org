@@ -6,3 +6,8 @@
 /node_modules
 .eslintrc.js
 babel.config.js
+.prettierrc.js
+
+# Style files (excluded from linting)
+*.css
+*.scss

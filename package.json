@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "Open Source Software PH",
   "productName": "ossph.org",
-  "author": "Joff Tiquez <jofftiquez@gmail.com>",
+  "author": "Joff Tiquez <jofftiquez@gmail.com>, Guy Romelle Magayano <aspiredtechie2010@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",

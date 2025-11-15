@@ -3,9 +3,45 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, onUnmounted } from 'vue'
 
 export default defineComponent({
   name: 'App',
-});
+  setup() {
+    // Handle unhandled promise rejections from browser extensions
+    const handleUnhandledRejection = event => {
+      // Suppress errors from browser extensions that close message channels
+      if (event.reason && typeof event.reason === 'object') {
+        const message = event.reason.message || event.reason.toString()
+        if (message && message.includes('message channel closed')) {
+          event.preventDefault() // Prevent error from showing in console
+        }
+      }
+      // Allow other errors to be handled normally
+    }
+
+    // Handle errors from browser extensions
+    const handleError = event => {
+      if (event.message && event.message.includes('message channel closed')) {
+        event.preventDefault() // Prevent error from showing in console
+      }
+    }
+
+    onMounted(() => {
+      // Only add event listeners on client-side
+      if (typeof window !== 'undefined') {
+        window.addEventListener('unhandledrejection', handleUnhandledRejection)
+        window.addEventListener('error', handleError)
+      }
+    })
+
+    onUnmounted(() => {
+      // Only remove event listeners on client-side
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('unhandledrejection', handleUnhandledRejection)
+        window.removeEventListener('error', handleError)
+      }
+    })
+  },
+})
 </script>

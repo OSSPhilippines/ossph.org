@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   // Basic formatting
   semi: false, // Standard style: no semicolons
   singleQuote: true, // Standard style: single quotes

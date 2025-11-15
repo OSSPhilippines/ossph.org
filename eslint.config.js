@@ -1,97 +1,128 @@
-commit 76722ec4074f864c538c5357ef7a634ab5e8ad4b
-Author: Guy Romelle Magayano <aspiredtechie2010@gmail.com>
-Date:   Fri Nov 14 12:46:06 2025 +0800
+import js from '@eslint/js'
+import pluginVue from 'eslint-plugin-vue'
+import pluginQuasar from '@quasar/app-webpack/eslint'
+import vueParser from 'vue-eslint-parser'
+import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import globals from 'globals'
 
-    chore(eslint): add ESLint configuration for Vue.js with Prettier integration and custom rules
+export default [
+  // Global ignores
+  {
+    ignores: [
+      // Dependencies
+      'node_modules/**',
 
-diff --git a/eslint.config.js b/eslint.config.js
-new file mode 100644
-index 00000000..b1c1c7c1
---- /dev/null
-+++ b/eslint.config.js
-@@ -0,0 +1,85 @@
-+module.exports = {
-+  // https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy
-+  // This option interrupts the configuration hierarchy at this file
-+  // Remove this if you have an higher level ESLint config file (it usually happens into a monorepos)
-+  root: true,
-+
-+  parser: 'vue-eslint-parser',
-+  parserOptions: {
-+    parser: '@babel/eslint-parser',
-+    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-+    sourceType: 'module', // Allows for the use of imports
-+    requireConfigFile: true, // Use babel.config.js for Babel configuration
-+  },
-+
-+  env: {
-+    browser: true,
-+  },
-+
-+  // Rules order is important, please avoid shuffling them
-+  extends: [
-+    // Base ESLint recommended rules
-+    // 'eslint:recommended',
-+
-+    // Uncomment any of the lines below to choose desired strictness,
-+    // but leave only one uncommented!
-+    // See https://eslint.vuejs.org/rules/#available-rules
-+    'plugin:vue/essential', // Priority A: Essential (Error Prevention) - Vue 3
-+    // 'plugin:vue/strongly-recommended', // Priority B: Strongly Recommended (Improving Readability) - Vue 3
-+    // 'plugin:vue/recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead) - Vue 3
-+
-+    'standard',
-+    // Prettier must be last to override other configs
-+    'plugin:prettier/recommended',
-+  ],
-+
-+  plugins: [
-+    // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-files
-+    // required to lint *.vue files
-+    'vue',
-+    'prettier',
-+  ],
-+
-+  globals: {
-+    ga: 'readonly', // Google Analytics
-+    cordova: 'readonly',
-+    __statics: 'readonly',
-+    __QUASAR_SSR__: 'readonly',
-+    __QUASAR_SSR_SERVER__: 'readonly',
-+    __QUASAR_SSR_CLIENT__: 'readonly',
-+    __QUASAR_SSR_PWA__: 'readonly',
-+    process: 'readonly',
-+    Capacitor: 'readonly',
-+    chrome: 'readonly',
-+  },
-+
-+  // add your custom rules here
-+  rules: {
-+    // allow async-await
-+    'generator-star-spacing': 'off',
-+    // allow paren-less arrow functions
-+    'arrow-parens': 'off',
-+    'one-var': 'off',
-+
-+    'import/first': 'off',
-+    'import/named': 'error',
-+    'import/namespace': 'error',
-+    'import/default': 'error',
-+    'import/export': 'error',
-+    'import/extensions': 'off',
-+    'import/no-unresolved': 'off',
-+    'import/no-extraneous-dependencies': 'off',
-+    'prefer-promise-reject-errors': 'off',
-+
-+    // allow debugger during development only
-+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-+
-+    // custom
-+    'no-console': 'off',
-+    'no-multi-str': 'off',
-+
-+    // Prettier integration - Prettier handles formatting, so we disable conflicting rules
-+    // eslint-config-prettier disables formatting rules, but we keep some custom ones
-+    'prettier/prettier': 'error',
-+  },
-+}
+      // Build outputs
+      'dist/**',
+      '.quasar/**',
+      '*.min.js',
+      '*.bundle.js',
+
+      // Generated files
+      'coverage/**',
+      '*.log',
+
+      // Config files (handled by Quasar build system or have their own linting)
+      'eslint.config.js',
+      'babel.config.js',
+      'postcss.config.js',
+      'prettier.config.js',
+      'quasar.config.js',
+      '.firebaserc',
+      'firebase.json',
+
+      // Quasar-specific directories (handled by Quasar build system)
+      'src-pwa/**',
+      'src-ssr/**',
+      'src/boot/**',
+
+      // Lock files (not code files)
+      'package-lock.json',
+      'yarn.lock',
+      'pnpm-lock.yaml',
+
+      // System files
+      '.DS_Store',
+      '*.swp',
+      '*.swo',
+      '*~',
+    ],
+  },
+
+  ...pluginQuasar.configs.recommended,
+  js.configs.recommended,
+
+  /**
+   * https://eslint.vuejs.org
+   *
+   * pluginVue.configs.base
+   *   -> Settings and rules to enable correct ESLint parsing.
+   * pluginVue.configs[ 'flat/essential']
+   *   -> base, plus rules to prevent errors or unintended behavior.
+   * pluginVue.configs["flat/strongly-recommended"]
+   *   -> Above, plus rules to considerably improve code readability and/or dev experience.
+   * pluginVue.configs["flat/recommended"]
+   *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
+   */
+  ...pluginVue.configs['flat/essential'],
+
+  {
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        __QUASAR_SSR__: 'readonly',
+        __QUASAR_SSR_CLIENT__: 'readonly',
+        __QUASAR_SSR_PWA__: 'readonly',
+        __QUASAR_SSR_SERVER__: 'readonly',
+        __statics: 'readonly',
+        Capacitor: 'readonly',
+        chrome: 'readonly',
+        cordova: 'readonly',
+        exports: 'readonly',
+        ga: 'readonly',
+        module: 'readonly',
+        process: 'readonly',
+        require: 'readonly',
+      },
+    },
+  },
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: false,
+        },
+        extraFileExtensions: ['.vue'],
+      },
+    },
+  },
+  {
+    files: ['**/*.{js,mjs,vue}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        requireConfigFile: false,
+      },
+    },
+    rules: {
+      'no-var': 'error',
+      'prefer-const': 'error',
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'no-console': 'off',
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+      'no-multi-str': 'off',
+      'prefer-promise-reject-errors': 'off',
+      'prettier/prettier': 'off',
+    },
+  },
+
+  prettierSkipFormatting,
+]

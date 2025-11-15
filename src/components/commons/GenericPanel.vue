@@ -11,13 +11,13 @@ div
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useQuasar } from 'quasar';
+import { computed } from 'vue'
+import { useQuasar } from 'quasar'
 export default {
   props: {
     panelClasses: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     fullHeight: Boolean,
     paddingBottom: {
@@ -38,21 +38,18 @@ export default {
     },
     hideHr: Boolean,
   },
-  setup (props) {
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
+  setup(props) {
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
     const containerClasses = computed(() => {
-      return [
-        'row',
-        ...props.panelClasses,
-      ];
-    });
+      return ['row', ...props.panelClasses]
+    })
     return {
       containerClasses,
       isMobile,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
@@ -63,6 +60,11 @@ export default {
 .custom-hr {
   border: none !important;
   height: 1px !important;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0)) !important;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0)
+  ) !important;
 }
 </style>

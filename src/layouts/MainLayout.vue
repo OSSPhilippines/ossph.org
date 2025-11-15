@@ -114,22 +114,34 @@ q-layout(
     p.text-body1
       | Copyright © {{new Date().getFullYear()}}
       br(v-if="isMobile")
-      |  Open Source Software PH. All Rights Reserved.</template>
+      |  Open Source Software PH. All Rights Reserved.
+
+  //- Scroll to top button - fixed position to float above footer
+  q-btn(
+    v-if="showScrollToTop"
+    fab
+    icon="keyboard_arrow_up"
+    color="primary"
+    @click="onScrollToTop"
+    aria-label="Scroll to top"
+    class="scroll-to-top-btn"
+  )
+</template>
 
 <script>
-import { ref, inject, computed } from 'vue';
-import { useQuasar } from 'quasar';
-import { useRouter } from 'vue-router';
+import { ref, inject, computed } from 'vue'
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 
 export default {
-  setup () {
-    const smoothScroll = inject('smoothScroll');
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.md);
-    const router = useRouter();
-    const header = ref(false);
-    const footer = ref(false);
-    const drawerLeft = ref(false);
+  setup() {
+    const smoothScroll = inject('smoothScroll')
+    const $q = useQuasar()
+    const isMobile = computed(() => $q.screen.lt.md)
+    const router = useRouter()
+    const header = ref(false)
+    const footer = ref(false)
+    const drawerLeft = ref(false)
     const menu = ref([
       {
         name: 'About Us',
@@ -156,45 +168,89 @@ export default {
         icon: 'fa-brands fa-github',
         link: 'https://github.com/OSSPhilippines',
       },
-    ]);
+    ])
 
-    if (isMobile.value) header.value = false;
+    if (isMobile.value) header.value = false
 
-    function onScroll (info) {
+    const showScrollToTop = ref(false)
+
+    function onScroll(info) {
       if (info.position >= 150) {
-        footer.value = true;
+        footer.value = true
+        showScrollToTop.value = true
       } else {
-        footer.value = false;
+        footer.value = false
+        showScrollToTop.value = false
       }
       if (isMobile.value) {
-        header.value = true;
-        return;
+        header.value = true
+        return
       }
       if (info.position >= 150) {
-        header.value = true;
+        header.value = true
       } else {
-        header.value = false;
+        header.value = false
       }
     }
 
-    function onScrollToTop () {
-      smoothScroll({
-        scrollTo: document.getElementById('top'),
-        updateHistory: false,
-      });
-    }
+    function onScrollToTop() {
+      // Only execute on client-side
+      if (typeof window === 'undefined') return
 
-    function onGoToPanel (card) {
-      const panelId = card.panelId;
-      drawerLeft.value = false;
-      if (card.panelId) {
+      if (smoothScroll) {
+        // Use smoothScroll to scroll to top (position 0)
         smoothScroll({
-          scrollTo: document.getElementById(panelId),
+          scrollTo: 0,
           updateHistory: false,
-        });
+        })
+      } else {
+        // Fallback to native smooth scroll
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
-      if (card.route) router.push(card.route);
-      if (card.link) window.open(card.link, '_blank').focus();
+    }
+
+    function onGoToPanel(card) {
+      drawerLeft.value = false
+
+      // Handle route navigation with smooth scroll to top
+      if (card.route) {
+        router.push(card.route).then(() => {
+          // Scroll to top after route navigation
+          setTimeout(() => {
+            onScrollToTop()
+          }, 100)
+        })
+        return
+      }
+
+      // Handle panel ID scrolling (if panelId exists)
+      if (typeof document !== 'undefined' && card.panelId) {
+        const panelElement = document.getElementById(card.panelId)
+        if (panelElement && smoothScroll) {
+          smoothScroll({
+            scrollTo: panelElement,
+            updateHistory: false,
+          })
+        } else if (panelElement) {
+          // Fallback to native smooth scroll
+          panelElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+        return
+      }
+
+      // Handle external links
+      if (typeof window !== 'undefined' && card.link) {
+        try {
+          const newWindow = window.open(card.link, '_blank')
+          // Don't call `focus()` as it can trigger extension message channel errors
+          if (newWindow) {
+            newWindow.opener = null // Security best practice
+          }
+        } catch (err) {
+          // Silently handle errors from browser extensions blocking `window.open`
+          console.warn('Could not open link:', err)
+        }
+      }
     }
 
     return {
@@ -206,15 +262,16 @@ export default {
       onScroll,
       onGoToPanel,
       onScrollToTop,
-    };
+      showScrollToTop,
+    }
   },
-};
+}
 </script>
 
 <style scoped>
 .whole-bg {
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(227,249,255,1) 100%);
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(227, 249, 255, 1) 100%);
 }
 
 .soc-med-toolbar {
@@ -222,11 +279,27 @@ export default {
   flex-wrap: wrap;
 }
 
-.btn-soc-med >>> span.q-btn__content {
+.btn-soc-med :deep(span.q-btn__content) {
   gap: 0.75rem;
 }
 
-.btn-soc-med >>> span.q-btn__content i.on-left {
+.btn-soc-med :deep(span.q-btn__content i.on-left) {
   margin-right: 0;
+}
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.scroll-to-top-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 </style>

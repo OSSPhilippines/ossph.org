@@ -2,25 +2,22 @@
  * This file is used for creating the production SSR server
  * You can customize it as needed for your project
  *
- * Note: For Firebase Functions deployment, see production-export.js
+ * Note: In @quasar/app-webpack v4+, production-export.js is no longer needed.
+ * Firebase Functions export is integrated here.
  */
 
-import { createRequire } from 'module'
-import { fileURLToPath } from 'url'
+import * as functions from 'firebase-functions'
 import { ssrProductionExport } from 'quasar/wrappers'
 
-// Handle both ESM and CJS contexts (Quasar compiles to CJS in dev mode)
-// In CJS context, __filename is available; in ESM, we use import.meta.url
-let requireFn
-if (typeof __filename !== 'undefined') {
-  // CommonJS context (compiled by Quasar)
-  requireFn = require
-} else if (typeof import.meta !== 'undefined' && import.meta.url) {
-  // ESM context
-  requireFn = createRequire(import.meta.url)
-} else {
-  // Fallback
-  requireFn = require
+// Helper to get require function
+// Quasar compiles this file to CJS, so require is available
+function getRequire() {
+  // In CJS context (compiled by Quasar), require is available globally
+  if (typeof require !== 'undefined') {
+    return require
+  }
+  // This should not happen since Quasar compiles to CJS
+  throw new Error('require is not available')
 }
 
 // For production builds, use ssrProductionExport
@@ -57,6 +54,8 @@ const serverConfigFn = ssrProductionExport(({ app, port, isReady, ssrHandler }) 
       }
       return ''
     },
+    // Firebase Functions export
+    ossphSSRHandler: functions.https.onRequest(ssrHandler),
   }
 })
 
@@ -64,23 +63,27 @@ let cachedConfig = null
 
 // Export functions - handle both dev and production modes
 export function create(middlewareParams) {
-  // Check if we're in dev mode by checking if middlewareParams has the dev structure
-  // In dev mode, middlewareParams has: port, resolve, publicPath, folders, render
-  // In production, it has: app, port, isReady, ssrHandler
-  const isDev = middlewareParams && middlewareParams.resolve && !middlewareParams.app
+  // In dev mode, Quasar provides the app instance via `middlewareParams.app`
+  // In production, middlewareParams contains: `app`, `port`, `isReady`, `ssrHandler`
+  // Check if we're in production modes by checking for `isReady`
+  const isProduction = middlewareParams && middlewareParams.isReady
 
-  if (isDev) {
-    // Dev mode: Quasar provides the app instance via middlewareParams after create is called
-    // We need to create a new Express app instance
-    const express = requireFn('express')
-    const app = express()
-    return app
-  } else {
+  if (isProduction) {
     // Production mode: use ssrProductionExport config
     if (!cachedConfig) {
       cachedConfig = serverConfigFn(middlewareParams)
     }
     return cachedConfig.create()
+  } else {
+    // Dev mode: Quasar may provide the app instance via `middlewareParams.app`
+    // If not provided, create a new Express app instance
+    if (middlewareParams && middlewareParams.app) {
+      return middlewareParams.app
+    }
+    // Create Express app if not provided (Quasar will use it)
+    // Quasar compiles this file to CJS, so require should be available
+    const express = getRequire()('express')
+    return express()
   }
 }
 
@@ -88,7 +91,7 @@ export function listen() {
   if (cachedConfig) {
     return cachedConfig.listen()
   }
-  // Dev mode doesn't use listen from here
+  // Dev mode doesn't use listen from here - Quasar dev server handles it
   return Promise.resolve()
 }
 
@@ -97,7 +100,8 @@ export async function serveStaticContent(middlewareParams) {
     return cachedConfig.serveStaticContent()
   }
   // Dev mode: return a function that serves static files
-  const serveStatic = requireFn('serve-static')
+  // Quasar handles this in dev mode, but we provide a fallback
+  const serveStatic = (await import('serve-static')).default
   return ({ urlPath, pathToServe }) => {
     const staticPath = middlewareParams.resolve.public(pathToServe)
     middlewareParams.app.use(urlPath, serveStatic(staticPath))

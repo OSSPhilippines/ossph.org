@@ -22,26 +22,38 @@ const require = createRequire(import.meta.url)
 
 export default configure(function (ctx) {
   return {
-    // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
-    supportTS: false,
+    // Linting
+    eslint: {
+      // fix: true,
+      // include: [],
+      // exclude: [],
+      // cache: false,
+      // rawEsbuildEslintOptions: {},
+      // rawWebpackEslintPluginOptions: {},
+      warnings: true,
+      errors: true,
+    },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
-    // preFetch: true,
+    // https://quasar.dev/quasar-cli-webpack/prefetch-feature
+    preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-webpack/boot-files
+    // https://quasar.dev/quasar-cli-webpack/boot-files
     boot: [
       'axios',
       'directives',
-      'vue-smooth-scroll',
       {
-        server: false, // run on client-side only!
-        path: 'aos.js', // references /src/boot/<name>.js
+        server: false,
+        path: 'vue-smooth-scroll.js',
+      },
+      {
+        server: false,
+        path: 'aos.js',
       },
     ],
 
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
+    // https://quasar.dev/quasar-cli-webpack/quasar-config-file#Property:-css
     css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -58,21 +70,24 @@ export default configure(function (ctx) {
       'material-icons', // optional, you are not bound to it
     ],
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
+    // Full list of options: https://quasar.dev/quasar-cli-webpack/quasar-config-file#Property:-build
     build: {
       env: require('dotenv').config().parsed,
       vueRouterMode: 'history', // available values: 'hash', 'history'
 
-      // transpile: false,
-      // publicPath: '/',
+      // webpackTranspile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
       // (from node_modules, which are by default not transpiled).
-      // Applies only if "transpile" is set to true.
-      // transpileDependencies: [],
+      // Applies only if "webpackTranspile" is set to true.
+      // webpackTranspileDependencies: [],
+
+      esbuildTarget: {
+        browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
+        node: 'node20',
+      },
 
       // rtl: true, // https://quasar.dev/options/rtl-support
-      // preloadChunks: true,
       // showProgress: false,
       // gzip: true,
       // analyze: true,
@@ -82,24 +97,42 @@ export default configure(function (ctx) {
 
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-
       chainWebpack(chain) {
-        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
+        // Configure resolve extensions to allow imports without file extensions
+        const existingExts = chain.resolve.extensions.values() || []
+        const priorityExts = ['.js', '.mjs', '.vue', '.json']
+        const otherExts = existingExts.filter(ext => !priorityExts.includes(ext))
+        chain.resolve.extensions.clear()
+        chain.resolve.extensions.merge([...priorityExts, ...otherExts])
+        // Allow imports without file extensions
+        chain.resolve.set('fullySpecified', false)
+
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [
+          {
+            extensions: ['js', 'vue'],
+            eslintPath: 'eslint/use-at-your-own-risk',
+            emitError: false,
+            emitWarning: true,
+            failOnError: false,
+            failOnWarning: false,
+          },
+        ])
       },
 
       extendWebpack(cfg) {
-        cfg.module.rules.push(
-          // {
-          //   enforce: 'pre',
-          //   test: /\.(js|vue)$/,
-          //   loader: 'eslint-loader',
-          //   exclude: /node_modules/,
-          // },
-          {
-            test: /\.pug$/,
-            loader: 'pug-plain-loader',
-          }
-        )
+        cfg.module.rules.push({
+          test: /\.pug$/,
+          loader: 'pug-plain-loader',
+        })
+        // Ensure resolve extensions include .js for imports without extensions
+        if (cfg.resolve.extensions) {
+          const filtered = cfg.resolve.extensions.filter(ext => ext !== '.js')
+          cfg.resolve.extensions = ['.js', ...filtered]
+        } else {
+          cfg.resolve.extensions = ['.js', '.mjs', '.vue', '.json']
+        }
+        // Allow imports without file extensions
+        cfg.resolve.fullySpecified = false
         cfg.resolve.alias = {
           ...cfg.resolve.alias,
           '@/': path.resolve(__dirname, './src'),
@@ -189,7 +222,7 @@ export default configure(function (ctx) {
 
       // List of SSR middleware files (src-ssr/middlewares/*). Order is important.
       middlewares: [
-        // ...
+        'compression', // Compression middleware
         'render', // Should not be missing, and should be last in the list.
       ],
 
@@ -294,18 +327,7 @@ export default configure(function (ctx) {
 
       builder: {
         // https://www.electron.build/configuration/configuration
-
         appId: 'ossph.org',
-      },
-
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-
-      chainWebpackMain(chain) {
-        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
-      },
-
-      chainWebpackPreload(chain) {
-        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
     },
   }

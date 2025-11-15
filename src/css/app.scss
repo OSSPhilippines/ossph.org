@@ -17,6 +17,7 @@ body {
 .ossph-text-gradient-main {
   background: #0060A0;
   background: linear-gradient(to right, #0060A0 0%, #7524B3 50%, #CF557D 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

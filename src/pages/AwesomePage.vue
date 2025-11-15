@@ -341,27 +341,19 @@ export default {
       error.value = null;
 
       try {
-        console.log('Fetching projects from GitHub...');
         const response = await axios.get('https://raw.githubusercontent.com/OSSPhilippines/awesome-pinoy-made/refs/heads/main/data.json');
-        console.log('Response data:', response.data);
-
         // Check if response.data is an array or has a projects property
         if (Array.isArray(response.data)) {
           projects.value = response.data;
-          console.log('Projects loaded (array):', response.data.length);
         } else if (response.data && Array.isArray(response.data.projects)) {
           projects.value = response.data.projects;
-          console.log('Projects loaded (projects property):', response.data.projects.length);
         } else if (response.data && typeof response.data === 'object') {
           // If it's an object, try to extract values as array
           projects.value = Object.values(response.data);
-          console.log('Projects loaded (object values):', projects.value.length);
         } else {
-          console.error('Unexpected data format:', response.data);
           projects.value = [];
         }
       } catch (err) {
-        console.error('Error fetching projects:', err);
         error.value = err.message || 'Failed to load projects';
         projects.value = [];
       } finally {

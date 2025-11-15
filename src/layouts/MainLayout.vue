@@ -178,10 +178,16 @@ export default {
     }
 
     function onScrollToTop () {
-      smoothScroll({
-        scrollTo: document.getElementById('top'),
-        updateHistory: false,
-      });
+      if (smoothScroll) {
+        // Use smoothScroll to scroll to top (position 0)
+        smoothScroll({
+          scrollTo: 0,
+          updateHistory: false,
+        });
+      } else {
+        // Fallback to native smooth scroll
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
     function onGoToPanel (card) {

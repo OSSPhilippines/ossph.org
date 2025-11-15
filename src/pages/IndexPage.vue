@@ -226,7 +226,7 @@ generic-panel(
 </template>
 
 <script>
-import { inject, computed } from 'vue';
+import { computed } from 'vue';
 import { useBuildMeta } from '@/composables/meta';
 import { useMeta, useQuasar } from 'quasar';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
@@ -236,27 +236,11 @@ export default {
   },
   setup () {
     useMeta(useBuildMeta({ page: 'Home' }));
-    const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
 
-    function onGoToPanel (card) {
-      const panelId = card.panelId;
-      if (card.panelId) {
-        smoothScroll({
-          scrollTo: document.getElementById(panelId),
-          updateHistory: false,
-        });
-      }
-
-      if (card.link) {
-        window.open(card.link, '_blank').focus();
-      }
-    }
-
     return {
       isMobile,
-      onGoToPanel,
     };
   },
 };

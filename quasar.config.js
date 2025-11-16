@@ -6,39 +6,48 @@
  */
 
 // Configuration for your app
-// https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
+// https://quasar.dev/quasar-cli-webpack/quasar-config-file
 
-const path = require('path');
+const path = require('path')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
-const ESLintPlugin = require('eslint-webpack-plugin');
-
-const { configure } = require('quasar/wrappers');
+const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
   return {
-    // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
-    supportTS: false,
+    // Linting
+    eslint: {
+      // fix: true,
+      // include: [],
+      // exclude: [],
+      // cache: false,
+      // rawEsbuildEslintOptions: {},
+      // rawWebpackEslintPluginOptions: {},
+      warnings: true,
+      errors: true,
+    },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
-    // preFetch: true,
+    // https://quasar.dev/quasar-cli-webpack/prefetch-feature
+    preFetch: true,
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-webpack/boot-files
+    // https://quasar.dev/quasar-cli-webpack/boot-files
     boot: [
       'axios',
       'directives',
-      'vue-smooth-scroll',
       {
-        server: false, // run on client-side only!
-        path: 'aos.js', // references /src/boot/<name>.js
+        server: false,
+        path: 'vue-smooth-scroll.js',
+      },
+      {
+        server: false,
+        path: 'aos.js',
       },
     ],
 
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
-    css: [
-      'app.scss',
-    ],
+    // https://quasar.dev/quasar-cli-webpack/quasar-config-file#Property:-css
+    css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -54,21 +63,24 @@ module.exports = configure(function (ctx) {
       'material-icons', // optional, you are not bound to it
     ],
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
+    // Full list of options: https://quasar.dev/quasar-cli-webpack/quasar-config-file#Property:-build
     build: {
       env: require('dotenv').config().parsed,
       vueRouterMode: 'history', // available values: 'hash', 'history'
 
-      // transpile: false,
-      // publicPath: '/',
+      // webpackTranspile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
       // (from node_modules, which are by default not transpiled).
-      // Applies only if "transpile" is set to true.
-      // transpileDependencies: [],
+      // Applies only if "webpackTranspile" is set to true.
+      // webpackTranspileDependencies: [],
+
+      esbuildTarget: {
+        browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
+        node: 'node20',
+      },
 
       // rtl: true, // https://quasar.dev/options/rtl-support
-      // preloadChunks: true,
       // showProgress: false,
       // gzip: true,
       // analyze: true,
@@ -76,27 +88,43 @@ module.exports = configure(function (ctx) {
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
 
-      // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
+      // https://quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+      chainWebpack(chain) {
+        // Configure resolve extensions to allow imports without file extensions
+        const existingExts = chain.resolve.extensions.values() || []
+        const priorityExts = ['.js', '.mjs', '.vue', '.json']
+        const otherExts = existingExts.filter(ext => !priorityExts.includes(ext))
+        chain.resolve.extensions.clear()
+        chain.resolve.extensions.merge([...priorityExts, ...otherExts])
+        // Allow imports without file extensions
+        chain.resolve.set('fullySpecified', false)
 
-      chainWebpack (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }]);
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [
+          {
+            extensions: ['js', 'vue'],
+            emitError: false,
+            emitWarning: true,
+            failOnError: false,
+            failOnWarning: false,
+          },
+        ])
       },
 
-      extendWebpack (cfg) {
-        cfg.module.rules.push(
-          // {
-          //   enforce: 'pre',
-          //   test: /\.(js|vue)$/,
-          //   loader: 'eslint-loader',
-          //   exclude: /node_modules/,
-          // },
-          {
-            test: /\.pug$/,
-            loader: 'pug-plain-loader',
-          },
-        );
+      extendWebpack(cfg) {
+        cfg.module.rules.push({
+          test: /\.pug$/,
+          loader: 'pug-plain-loader',
+        })
+        // Ensure resolve extensions include .js for imports without extensions
+        if (cfg.resolve.extensions) {
+          const filtered = cfg.resolve.extensions.filter(ext => ext !== '.js')
+          cfg.resolve.extensions = ['.js', ...filtered]
+        } else {
+          cfg.resolve.extensions = ['.js', '.mjs', '.vue', '.json']
+        }
+        // Allow imports without file extensions
+        cfg.resolve.fullySpecified = false
         cfg.resolve.alias = {
           ...cfg.resolve.alias,
           '@/': path.resolve(__dirname, './src'),
@@ -111,12 +139,11 @@ module.exports = configure(function (ctx) {
           '@/services': path.resolve(__dirname, './src/services'),
           '@/stores': path.resolve(__dirname, './src/stores'),
           '@/utils': path.resolve(__dirname, './src/utils'),
-        };
+        }
       },
-
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
+    // Full list of options: https://quasar.dev/quasar-cli-webpack/quasar-config-file#Property:-devServer
     devServer: {
       server: {
         type: 'http',
@@ -125,7 +152,7 @@ module.exports = configure(function (ctx) {
       open: true, // opens browser window automatically
     },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
+    // https://quasar.dev/quasar-cli-webpack/quasar-config-file#Property:-framework
     framework: {
       config: {},
 
@@ -140,46 +167,41 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [
-        'BottomSheet',
-        'Meta',
-        'Notify',
-        'Ripple',
-      ],
+      plugins: ['BottomSheet', 'Meta', 'Notify', 'Ripple'],
     },
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
     animations: [],
 
-    // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
+    // https://quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
     ssr: {
       pwa: false,
 
       /**
-     * Manually serialize the store state and provide it yourself
-     * as window.__INITIAL_STATE__ to the client-side (through a <script> tag)
-     * (Requires @quasar/app-webpack v3.5+)
-     */
+       * Manually serialize the store state and provide it yourself
+       * as window.__INITIAL_STATE__ to the client-side (through a <script> tag)
+       * (Requires @quasar/app-webpack v3.5+)
+       */
       manualStoreSerialization: false,
 
       /**
-     * Manually inject the store state into ssrContext.state
-     * (Requires @quasar/app-webpack v3.5+)
-     */
+       * Manually inject the store state into ssrContext.state
+       * (Requires @quasar/app-webpack v3.5+)
+       */
       manualStoreSsrContextInjection: false,
 
       /**
-     * Manually handle the store hydration instead of letting Quasar CLI do it.
-     * For Pinia: store.state.value = window.__INITIAL_STATE__
-     * For Vuex: store.replaceState(window.__INITIAL_STATE__)
-     */
+       * Manually handle the store hydration instead of letting Quasar CLI do it.
+       * For Pinia: store.state.value = window.__INITIAL_STATE__
+       * For Vuex: store.replaceState(window.__INITIAL_STATE__)
+       */
       manualStoreHydration: false,
 
       /**
-     * Manually call $q.onSSRHydrated() instead of letting Quasar CLI do it.
-     * This announces that client-side code should takeover.
-     */
+       * Manually call $q.onSSRHydrated() instead of letting Quasar CLI do it.
+       * This announces that client-side code should takeover.
+       */
       manualPostHydrationTrigger: false,
 
       prodPort: 3000, // The default port that the production server should use
@@ -192,35 +214,35 @@ module.exports = configure(function (ctx) {
 
       // List of SSR middleware files (src-ssr/middlewares/*). Order is important.
       middlewares: [
-      // ...
+        'compression', // Compression middleware
         'render', // Should not be missing, and should be last in the list.
       ],
 
       // optional; add/remove/change properties
       // of production generated package.json
-      extendPackageJson (pkg) {
-      // directly change props of pkg;
-      // no need to return anything
+      extendPackageJson(pkg) {
+        // directly change props of pkg;
+        // no need to return anything
       },
 
       // optional;
       // handles the Webserver webpack config ONLY
       // which includes the SSR middleware
-      extendWebpackWebserver (cfg) {
-      // directly change props of cfg;
-      // no need to return anything
+      extendWebpackWebserver(cfg) {
+        // directly change props of cfg;
+        // no need to return anything
       },
 
       // optional; EQUIVALENT to extendWebpack() but uses webpack-chain;
       // handles the Webserver webpack config ONLY
       // which includes the SSR middleware
-      chainWebpackWebserver (chain) {
-      // chain is a webpack-chain instance
-      // of the Webpack configuration
+      chainWebpackWebserver(chain) {
+        // chain is a webpack-chain instance
+        // of the Webpack configuration
       },
     },
 
-    // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
+    // https://quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
@@ -228,9 +250,8 @@ module.exports = configure(function (ctx) {
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
 
-      chainWebpackCustomSW (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }]);
+      chainWebpackCustomSW(chain) {
+        chain.plugin('eslint-webpack-plugin').use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
       manifest: {
@@ -271,51 +292,35 @@ module.exports = configure(function (ctx) {
       },
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-cordova-apps/configuring-cordova
+    // Full list of options: https://quasar.dev/quasar-cli-webpack/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-capacitor-apps/configuring-capacitor
+    // Full list of options: https://quasar.dev/quasar-cli-webpack/developing-capacitor-apps/configuring-capacitor
     capacitor: {
       hideSplashscreen: true,
     },
 
-    // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
+    // Full list of options: https://quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
     electron: {
       bundler: 'packager', // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
 
       builder: {
         // https://www.electron.build/configuration/configuration
-
         appId: 'ossph.org',
       },
-
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-
-      chainWebpackMain (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }]);
-      },
-
-      chainWebpackPreload (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }]);
-      },
-
     },
-  };
-});
+  }
+})

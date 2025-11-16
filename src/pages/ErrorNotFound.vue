@@ -20,8 +20,19 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { useMeta } from 'quasar';
+import { useBuildMeta } from '@/composables/meta';
 
 export default defineComponent({
   name: 'ErrorNotFound',
+  setup () {
+    useMeta(useBuildMeta({
+      page: '404 - Page Not Found',
+      title: '404 - Page Not Found | Open Source Software PH',
+      description: 'The page you are looking for could not be found. Return to the Open Source Software PH homepage.',
+      twitterTitle: '404 - Page Not Found | OSSPH',
+      twitterDescription: 'The page you are looking for could not be found.',
+    }));
+  },
 });
 </script>

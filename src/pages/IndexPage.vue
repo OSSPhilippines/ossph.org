@@ -235,7 +235,12 @@ export default {
     GenericPanel,
   },
   setup () {
-    useMeta(useBuildMeta({ page: 'Home' }));
+    useMeta(useBuildMeta({
+      page: 'Home',
+      description: 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines. Join our movement and help us grow!',
+      twitterTitle: 'Open Source Software PH - Join The Movement!',
+      twitterDescription: 'The leading Open Source Software Community in the Philippines. Join developers building open source software across the Philippines.',
+    }));
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);

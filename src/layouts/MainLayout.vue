@@ -123,7 +123,7 @@ import { useRouter } from 'vue-router';
 
 export default {
   setup () {
-    const smoothScroll = inject('smoothScroll');
+    const smoothScroll = inject('smoothScroll', null);
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
     const router = useRouter();
@@ -222,11 +222,11 @@ export default {
   flex-wrap: wrap;
 }
 
-.btn-soc-med >>> span.q-btn__content {
+.btn-soc-med :deep(span.q-btn__content) {
   gap: 0.75rem;
 }
 
-.btn-soc-med >>> span.q-btn__content i.on-left {
+.btn-soc-med :deep(span.q-btn__content i.on-left) {
   margin-right: 0;
 }
 </style>

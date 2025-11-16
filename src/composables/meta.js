@@ -107,9 +107,13 @@ export const useBuildMeta = ({
       },
     },
 
-    // CSS tags
+    // Link tags
     link: {
       material: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+      canonical: {
+        rel: 'canonical',
+        href: fullUrl,
+      },
     },
 
     // JS tags

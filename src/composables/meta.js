@@ -1,9 +1,27 @@
+import { useRoute } from 'vue-router';
 import ogBannerImage from '../assets/images/og-banner.png';
 
 const TITLE_DEFAULT = 'Open Source Software PH';
 const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.';
+const BASE_URL = 'https://ossph.org';
+
+/**
+ * Builds the full URL for the current page
+ * @param {string} path - The route path (e.g., '/team', '/projects')
+ * @returns {string} Full URL (e.g., 'https://ossph.org/team')
+ */
+function buildFullUrl (path) {
+  // Remove trailing slash and ensure path starts with /
+  const cleanPath = path === '/' ? '' : path.replace(/\/$/, '');
+  return `${BASE_URL}${cleanPath}`;
+}
 
 export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
+  // Get current route to build dynamic URLs
+  const route = useRoute();
+  const currentPath = route.path;
+  const fullUrl = buildFullUrl(currentPath);
+
   return {
     // sets document title
     title,
@@ -37,7 +55,7 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
       ogUrl: {
         property: 'og:url',
         template () {
-          return 'https://ossph.org';
+          return fullUrl;
         },
       },
       ogImage: {

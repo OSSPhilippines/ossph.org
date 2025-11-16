@@ -48,7 +48,12 @@ export default {
     GenericPanel,
   },
   setup () {
-    useMeta(useBuildMeta({ page: 'Our Projects', description: 'OSSPH\'s growing list of projects powered by the community!' }));
+    useMeta(useBuildMeta({
+      page: 'Our Projects',
+      description: 'Explore OSSPH\'s growing list of open source projects powered by the community! Discover tools, libraries, and applications built by Filipino developers.',
+      twitterTitle: 'Our Projects - Open Source Software PH',
+      twitterDescription: 'Explore OSSPH\'s growing list of open source projects powered by the community. Built by Filipino developers.',
+    }));
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);

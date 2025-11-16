@@ -303,19 +303,10 @@ export default {
     useMeta(useBuildMeta({
       page: 'Awesome Pinoy-Made Projects - Open Source Software Philippines',
       description: 'Discover amazing open source projects created by Filipino developers. Browse libraries, tools, frameworks, and applications made by the Philippine tech community.',
-      keywords: 'Filipino developers, Philippine open source, Pinoy-made software, Filipino programmers, Philippine tech community, open source projects Philippines, Filipino GitHub projects, Philippine software developers',
-      og: {
-        title: 'Awesome Pinoy-Made Open Source Projects | OSSPH',
-        description: 'Explore a curated collection of open source projects built by talented Filipino developers. Find libraries, tools, frameworks, and applications from the Philippine tech community.',
-        image: 'https://ossph.org/ossph-preview.png',
-        url: 'https://ossph.org/awesome',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: 'Awesome Pinoy-Made Open Source Projects',
-        description: 'Discover open source projects by Filipino developers',
-        image: 'https://ossph.org/ossph-preview.png',
-      },
+      twitterCard: 'summary_large_image',
+      twitterTitle: 'Awesome Pinoy-Made Open Source Projects | OSSPH',
+      twitterDescription: 'Discover open source projects by Filipino developers. Browse libraries, tools, frameworks, and applications from the Philippine tech community.',
+      twitterImage: 'https://ossph.org/ossph-preview.png',
     }));
 
     const $q = useQuasar();

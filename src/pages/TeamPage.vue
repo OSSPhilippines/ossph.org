@@ -118,7 +118,12 @@ export default {
     GenericPanel,
   },
   setup () {
-    useMeta(useBuildMeta({ page: 'The Team', description: 'Here are the amazing people behind OSSPH\'s initiatives' }));
+    useMeta(useBuildMeta({
+      page: 'The Team',
+      description: 'Meet the amazing people behind OSSPH\'s initiatives. Our team of passionate developers, designers, and community leaders working together to grow open source in the Philippines.',
+      twitterTitle: 'The Team - Open Source Software PH',
+      twitterDescription: 'Meet the amazing people behind OSSPH\'s initiatives. Passionate developers, designers, and community leaders.',
+    }));
     const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);

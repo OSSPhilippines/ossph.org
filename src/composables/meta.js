@@ -6,6 +6,19 @@ const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led 
 const BASE_URL = 'https://ossph.org';
 const TWITTER_SITE = '@OSSPhilippines'; // Twitter handle for the site
 
+// Organization information for structured data
+const ORGANIZATION = {
+  name: 'Open Source Software Philippines',
+  url: BASE_URL,
+  logo: `${BASE_URL}/icons/apple-touch-icon.png`,
+  sameAs: [
+    'https://github.com/OSSPhilippines',
+    'https://twitter.com/OSSPhilippines',
+    'https://www.facebook.com/ossph.org',
+    'https://discord.gg/DvtqKrWb86',
+  ],
+};
+
 /**
  * Builds the full URL for the current page
  * @param {string} path - The route path (e.g., '/team', '/projects')
@@ -15,6 +28,83 @@ function buildFullUrl (path) {
   // Remove trailing slash and ensure path starts with /
   const cleanPath = path === '/' ? '' : path.replace(/\/$/, '');
   return `${BASE_URL}${cleanPath}`;
+}
+
+/**
+ * Builds Organization structured data
+ * @returns {Object} Organization schema
+ */
+function buildOrganizationSchema () {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: ORGANIZATION.name,
+    url: ORGANIZATION.url,
+    logo: ORGANIZATION.logo,
+    sameAs: ORGANIZATION.sameAs,
+  };
+}
+
+/**
+ * Builds WebSite structured data
+ * @param {string} url - The current page URL
+ * @returns {Object} WebSite schema
+ */
+function buildWebSiteSchema (url) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: TITLE_DEFAULT,
+    url: BASE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${BASE_URL}/awesome?search={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+/**
+ * Builds BreadcrumbList structured data
+ * @param {string} path - The current route path
+ * @param {string} pageName - The current page name
+ * @returns {Object} BreadcrumbList schema
+ */
+function buildBreadcrumbSchema (path, pageName) {
+  const breadcrumbs = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: BASE_URL,
+    },
+  ];
+
+  // Add breadcrumbs for non-home pages
+  if (path !== '/') {
+    const pathSegments = path.split('/').filter(Boolean);
+    let currentPath = '';
+
+    pathSegments.forEach((segment, index) => {
+      currentPath += `/${segment}`;
+      const segmentName = segment.charAt(0).toUpperCase() + segment.slice(1);
+      breadcrumbs.push({
+        '@type': 'ListItem',
+        position: index + 2,
+        name: segmentName,
+        item: `${BASE_URL}${currentPath}`,
+      });
+    });
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs,
+  };
 }
 
 export const useBuildMeta = ({ 
@@ -35,6 +125,18 @@ export const useBuildMeta = ({
   const twitterTitleValue = twitterTitle || `${page} - ${title}`;
   const twitterDescriptionValue = twitterDescription || description;
   const twitterImageValue = twitterImage || ogBannerImage;
+
+  // Build structured data schemas
+  const organizationSchema = buildOrganizationSchema();
+  const webSiteSchema = buildWebSiteSchema(fullUrl);
+  const breadcrumbSchema = buildBreadcrumbSchema(currentPath, page);
+  
+  // Combine all structured data into an array
+  const structuredData = [
+    organizationSchema,
+    webSiteSchema,
+    breadcrumbSchema,
+  ];
 
   return {
     // sets document title
@@ -116,11 +218,11 @@ export const useBuildMeta = ({
       },
     },
 
-    // JS tags
+    // JS tags - Structured data (JSON-LD)
     script: {
       ldJson: {
         type: 'application/ld+json',
-        innerHTML: '{ "@context": "http://schema.org" }',
+        innerHTML: JSON.stringify(structuredData),
       },
     },
 

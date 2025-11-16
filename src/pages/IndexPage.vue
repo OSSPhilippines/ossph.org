@@ -236,7 +236,7 @@ export default {
   },
   setup () {
     useMeta(useBuildMeta({ page: 'Home' }));
-    const smoothScroll = inject('smoothScroll');
+    const smoothScroll = inject('smoothScroll', null);
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
 

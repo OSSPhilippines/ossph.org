@@ -1,3 +1,4 @@
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import ogBannerImage from '../assets/images/og-banner.png';
 
@@ -107,36 +108,37 @@ function buildBreadcrumbSchema (path, pageName) {
   };
 }
 
-export const useBuildMeta = ({ 
-  title = `${TITLE_DEFAULT} (OSSPH)`, 
-  page, 
+export const useBuildMeta = ({
+  title = `${TITLE_DEFAULT} (OSSPH)`,
+  page,
   description = DESCRIPTION_DEFAULT,
   twitterCard = 'summary_large_image',
   twitterTitle,
   twitterDescription,
-  twitterImage
+  twitterImage,
 } = {}) => {
-  // Get current route to build dynamic URLs
+  // Get current route to build dynamic URLs (reactive)
   const route = useRoute();
-  const currentPath = route.path;
-  const fullUrl = buildFullUrl(currentPath);
-  
+
+  // Make `fullUrl` reactive so it updates when route changes
+  const fullUrl = computed(() => buildFullUrl(route.path));
+
   // Build Twitter Card values (default to Open Graph values if not provided)
   const twitterTitleValue = twitterTitle || `${page} - ${title}`;
   const twitterDescriptionValue = twitterDescription || description;
   const twitterImageValue = twitterImage || ogBannerImage;
 
-  // Build structured data schemas
+  // Build structured data schemas (reactive to route changes)
   const organizationSchema = buildOrganizationSchema();
-  const webSiteSchema = buildWebSiteSchema(fullUrl);
-  const breadcrumbSchema = buildBreadcrumbSchema(currentPath, page);
-  
-  // Combine all structured data into an array
-  const structuredData = [
+  const webSiteSchema = computed(() => buildWebSiteSchema(fullUrl.value));
+  const breadcrumbSchema = computed(() => buildBreadcrumbSchema(route.path, page));
+
+  // Combine all structured data into an array (reactive)
+  const structuredData = computed(() => [
     organizationSchema,
-    webSiteSchema,
-    breadcrumbSchema,
-  ];
+    webSiteSchema.value,
+    breadcrumbSchema.value,
+  ]);
 
   return {
     // sets document title
@@ -171,7 +173,7 @@ export const useBuildMeta = ({
       ogUrl: {
         property: 'og:url',
         template () {
-          return fullUrl;
+          return fullUrl.value;
         },
       },
       ogImage: {
@@ -222,7 +224,7 @@ export const useBuildMeta = ({
       material: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
       canonical: {
         rel: 'canonical',
-        href: fullUrl,
+        href: () => fullUrl.value,
       },
     },
 
@@ -230,7 +232,7 @@ export const useBuildMeta = ({
     script: {
       ldJson: {
         type: 'application/ld+json',
-        innerHTML: JSON.stringify(structuredData),
+        innerHTML: () => JSON.stringify(structuredData.value),
       },
     },
 

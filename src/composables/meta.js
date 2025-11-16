@@ -1,11 +1,14 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import ogBannerImage from '../assets/images/og-banner.png';
 
 const TITLE_DEFAULT = 'Open Source Software PH';
 const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.';
 const BASE_URL = 'https://ossph.org';
 const TWITTER_SITE = '@OSSPhilippines'; // Twitter handle for the site
+
+// Open Graph image - must be absolute URL for proper social media sharing
+// Image is in public/ folder, so it's served from root
+const OG_BANNER_IMAGE = `${BASE_URL}/og-banner.png`;
 
 // Organization information for structured data
 const ORGANIZATION = {
@@ -126,7 +129,7 @@ export const useBuildMeta = ({
   // Build Twitter Card values (default to Open Graph values if not provided)
   const twitterTitleValue = twitterTitle || `${page} - ${title}`;
   const twitterDescriptionValue = twitterDescription || description;
-  const twitterImageValue = twitterImage || ogBannerImage;
+  const twitterImageValue = twitterImage || OG_BANNER_IMAGE;
 
   // Build structured data schemas (reactive to route changes)
   const organizationSchema = buildOrganizationSchema();
@@ -179,8 +182,20 @@ export const useBuildMeta = ({
       ogImage: {
         property: 'og:image',
         template () {
-          return ogBannerImage;
+          return OG_BANNER_IMAGE;
         },
+      },
+      ogImageWidth: {
+        property: 'og:image:width',
+        content: '2020',
+      },
+      ogImageHeight: {
+        property: 'og:image:height',
+        content: '1364',
+      },
+      ogImageAlt: {
+        property: 'og:image:alt',
+        content: 'Open Source Software PH - Building open source community in the Philippines',
       },
       ogSiteName: {
         property: 'og:site_name',

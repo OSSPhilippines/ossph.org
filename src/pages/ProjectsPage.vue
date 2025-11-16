@@ -49,17 +49,19 @@ export default {
   },
   setup () {
     useMeta(useBuildMeta({ page: 'Our Projects', description: 'OSSPH\'s growing list of projects powered by the community!' }));
-    const smoothScroll = inject('smoothScroll');
+    const smoothScroll = inject('smoothScroll', null);
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
 
     function onGoToPanel (card) {
       const panelId = card.panelId;
       if (card.panelId) {
-        smoothScroll({
-          scrollTo: document.getElementById(panelId),
-          updateHistory: false,
-        });
+        if (smoothScroll) {
+          smoothScroll({
+            scrollTo: document.getElementById(panelId),
+            updateHistory: false,
+          });
+        }
       }
 
       if (card.link) {

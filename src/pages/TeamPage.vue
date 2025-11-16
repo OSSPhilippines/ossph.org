@@ -119,7 +119,7 @@ export default {
   },
   setup () {
     useMeta(useBuildMeta({ page: 'The Team', description: 'Here are the amazing people behind OSSPH\'s initiatives' }));
-    const smoothScroll = inject('smoothScroll');
+    const smoothScroll = inject('smoothScroll', null);
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
     const selectedRole = ref(null);
@@ -153,10 +153,12 @@ export default {
     function onGoToPanel (card) {
       const panelId = card.panelId;
       if (card.panelId) {
-        smoothScroll({
-          scrollTo: document.getElementById(panelId),
-          updateHistory: false,
-        });
+        if (smoothScroll) {
+          smoothScroll({
+            scrollTo: document.getElementById(panelId),
+            updateHistory: false,
+          });
+        }
       }
 
       if (card.link) {

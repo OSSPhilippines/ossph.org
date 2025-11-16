@@ -236,7 +236,7 @@ export default {
   },
   setup () {
     useMeta(useBuildMeta({ page: 'Home' }));
-    const smoothScroll = inject('smoothScroll');
+    const smoothScroll = inject('smoothScroll', null);
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
 
@@ -287,11 +287,11 @@ export default {
   padding: 8px 16px;
 }
 
-.btn-contribute >>> span.q-btn__content {
+.btn-contribute :deep(span.q-btn__content) {
   gap: 0.75rem;
 }
 
-.btn-contribute >>> span.q-btn__content i.on-left {
+.btn-contribute :deep(span.q-btn__content i.on-left) {
   margin-right: 0;
 }
 

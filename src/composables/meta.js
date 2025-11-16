@@ -180,6 +180,14 @@ export const useBuildMeta = ({
           return ogBannerImage;
         },
       },
+      ogSiteName: {
+        property: 'og:site_name',
+        content: TITLE_DEFAULT,
+      },
+      ogLocale: {
+        property: 'og:locale',
+        content: 'en_US',
+      },
       // Twitter Card meta tags
       twitterCard: {
         name: 'twitter:card',

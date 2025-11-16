@@ -4,6 +4,7 @@ import ogBannerImage from '../assets/images/og-banner.png';
 const TITLE_DEFAULT = 'Open Source Software PH';
 const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.';
 const BASE_URL = 'https://ossph.org';
+const TWITTER_SITE = '@OSSPhilippines'; // Twitter handle for the site
 
 /**
  * Builds the full URL for the current page
@@ -16,11 +17,24 @@ function buildFullUrl (path) {
   return `${BASE_URL}${cleanPath}`;
 }
 
-export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
+export const useBuildMeta = ({ 
+  title = `${TITLE_DEFAULT} (OSSPH)`, 
+  page, 
+  description = DESCRIPTION_DEFAULT,
+  twitterCard = 'summary_large_image',
+  twitterTitle,
+  twitterDescription,
+  twitterImage
+} = {}) => {
   // Get current route to build dynamic URLs
   const route = useRoute();
   const currentPath = route.path;
   const fullUrl = buildFullUrl(currentPath);
+  
+  // Build Twitter Card values (default to Open Graph values if not provided)
+  const twitterTitleValue = twitterTitle || `${page} - ${title}`;
+  const twitterDescriptionValue = twitterDescription || description;
+  const twitterImageValue = twitterImage || ogBannerImage;
 
   return {
     // sets document title
@@ -63,6 +77,33 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
         template () {
           return ogBannerImage;
         },
+      },
+      // Twitter Card meta tags
+      twitterCard: {
+        name: 'twitter:card',
+        content: twitterCard,
+      },
+      twitterTitle: {
+        name: 'twitter:title',
+        template () {
+          return twitterTitleValue;
+        },
+      },
+      twitterDescription: {
+        name: 'twitter:description',
+        template () {
+          return twitterDescriptionValue;
+        },
+      },
+      twitterImage: {
+        name: 'twitter:image',
+        template () {
+          return twitterImageValue;
+        },
+      },
+      twitterSite: {
+        name: 'twitter:site',
+        content: TWITTER_SITE,
       },
     },
 

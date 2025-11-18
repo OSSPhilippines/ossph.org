@@ -1,6 +1,28 @@
+import { useRoute } from 'vue-router';
+import ogBannerImage from '../assets/images/og-banner.png';
+
 const TITLE_DEFAULT = 'Open Source Software PH';
 const DESCRIPTION_DEFAULT = 'Open Source Software PH (OSSPH) is a developer-led initiative to grow the community of developers building open source software across the Philippines.';
+const BASE_URL = 'https://ossph.org';
+
+function buildFullUrl (path) {
+  // Remove trailing slash and ensure path starts with /
+  const cleanPath = path === '/' ? '' : path.replace(/\/$/, '');
+  let origin = BASE_URL;
+
+  if (typeof window !== 'undefined' && window.location && window.location.origin) {
+    origin = window.location.origin;
+  }
+
+  return `${origin}${cleanPath}`;
+}
+
 export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, description = DESCRIPTION_DEFAULT }) => {
+  // Get current route to build dynamic URLs
+  const route = useRoute();
+  const currentPath = route.path;
+  const fullUrl = buildFullUrl(currentPath);
+
   return {
     // sets document title
     title,
@@ -19,8 +41,8 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
           return `${page} - ${title}`;
         },
       },
-      ogDecription: {
-        property: 'og:descrition',
+      ogDescription: {
+        property: 'og:description',
         template () {
           return `${description}`;
         },
@@ -34,13 +56,13 @@ export const useBuildMeta = ({ title = `${TITLE_DEFAULT} (OSSPH)`, page, descrip
       ogUrl: {
         property: 'og:url',
         template () {
-          return 'https://ossph.org';
+          return fullUrl;
         },
       },
       ogImage: {
         property: 'og:image',
         template () {
-          return require('../assets/images/og-banner.png');
+          return ogBannerImage;
         },
       },
     },

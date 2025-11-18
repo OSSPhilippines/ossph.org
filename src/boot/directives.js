@@ -1,9 +1,10 @@
 export default ({ app }) => {
   app.directive('colorize', {
-    created (el, binding, vnode, prevVnode) {
-      console.warn('🚀 ~ file: directives.js ~ line 4 ~ created ~ el', el);
+    // added underscore to the _prevVnode parameter to suppress the warning
+    created (el, binding, vnode, _prevVnode) {
+      // console.warn('🚀 ~ file: directives.js ~ line 4 ~ created ~ el', el);
       const { value } = binding;
-      const wordsAndColors = value.map(item => {
+      const wordsAndColors = value.map((item) => {
         const [word, color] = item.split('::');
         return {
           word,
@@ -11,12 +12,15 @@ export default ({ app }) => {
         };
       });
       let text = vnode.el.innerHTML || '';
-      console.log('🚀 ~ file: directives.js ~ line 14 ~ created ~ text', text);
-      wordsAndColors.forEach(item => {
-        console.warn('item', item);
+      // console.log('🚀 ~ file: directives.js ~ line 14 ~ created ~ text', text);
+      wordsAndColors.forEach((item) => {
+        // console.warn('item', item);
         const regex = new RegExp(item.word, 'gi');
-        console.warn(regex);
-        text = text.replace(regex, `<span style="color: ${item.color}">${item.word}</span>`);
+        // console.warn(regex);
+        text = text.replace(
+          regex,
+          `<span style="color: ${item.color}">${item.word}</span>`,
+        );
       });
       console.warn('text', text);
       el.innerHTML = text;
@@ -26,7 +30,7 @@ export default ({ app }) => {
     // called when the bound element's parent component
     // and all its children are mounted.
     mounted () {
-      console.warn('mounted');
+      // console.warn('mounted');
     },
     // called before the parent component is updated
     beforeUpdate () {},
@@ -37,6 +41,5 @@ export default ({ app }) => {
     beforeUnmount () {},
     // called when the parent component is unmounted
     unmounted () {},
-
   });
 };

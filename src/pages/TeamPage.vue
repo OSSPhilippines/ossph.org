@@ -23,66 +23,12 @@ generic-panel(
           )
       h1.text-h4 Active Volunteers
       div.row.wrap
-        template(v-for="team in activeTeamData")
-          div(data-aos="fade-up").col-xs-12.col-md-2.q-pa-md.text-center
-            q-img(
-              :src="require(`@/assets/images/${team.photo}`)"
-              :alt="`${team.name} - ${team.role}`"
-            ).q-mb-md
-            div
-              span.text-h4 {{team.name}}
-            div
-              span.text-body1 {{team.role}}
-            div(v-if="team.socials.length")
-              q-btn(
-                label="Connect"
-                color="primary"
-                flat
-                no-caps
-              ).full-width
-                q-menu(fit)
-                  q-list
-                    template(v-for="social in team.socials")
-                      q-item(
-                        target="_blank"
-                        v-close-popup
-                        clickable
-                        :href="social.link"
-                      )
-                        q-item-section(avatar)
-                          q-icon(:name="social.icon")
-                        q-item-section {{social.name}}
+        template(v-for="team in activeTeamData" :key="team.name")
+          team-member-card(:team="team")
       h1.text-h4 Past Volunteers
       div.row.wrap
-        template(v-for="team in inactiveTeamData")
-          div(data-aos="fade-up").col-xs-12.col-md-2.q-pa-md.text-center
-            q-img(
-              :src="require(`@/assets/images/${team.photo}`)"
-              :alt="`${team.name} - ${team.role}`"
-            ).q-mb-md
-            div
-              span.text-h4 {{team.name}}
-            div
-              span.text-body1 {{team.role}}
-            div(v-if="team.socials.length")
-              q-btn(
-                label="Connect"
-                color="primary"
-                flat
-                no-caps
-              ).full-width
-                q-menu(fit)
-                  q-list
-                    template(v-for="social in team.socials")
-                      q-item(
-                        target="_blank"
-                        v-close-popup
-                        clickable
-                        :href="social.link"
-                      )
-                        q-item-section(avatar)
-                          q-icon(:name="social.icon")
-                        q-item-section {{social.name}}
+        template(v-for="team in inactiveTeamData" :key="team.name")
+          team-member-card(:team="team")
 
       div.row.wrap.justify-center
         div.col-xs-12.q-mt-lg.text-center.q-gutter-sm
@@ -108,18 +54,19 @@ generic-panel(
 </template>
 
 <script>
-import { inject, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useBuildMeta } from '@/composables/meta';
 import { useMeta, useQuasar } from 'quasar';
 import GenericPanel from '@/components/commons/GenericPanel.vue';
+import TeamMemberCard from '@/components/TeamMemberCard.vue';
 import teamData from '@/assets/fixtures/team';
 export default {
   components: {
     GenericPanel,
+    TeamMemberCard,
   },
   setup () {
     useMeta(useBuildMeta({ page: 'The Team', description: 'Here are the amazing people behind OSSPH\'s initiatives' }));
-    const smoothScroll = inject('smoothScroll');
     const $q = useQuasar();
     const isMobile = computed(() => $q.screen.lt.md);
     const selectedRole = ref(null);
@@ -150,25 +97,10 @@ export default {
       return filtered;
     });
 
-    function onGoToPanel (card) {
-      const panelId = card.panelId;
-      if (card.panelId) {
-        smoothScroll({
-          scrollTo: document.getElementById(panelId),
-          updateHistory: false,
-        });
-      }
-
-      if (card.link) {
-        window.open(card.link, '_blank').focus();
-      }
-    }
-
     return {
       isMobile,
       activeTeamData,
       inactiveTeamData,
-      onGoToPanel,
       selectedRole,
       roleOptions,
     };

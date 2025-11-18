@@ -39,3 +39,7 @@ yarn-error.log*
 # Firebase
 .firebase
 firebase-debug.log
+
+# Yarn PnP (not used - we use node-modules linker)
+.pnp.*
+.pnp

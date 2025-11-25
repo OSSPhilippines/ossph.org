@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
@@ -6,9 +7,33 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PageHero } from "@/components/ui/page-hero";
 import { projects } from "@/data/projects";
 
-export const metadata = {
-  title: "Projects | OSSPH",
-  description: "OSSPH's growing list of projects powered by the community!",
+export const metadata: Metadata = {
+  title: "Our Projects",
+  description:
+    "Explore OSSPH's growing list of open source projects powered by the Filipino developer community. From developer tools to community platforms, discover what we're building together.",
+  alternates: {
+    canonical: "https://ossph.org/projects",
+  },
+  openGraph: {
+    title: "OSSPH Projects - Open Source from the Philippines",
+    description:
+      "Explore OSSPH's growing list of open source projects powered by the Filipino developer community.",
+    url: "https://ossph.org/projects",
+    images: [
+      {
+        url: "/images/og-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "OSSPH Projects",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OSSPH Projects - Open Source from the Philippines",
+    description:
+      "Explore OSSPH's growing list of open source projects powered by the Filipino developer community.",
+  },
 };
 
 export default function ProjectsPage() {

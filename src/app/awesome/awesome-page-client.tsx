@@ -231,7 +231,7 @@ export default function AwesomePageClient() {
                       <div className="flex-1 min-w-0">
                         <CardTitle className="text-lg truncate">{project.name}</CardTitle>
                         {project.category && (
-                          <Badge variant="secondary" className="mt-1">
+                          <Badge variant="default" color="primary" className="mt-1">
                             {project.category}
                           </Badge>
                         )}

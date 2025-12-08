@@ -172,7 +172,7 @@ export default function AwesomePageClient() {
 
             <div className="flex flex-wrap gap-2 flex-1">
               <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger className="w-[160px] hover:bg-muted">
+                <SelectTrigger className="w-full hover:bg-muted lg:w-[160px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -192,7 +192,7 @@ export default function AwesomePageClient() {
               </Select>
 
               <Select value={author} onValueChange={setAuthor}>
-                <SelectTrigger className="w-[160px] hover:bg-muted">
+                <SelectTrigger className="w-full hover:bg-muted lg:w-[160px]">
                   <SelectValue placeholder="Author" />
                 </SelectTrigger>
                 <SelectContent>
@@ -215,7 +215,7 @@ export default function AwesomePageClient() {
                 <Button
                   variant="outline"
                   onClick={clearFilters}
-                  className="text-white bg-red-500 hover:bg-red-500/80 hover:text-white"
+                  className="text-white bg-red-500 hover:bg-red-500/80 hover:text-white ml-auto"
                 >
                   Clear filters
                 </Button>

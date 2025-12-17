@@ -357,6 +357,7 @@ export default function AwesomePageClient() {
                                 href={project.links.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label={`View ${project.name} on GitHub`}
                               >
                                 <Github className="h-4 w-4" />
                               </Link>
@@ -373,6 +374,7 @@ export default function AwesomePageClient() {
                                 href={project.links.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label={`Visit ${project.name} website`}
                               >
                                 <Globe className="h-4 w-4" />
                               </Link>
@@ -389,6 +391,7 @@ export default function AwesomePageClient() {
                                 href={project.links.npm}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label={`View ${project.name} on NPM`}
                               >
                                 <NpmIcon className="h-4 w-4" />
                               </Link>
@@ -405,6 +408,7 @@ export default function AwesomePageClient() {
                                 href={project.links.documentation}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label={`View ${project.name} documentation`}
                               >
                                 <FileText className="h-4 w-4" />
                               </Link>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Globe } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,15 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { TwitterIcon, FacebookIcon, DiscordIcon } from "@/components/icons";
 import type { TeamMember } from "@/data/team";
-
-const socialIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  github: Github,
-  linkedin: Linkedin,
-  twitter: TwitterIcon,
-  facebook: FacebookIcon,
-  discord: DiscordIcon,
-  website: Globe,
-};
 
 function getSocialIcon(iconName: string) {
   const normalizedName = iconName.toLowerCase();
@@ -40,14 +30,18 @@ interface TeamMemberCardProps {
 export function TeamMemberCard({ member }: TeamMemberCardProps) {
   return (
     <div className="flex flex-col items-center text-center space-y-4">
-      <Avatar className="w-32 h-32">
-        <AvatarImage src={`/images/${member.photo}`} alt={member.name} />
-        <AvatarFallback className="text-3xl bg-(--ossph-primary) text-white">
-          {member.name.charAt(0)}
-        </AvatarFallback>
-      </Avatar>
+      <Link href={`/member/${member.username}`} className="group">
+        <Avatar className="w-32 h-32 transition-transform group-hover:scale-105">
+          <AvatarImage src={`/images/${member.photo}`} alt={member.name} />
+          <AvatarFallback className="text-3xl bg-(--ossph-primary) text-white">
+            {member.name.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
+      </Link>
       <div>
-        <h4 className="text-lg font-bold">{member.name}</h4>
+        <Link href={`/member/${member.username}`} className="hover:text-[var(--ossph-primary)] transition-colors">
+          <h4 className="text-lg font-bold">{member.name}</h4>
+        </Link>
         <p className="text-sm text-gray-600">{member.role}</p>
       </div>
       {member.socials.length > 0 && (

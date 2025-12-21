@@ -1,7 +1,16 @@
 import { MetadataRoute } from "next";
+import { getAllUsernames } from "@/data/team";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ossph.org";
+
+  // Generate member profile URLs
+  const memberUrls = getAllUsernames().map((username) => ({
+    url: `${baseUrl}/member/${username}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   return [
     {
@@ -28,5 +37,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.9,
     },
+    ...memberUrls,
   ];
 }

@@ -3,10 +3,26 @@
 import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Plus, Github, Globe, Star, SearchX, FileText, Loader2, Filter, Search } from "lucide-react";
+import {
+  Plus,
+  Github,
+  Globe,
+  Star,
+  SearchX,
+  FileText,
+  Loader2,
+  Filter,
+  Search,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -17,6 +33,7 @@ import {
 } from "@/components/ui/select";
 import { PageHero } from "@/components/ui/page-hero";
 import { NpmIcon } from "@/components/icons";
+import { formatCategory } from "@/lib/utils";
 
 interface Project {
   id: string;
@@ -40,7 +57,8 @@ interface Project {
   };
 }
 
-const DATA_URL = "https://raw.githubusercontent.com/OSSPhilippines/awesome-pinoy-made/refs/heads/main/data.json";
+const DATA_URL =
+  "https://raw.githubusercontent.com/OSSPhilippines/awesome-pinoy-made/refs/heads/main/data.json";
 
 export default function AwesomePageClient() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -72,7 +90,9 @@ export default function AwesomePageClient() {
   }, [projects]);
 
   const authors = useMemo(() => {
-    const auths = [...new Set(projects.map((p) => p.author?.name).filter(Boolean))];
+    const auths = [
+      ...new Set(projects.map((p) => p.author?.name).filter(Boolean)),
+    ];
     return auths.sort();
   }, [projects]);
 
@@ -82,7 +102,8 @@ export default function AwesomePageClient() {
         search === "" ||
         project.name.toLowerCase().includes(search.toLowerCase()) ||
         project.description?.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory = category === "all" || project.category === category;
+      const matchesCategory =
+        category === "all" || project.category === category;
       const matchesAuthor = author === "all" || project.author?.name === author;
       return matchesSearch && matchesCategory && matchesAuthor;
     });
@@ -102,14 +123,26 @@ export default function AwesomePageClient() {
         emoji="🇵🇭"
         description="A collection of open source projects made by Filipino developers"
       >
-        <Button asChild size="lg" className="bg-(--ossph-primary) hover:bg-(--ossph-primary)/90">
-          <Link href="https://github.com/OSSPhilippines/awesome-pinoy-made" target="_blank" rel="noopener noreferrer">
+        <Button
+          asChild
+          size="lg"
+          className="bg-(--ossph-primary) hover:bg-(--ossph-primary)/90"
+        >
+          <Link
+            href="https://github.com/OSSPhilippines/awesome-pinoy-made"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Plus className="h-5 w-5 mr-2" />
             Submit Your Project
           </Link>
         </Button>
         <Button asChild variant="outline" size="lg" className="hover:bg-muted">
-          <Link href="https://github.com/OSSPhilippines/awesome-pinoy-made" target="_blank" rel="noopener noreferrer">
+          <Link
+            href="https://github.com/OSSPhilippines/awesome-pinoy-made"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Github className="h-5 w-5 mr-2" />
             View on GitHub
           </Link>
@@ -139,27 +172,39 @@ export default function AwesomePageClient() {
 
             <div className="flex flex-wrap gap-2 flex-1">
               <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger className="w-[160px] hover:bg-muted">
+                <SelectTrigger className="w-full hover:bg-muted lg:w-[160px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all" className="focus:bg-muted">All Categories</SelectItem>
+                  <SelectItem value="all" className="focus:bg-muted">
+                    All Categories
+                  </SelectItem>
                   {categories.map((cat) => (
-                    <SelectItem key={cat} value={cat!} className="focus:bg-muted">
-                      {cat}
+                    <SelectItem
+                      key={cat}
+                      value={cat!}
+                      className="focus:bg-muted"
+                    >
+                      {formatCategory(cat, ["sdk", "cms"])}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
 
               <Select value={author} onValueChange={setAuthor}>
-                <SelectTrigger className="w-[160px] hover:bg-muted">
+                <SelectTrigger className="w-full hover:bg-muted lg:w-[160px]">
                   <SelectValue placeholder="Author" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all" className="focus:bg-muted">All Authors</SelectItem>
+                  <SelectItem value="all" className="focus:bg-muted">
+                    All Authors
+                  </SelectItem>
                   {authors.map((auth) => (
-                    <SelectItem key={auth} value={auth!} className="focus:bg-muted">
+                    <SelectItem
+                      key={auth}
+                      value={auth!}
+                      className="focus:bg-muted"
+                    >
                       {auth}
                     </SelectItem>
                   ))}
@@ -167,7 +212,11 @@ export default function AwesomePageClient() {
               </Select>
 
               {(search || category !== "all" || author !== "all") && (
-                <Button variant="outline" size="sm" onClick={clearFilters} className="hover:bg-muted">
+                <Button
+                  variant="outline"
+                  onClick={clearFilters}
+                  className="text-white bg-red-500 hover:bg-red-500/80 hover:text-white ml-auto"
+                >
                   Clear filters
                 </Button>
               )}
@@ -229,9 +278,15 @@ export default function AwesomePageClient() {
                         />
                       )}
                       <div className="flex-1 min-w-0">
-                        <CardTitle className="text-lg truncate">{project.name}</CardTitle>
+                        <CardTitle className="text-lg truncate">
+                          {project.name}
+                        </CardTitle>
                         {project.category && (
-                          <Badge variant="default" color="primary" className="mt-1">
+                          <Badge
+                            variant="default"
+                            color="primary"
+                            className="mt-1"
+                          >
                             {project.category}
                           </Badge>
                         )}
@@ -268,48 +323,93 @@ export default function AwesomePageClient() {
                       )}
 
                       {/* Technologies */}
-                      {project.technologies && project.technologies.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {project.technologies.slice(0, 4).map((tech) => (
-                            <Badge key={tech} variant="outline" className="text-xs">
-                              {tech}
-                            </Badge>
-                          ))}
-                          {project.technologies.length > 4 && (
-                            <Badge variant="outline" className="text-xs">
-                              +{project.technologies.length - 4}
-                            </Badge>
-                          )}
-                        </div>
-                      )}
+                      {project.technologies &&
+                        project.technologies.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {project.technologies.slice(0, 4).map((tech) => (
+                              <Badge
+                                key={tech}
+                                variant="outline"
+                                className="text-xs"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                            {project.technologies.length > 4 && (
+                              <Badge variant="outline" className="text-xs">
+                                +{project.technologies.length - 4}
+                              </Badge>
+                            )}
+                          </div>
+                        )}
 
                       {/* Links */}
                       {project.links && (
                         <div className="flex flex-wrap gap-2">
                           {project.links.github && (
-                            <Button asChild variant="outline" size="sm" className="hover:bg-muted">
-                              <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="hover:bg-muted"
+                            >
+                              <Link
+                                href={project.links.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`View ${project.name} on GitHub`}
+                              >
                                 <Github className="h-4 w-4" />
                               </Link>
                             </Button>
                           )}
                           {project.links.website && (
-                            <Button asChild variant="outline" size="sm" className="hover:bg-muted">
-                              <Link href={project.links.website} target="_blank" rel="noopener noreferrer">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="hover:bg-muted"
+                            >
+                              <Link
+                                href={project.links.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Visit ${project.name} website`}
+                              >
                                 <Globe className="h-4 w-4" />
                               </Link>
                             </Button>
                           )}
                           {project.links.npm && (
-                            <Button asChild variant="outline" size="sm" className="hover:bg-muted">
-                              <Link href={project.links.npm} target="_blank" rel="noopener noreferrer">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="hover:bg-muted"
+                            >
+                              <Link
+                                href={project.links.npm}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`View ${project.name} on NPM`}
+                              >
                                 <NpmIcon className="h-4 w-4" />
                               </Link>
                             </Button>
                           )}
                           {project.links.documentation && (
-                            <Button asChild variant="outline" size="sm" className="hover:bg-muted">
-                              <Link href={project.links.documentation} target="_blank" rel="noopener noreferrer">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="hover:bg-muted"
+                            >
+                              <Link
+                                href={project.links.documentation}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`View ${project.name} documentation`}
+                              >
                                 <FileText className="h-4 w-4" />
                               </Link>
                             </Button>
@@ -323,10 +423,9 @@ export default function AwesomePageClient() {
             ) : (
               <div className="text-center py-12">
                 <SearchX className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                <p className="text-gray-600 mb-4">No projects found matching your criteria</p>
-                <Button variant="outline" onClick={clearFilters} className="hover:bg-muted">
-                  Clear filters
-                </Button>
+                <p className="text-gray-600 mb-4">
+                  No projects found matching your criteria
+                </p>
               </div>
             )}
           </>
